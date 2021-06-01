@@ -1,30 +1,4 @@
-<!DOCTYPE HTML>
 
-<head>
-    <title>Store Website</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
-    <link href="css/menu.css" rel="stylesheet" type="text/css" media="all" />
-    <script src="js/jquerymain.js"></script>
-    <script src="js/script.js" type="text/javascript"></script>
-    <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
-    <script type="text/javascript" src="js/nav.js"></script>
-    <script type="text/javascript" src="js/move-top.js"></script>
-    <script type="text/javascript" src="js/easing.js"></script>
-    <script type="text/javascript" src="js/nav-hover.js"></script>
-    <link href='http://fonts.googleapis.com/css?family=Monda' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Doppio+One' rel='stylesheet' type='text/css'>
-    <script type="text/javascript">
-        $(document).ready(function($) {
-            $('#dc_mega-menu-orange').dcMegaMenu({
-                rowItems: '4',
-                speed: 'fast',
-                effect: 'fade'
-            });
-        });
-    </script>
-</head>
 <?php
   //set headers to NOT cache a page
   header("Cache-Control: no-cache, must-revalidate"); //HTTP 1.1
@@ -35,6 +9,45 @@
   header("Cache-Control: max-age=2592000"); 
 //30days (60sec * 60min * 24hours * 30days)
 ?>
+<!DOCTYPE HTML>
+
+<head>
+    <title>Store Website</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="css/menu.css" rel="stylesheet" type="text/css" media="all" />
+
+
+
+    <link href='http://fonts.googleapis.com/css?family=Monda' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Doppio+One' rel='stylesheet' type='text/css'>
+
+    <script src="js/jquerymain.js"></script>
+    <script src="js/script.js" type="text/javascript"></script>
+    <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="js/nav.js"></script>
+    <script type="text/javascript" src="js/move-top.js"></script>
+    <script type="text/javascript" src="js/easing.js"></script>
+    <script type="text/javascript" src="js/nav-hover.js"></script>
+    <script type="text/javascript" src="js/table.js"></script>
+    <script src="js/setup.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function($) {
+            $('#dc_mega-menu-orange').dcMegaMenu({
+                rowItems: '4',
+                speed: 'fast',
+                effect: 'fade'
+            });
+        });
+
+        $(document).ready(function () {
+            setupLeftMenu();
+		    setSidebarHeight();
+        });
+    </script>
+</head>
+
 <body>
     <div class="wrap">
         <div class="header_top">

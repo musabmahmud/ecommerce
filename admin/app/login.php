@@ -1,3 +1,13 @@
+<?php include '../classes/adminlogin.php';?>
+<?php
+  $admin = new adminLogin();
+  if($_SERVER['REQUEST_METHOD'] == 'POST'){
+    $admin = $_POST['email'];
+    $pass = $_POST['pass'];
+
+    $loginchk = $admin->adminLogin($admin,$pass);
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -34,7 +44,6 @@
     <link href="../lib/font-awesome/css/font-awesome.css" rel="stylesheet">
     <link href="../lib/Ionicons/css/ionicons.css" rel="stylesheet">
 
-
     <!-- Starlight CSS -->
     <link rel="stylesheet" href="../css/starlight.css">
   </head>
@@ -47,12 +56,12 @@
         <div class="signin-logo tx-center tx-24 tx-bold tx-inverse">Ecommerce <span class="tx-info tx-normal">admin</span></div>
         <div class="tx-center mg-b-60">Ecommerce Website Admin Login</div>
 
-        <form class="form-horizontal" method="POST">
+        <form class="form-horizontal" action="login.php" method="POST">
             <div class="form-group">
-              <input type="email" class="form-control" placeholder="Enter your Email" name="email">
+              <input type="email" class="form-control" placeholder="Enter your Email" name="email" required>
             </div><!-- form-group -->
             <div class="form-group">
-              <input type="password" class="form-control" placeholder="Enter your password" name="password">
+              <input type="password" class="form-control" placeholder="Enter your password" name="pass" required>
               <a href="" class="tx-info tx-12 d-block mg-t-10">Forgot password?</a>
             </div><!-- form-group -->
             <button type="submit" class="btn btn-info btn-block">Sign In</button>
