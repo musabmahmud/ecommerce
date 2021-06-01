@@ -25,12 +25,21 @@
         });
     </script>
 </head>
-
+<?php
+  //set headers to NOT cache a page
+  header("Cache-Control: no-cache, must-revalidate"); //HTTP 1.1
+  header("Pragma: no-cache"); //HTTP 1.0
+  header("Expires: Sat, 26 Jul 1997 05:00:00 GMT"); 
+  // Date in the past
+  //or, if you DO want a file to cache, use:
+  header("Cache-Control: max-age=2592000"); 
+//30days (60sec * 60min * 24hours * 30days)
+?>
 <body>
     <div class="wrap">
         <div class="header_top">
             <div class="logo">
-                <a href="index.html"><img src="images/logo.png" alt="" /></a>
+                <a href="index.php"><img src="images/logo.png" alt="" /></a>
             </div>
             <div class="header_top_right">
                 <div class="search_box">
@@ -46,18 +55,18 @@
                         </a>
                     </div>
                 </div>
-                <div class="login"><a href="login.html">Login</a></div>
+                <div class="login"><a href="login.php">Login</a></div>
                 <div class="clear"></div>
             </div>
             <div class="clear"></div>
         </div>
         <div class="menu">
             <ul id="dc_mega-menu-orange" class="dc_mm-orange">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="products.html">Products</a> </li>
-                <li><a href="topbrands.html">Top Brands</a></li>
-                <li><a href="cart.html">Cart</a></li>
-                <li><a href="contact.html">Contact</a> </li>
+                <li><a href="index.php">Home</a></li>
+                <li><a href="products.php">Products</a> </li>
+                <li><a href="topbrands.php">Top Brands</a></li>
+                <li><a href="cart.php">Cart</a></li>
+                <li><a href="contact.php">Contact</a> </li>
                 <div class="clear"></div>
             </ul>
         </div>
