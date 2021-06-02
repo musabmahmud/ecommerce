@@ -71,10 +71,13 @@
         });
 
     });
+    $(document).ready( function () {
+	        $('#myTable').DataTable();
+	});
 </script>
 <a href="#" id="toTop" style="display: block;"><span id="toTopHover" style="opacity: 1;"></span></a>
-<link href="css/flexslider.css" rel='stylesheet' type='text/css' />
-<script defer src="js/jquery.flexslider.js"></script>
+<link href="assets/css/flexslider.css" rel='stylesheet' type='text/css' />
+<script defer src="assets/js/jquery.flexslider.js"></script>
 <script type="text/javascript">
     $(function() {
         SyntaxHighlighter.all();
@@ -87,6 +90,8 @@
             }
         });
     });
+
+    
 </script>
 </body>
 
