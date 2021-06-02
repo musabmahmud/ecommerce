@@ -1,4 +1,4 @@
-<?php include '../inc/header.php';?>
+<?php include 'inc/header.php';?>
     <!-- ########## START: MAIN PANEL ########## -->
     <div class="sl-mainpanel">
       <nav class="breadcrumb sl-breadcrumb">
@@ -7,11 +7,9 @@
       </nav>
 
       <div class="sl-pagebody">
-      <?php
-        if(isset($_GET["username"])){
-          echo $_GET["username"];
-        }
-      ?>
+        <div class="sl-page-title text-center text-uppercase">
+          <h5>Welcome to Dashboard, <?= Session::get('username');?></h5>
+        </div>
 
       </div><!-- sl-pagebody -->
 

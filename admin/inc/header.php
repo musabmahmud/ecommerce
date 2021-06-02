@@ -1,6 +1,8 @@
 <?php
-include '../../lib/session.php';
-Session::init();
+include '../lib/session.php';
+Session::checkSession();
+include '../lib/database.php';
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,14 +14,14 @@ Session::init();
     <title>Ecommerce Admin Panel</title>
 
     <!-- vendor css -->
-    <link href="../assets/lib/font-awesome/css/font-awesome.css" rel="stylesheet">
-    <link href="../assets/lib/Ionicons/css/ionicons.css" rel="stylesheet">
-    <link href="../assets/lib/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet">
-    <link href="../assets/lib/highlightjs/github.css" rel="stylesheet">
-    <link href="../assets/lib/rickshaw/rickshaw.min.css" rel="stylesheet">
+    <link href="assets/lib/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="assets/lib/Ionicons/css/ionicons.css" rel="stylesheet">
+    <link href="assets/lib/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet">
+    <link href="assets/lib/highlightjs/github.css" rel="stylesheet">
+    <link href="assets/lib/rickshaw/rickshaw.min.css" rel="stylesheet">
 
     <!-- Starlight CSS -->
-    <link rel="stylesheet" href="../css/starlight.css">
+    <link rel="stylesheet" href="assets/css/starlight.css">
   </head>
 
   <body>
@@ -48,77 +50,6 @@ Session::init();
             <span class="menu-item-label">Cards &amp; Widgets</span>
           </div><!-- menu-item -->
         </a><!-- sl-menu-link -->
-        <a href="#" class="sl-menu-link active show-sub">
-          <div class="sl-menu-item">
-            <i class="menu-item-icon ion-ios-pie-outline tx-20"></i>
-            <span class="menu-item-label">Charts</span>
-            <i class="menu-item-arrow fa fa-angle-down"></i>
-          </div><!-- menu-item -->
-        </a><!-- sl-menu-link -->
-        <ul class="sl-menu-sub nav flex-column">
-          <li class="nav-item"><a href="chart-morris.php" class="nav-link">Morris Charts</a></li>
-          <li class="nav-item"><a href="chart-flot.php" class="nav-link">Flot Charts</a></li>
-          <li class="nav-item"><a href="chart-chartjs.php" class="nav-link">Chart JS</a></li>
-          <li class="nav-item"><a href="chart-rickshaw.php" class="nav-link">Rickshaw</a></li>
-          <li class="nav-item"><a href="chart-sparkline.php" class="nav-link active">Sparkline</a></li>
-        </ul>
-        <a href="#" class="sl-menu-link">
-          <div class="sl-menu-item">
-            <i class="menu-item-icon icon ion-ios-gear-outline tx-24"></i>
-            <span class="menu-item-label">Forms</span>
-            <i class="menu-item-arrow fa fa-angle-down"></i>
-          </div><!-- menu-item -->
-        </a><!-- sl-menu-link -->
-        <ul class="sl-menu-sub nav flex-column">
-          <li class="nav-item"><a href="form-elements.php" class="nav-link">Form Elements</a></li>
-          <li class="nav-item"><a href="form-layouts.php" class="nav-link">Form Layouts</a></li>
-          <li class="nav-item"><a href="form-validation.php" class="nav-link">Form Validation</a></li>
-          <li class="nav-item"><a href="form-wizards.php" class="nav-link">Form Wizards</a></li>
-          <li class="nav-item"><a href="form-editor-text.php" class="nav-link">Text Editor</a></li>
-        </ul>
-        <a href="#" class="sl-menu-link">
-          <div class="sl-menu-item">
-            <i class="menu-item-icon icon ion-ios-filing-outline tx-24"></i>
-            <span class="menu-item-label">UI Elements</span>
-            <i class="menu-item-arrow fa fa-angle-down"></i>
-          </div><!-- menu-item -->
-        </a><!-- sl-menu-link -->
-        <ul class="sl-menu-sub nav flex-column">
-          <li class="nav-item"><a href="accordion.php" class="nav-link">Accordion</a></li>
-          <li class="nav-item"><a href="alerts.php" class="nav-link">Alerts</a></li>
-          <li class="nav-item"><a href="buttons.php" class="nav-link">Buttons</a></li>
-          <li class="nav-item"><a href="cards.php" class="nav-link">Cards</a></li>
-          <li class="nav-item"><a href="icons.php" class="nav-link">Icons</a></li>
-          <li class="nav-item"><a href="modal.php" class="nav-link">Modal</a></li>
-          <li class="nav-item"><a href="navigation.php" class="nav-link">Navigation</a></li>
-          <li class="nav-item"><a href="pagination.php" class="nav-link">Pagination</a></li>
-          <li class="nav-item"><a href="popups.php" class="nav-link">Tooltip &amp; Popover</a></li>
-          <li class="nav-item"><a href="progress.php" class="nav-link">Progress</a></li>
-          <li class="nav-item"><a href="spinners.php" class="nav-link">Spinners</a></li>
-          <li class="nav-item"><a href="typography.php" class="nav-link">Typography</a></li>
-        </ul>
-        <a href="#" class="sl-menu-link">
-          <div class="sl-menu-item">
-            <i class="menu-item-icon icon ion-ios-bookmarks-outline tx-20"></i>
-            <span class="menu-item-label">Tables</span>
-            <i class="menu-item-arrow fa fa-angle-down"></i>
-          </div><!-- menu-item -->
-        </a><!-- sl-menu-link -->
-        <ul class="sl-menu-sub nav flex-column">
-          <li class="nav-item"><a href="table-basic.php" class="nav-link">Basic Table</a></li>
-          <li class="nav-item"><a href="table-datatable.php" class="nav-link">Data Table</a></li>
-        </ul>
-        <a href="#" class="sl-menu-link">
-          <div class="sl-menu-item">
-            <i class="menu-item-icon icon ion-ios-navigate-outline tx-24"></i>
-            <span class="menu-item-label">Maps</span>
-            <i class="menu-item-arrow fa fa-angle-down"></i>
-          </div><!-- menu-item -->
-        </a><!-- sl-menu-link -->
-        <ul class="sl-menu-sub nav flex-column">
-          <li class="nav-item"><a href="map-google.php" class="nav-link">Google Maps</a></li>
-          <li class="nav-item"><a href="map-vector.php" class="nav-link">Vector Maps</a></li>
-        </ul>
         <a href="mailbox.php" class="sl-menu-link">
           <div class="sl-menu-item">
             <i class="menu-item-icon icon ion-ios-email-outline tx-24"></i>
@@ -132,12 +63,6 @@ Session::init();
             <i class="menu-item-arrow fa fa-angle-down"></i>
           </div><!-- menu-item -->
         </a><!-- sl-menu-link -->
-        <ul class="sl-menu-sub nav flex-column">
-          <li class="nav-item"><a href="blank.php" class="nav-link">Blank Page</a></li>
-          <li class="nav-item"><a href="page-signin.php" class="nav-link">Signin Page</a></li>
-          <li class="nav-item"><a href="page-signup.php" class="nav-link">Signup Page</a></li>
-          <li class="nav-item"><a href="page-notfound.php" class="nav-link">404 Page Not Found</a></li>
-        </ul>
       </div><!-- sl-sideleft-menu -->
 
       <br>
@@ -154,12 +79,13 @@ Session::init();
         <nav class="nav">
           <div class="dropdown">
             <a href="" class="nav-link nav-link-profile" data-toggle="dropdown">
-              <span class="logged-name">Jane<span class="hidden-md-down"> Doe</span></span>
-              <img src="../img/img3.jpg" class="wd-32 rounded-circle" alt="">
+              <span class="logged-name"><?= Session::get('username');?></span></span>
+              <img src="img/img3.jpg" class="wd-32 rounded-circle" alt="">
             </a>
             <?php
               if(isset($_GET['action']) && $_GET['action'] == "logout"){
-                Session::destroy();
+                  Session::destroy();
+                  header("Location: login.php");
               }
 
 ?>
@@ -207,7 +133,7 @@ Session::init();
             <!-- loop starts here -->
             <a href="" class="media-list-link">
               <div class="media">
-                <img src="../img/img3.jpg" class="wd-40 rounded-circle" alt="">
+                <img src="img/img3.jpg" class="wd-40 rounded-circle" alt="">
                 <div class="media-body">
                   <p class="mg-b-0 tx-medium tx-gray-800 tx-13">Donna Seay</p>
                   <span class="d-block tx-11 tx-gray-500">2 minutes ago</span>
@@ -218,7 +144,7 @@ Session::init();
             <!-- loop ends here -->
             <a href="" class="media-list-link">
               <div class="media">
-                <img src="../img/img4.jpg" class="wd-40 rounded-circle" alt="">
+                <img src="img/img4.jpg" class="wd-40 rounded-circle" alt="">
                 <div class="media-body">
                   <p class="mg-b-0 tx-medium tx-gray-800 tx-13">Samantha Francis</p>
                   <span class="d-block tx-11 tx-gray-500">3 hours ago</span>
@@ -228,7 +154,7 @@ Session::init();
             </a>
             <a href="" class="media-list-link">
               <div class="media">
-                <img src="../img/img7.jpg" class="wd-40 rounded-circle" alt="">
+                <img src="img/img7.jpg" class="wd-40 rounded-circle" alt="">
                 <div class="media-body">
                   <p class="mg-b-0 tx-medium tx-gray-800 tx-13">Robert Walker</p>
                   <span class="d-block tx-11 tx-gray-500">5 hours ago</span>
@@ -238,7 +164,7 @@ Session::init();
             </a>
             <a href="" class="media-list-link">
               <div class="media">
-                <img src="../img/img5.jpg" class="wd-40 rounded-circle" alt="">
+                <img src="img/img5.jpg" class="wd-40 rounded-circle" alt="">
                 <div class="media-body">
                   <p class="mg-b-0 tx-medium tx-gray-800 tx-13">Larry Smith</p>
                   <span class="d-block tx-11 tx-gray-500">Yesterday, 8:34pm</span>
@@ -249,7 +175,7 @@ Session::init();
             </a>
             <a href="" class="media-list-link">
               <div class="media">
-                <img src="../img/img3.jpg" class="wd-40 rounded-circle" alt="">
+                <img src="img/img3.jpg" class="wd-40 rounded-circle" alt="">
                 <div class="media-body">
                   <p class="mg-b-0 tx-medium tx-gray-800 tx-13">Donna Seay</p>
                   <span class="d-block tx-11 tx-gray-500">Jan 23, 2:32am</span>
@@ -268,7 +194,7 @@ Session::init();
             <!-- loop starts here -->
             <a href="" class="media-list-link read">
               <div class="media pd-x-20 pd-y-15">
-                <img src="../img/img8.jpg" class="wd-40 rounded-circle" alt="">
+                <img src="img/img8.jpg" class="wd-40 rounded-circle" alt="">
                 <div class="media-body">
                   <p class="tx-13 mg-b-0 tx-gray-700"><strong class="tx-medium tx-gray-800">Suzzeth Bungaos</strong> tagged you and 18 others in a post.</p>
                   <span class="tx-12">October 03, 2017 8:45am</span>
@@ -278,7 +204,7 @@ Session::init();
             <!-- loop ends here -->
             <a href="" class="media-list-link read">
               <div class="media pd-x-20 pd-y-15">
-                <img src="../img/img9.jpg" class="wd-40 rounded-circle" alt="">
+                <img src="img/img9.jpg" class="wd-40 rounded-circle" alt="">
                 <div class="media-body">
                   <p class="tx-13 mg-b-0 tx-gray-700"><strong class="tx-medium tx-gray-800">Mellisa Brown</strong> appreciated your work <strong class="tx-medium tx-gray-800">The Social Network</strong></p>
                   <span class="tx-12">October 02, 2017 12:44am</span>
@@ -287,7 +213,7 @@ Session::init();
             </a>
             <a href="" class="media-list-link read">
               <div class="media pd-x-20 pd-y-15">
-                <img src="../img/img10.jpg" class="wd-40 rounded-circle" alt="">
+                <img src="img/img10.jpg" class="wd-40 rounded-circle" alt="">
                 <div class="media-body">
                   <p class="tx-13 mg-b-0 tx-gray-700">20+ new items added are for sale in your <strong class="tx-medium tx-gray-800">Sale Group</strong></p>
                   <span class="tx-12">October 01, 2017 10:20pm</span>
@@ -296,7 +222,7 @@ Session::init();
             </a>
             <a href="" class="media-list-link read">
               <div class="media pd-x-20 pd-y-15">
-                <img src="../img/img5.jpg" class="wd-40 rounded-circle" alt="">
+                <img src="img/img5.jpg" class="wd-40 rounded-circle" alt="">
                 <div class="media-body">
                   <p class="tx-13 mg-b-0 tx-gray-700"><strong class="tx-medium tx-gray-800">Julius Erving</strong> wants to connect with you on your conversation with <strong class="tx-medium tx-gray-800">Ronnie Mara</strong></p>
                   <span class="tx-12">October 01, 2017 6:08pm</span>
@@ -305,7 +231,7 @@ Session::init();
             </a>
             <a href="" class="media-list-link read">
               <div class="media pd-x-20 pd-y-15">
-                <img src="../img/img8.jpg" class="wd-40 rounded-circle" alt="">
+                <img src="img/img8.jpg" class="wd-40 rounded-circle" alt="">
                 <div class="media-body">
                   <p class="tx-13 mg-b-0 tx-gray-700"><strong class="tx-medium tx-gray-800">Suzzeth Bungaos</strong> tagged you and 12 others in a post.</p>
                   <span class="tx-12">September 27, 2017 6:45am</span>
@@ -314,7 +240,7 @@ Session::init();
             </a>
             <a href="" class="media-list-link read">
               <div class="media pd-x-20 pd-y-15">
-                <img src="../img/img10.jpg" class="wd-40 rounded-circle" alt="">
+                <img src="img/img10.jpg" class="wd-40 rounded-circle" alt="">
                 <div class="media-body">
                   <p class="tx-13 mg-b-0 tx-gray-700">10+ new items added are for sale in your <strong class="tx-medium tx-gray-800">Sale Group</strong></p>
                   <span class="tx-12">September 28, 2017 11:30pm</span>
@@ -323,7 +249,7 @@ Session::init();
             </a>
             <a href="" class="media-list-link read">
               <div class="media pd-x-20 pd-y-15">
-                <img src="../img/img9.jpg" class="wd-40 rounded-circle" alt="">
+                <img src="img/img9.jpg" class="wd-40 rounded-circle" alt="">
                 <div class="media-body">
                   <p class="tx-13 mg-b-0 tx-gray-700"><strong class="tx-medium tx-gray-800">Mellisa Brown</strong> appreciated your work <strong class="tx-medium tx-gray-800">The Great Pyramid</strong></p>
                   <span class="tx-12">September 26, 2017 11:01am</span>
@@ -332,7 +258,7 @@ Session::init();
             </a>
             <a href="" class="media-list-link read">
               <div class="media pd-x-20 pd-y-15">
-                <img src="../img/img5.jpg" class="wd-40 rounded-circle" alt="">
+                <img src="img/img5.jpg" class="wd-40 rounded-circle" alt="">
                 <div class="media-body">
                   <p class="tx-13 mg-b-0 tx-gray-700"><strong class="tx-medium tx-gray-800">Julius Erving</strong> wants to connect with you on your conversation with <strong class="tx-medium tx-gray-800">Ronnie Mara</strong></p>
                   <span class="tx-12">September 23, 2017 9:19pm</span>
