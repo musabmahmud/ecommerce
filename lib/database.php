@@ -1,4 +1,6 @@
 <?php
+include_once '../config/config.php';
+
 class Database
 {
     public $host   = DB_HOST;
@@ -48,7 +50,7 @@ class Database
         if ($insert_row) {
             return $insert_row;
         } else {
-            return false;
+           return false;
         }
     }
 

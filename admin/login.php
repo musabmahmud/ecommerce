@@ -1,4 +1,4 @@
-<?php include '../classes/adminlogin.php';?>
+<?php include 'classes/adminlogin.php';?>
 <?php
 $al = new adminLogin();
 
@@ -29,7 +29,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
   <link href="../lib/Ionicons/css/ionicons.css" rel="stylesheet">
 
   <!-- Starlight CSS -->
-  <link rel="stylesheet" href="../css/starlight.css">
+  <link rel="stylesheet" href="assets/css/starlight.css">
 </head>
 
 <body>
