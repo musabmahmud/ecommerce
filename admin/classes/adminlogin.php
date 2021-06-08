@@ -23,11 +23,22 @@ class adminLogin
 
         $admin = mysqli_real_escape_string($this->db->link, $admin);
         $pass = mysqli_real_escape_string($this->db->link, $pass);
-
+        
+        $uppercase = preg_match('@[A-Z]@', $pass);
+        $lowercase = preg_match('@[a-z]@', $pass);
+        $number    = preg_match('@[0-9]@', $pass);
+        
+        
         if (!filter_var($admin, FILTER_VALIDATE_EMAIL)) {
             $_SESSION['failed'] = "Please provide Validate Email";
             return $_SESSION['failed'];
-        } else {
+        }
+        
+        elseif(!$uppercase || !$lowercase || !$number || strlen($pass) <= 8) {
+            $_SESSION['failed'] = "Validate Password Uppercase, Lowercase and More than eight Character";
+            return $_SESSION['failed'];
+        }
+        else {
             $query = "SELECT * FROM admin_panel WHERE email = '$admin' AND pass = '$pass'";
             $result = $this->db->select($query);
             if ($result != false) {

@@ -42,7 +42,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
       <form class="form-horizontal" action="login.php" method="POST">
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Enter your Email or Username" name="email" required>
+          <input type="text" class="form-control" placeholder="Enter your Email" name="email" required>
         </div><!-- form-group -->
         <div class="form-group">
           <input type="password" class="form-control" placeholder="Enter your password" name="pass" required>
