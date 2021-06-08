@@ -51,7 +51,7 @@
             </div>
         </div>
         <div class="copy_right">
-            <p>Training with live project &amp; All rights Reseverd </p>
+            <p>All rights Reseverd &amp; Design By <a href="https://www.fiverr.com/musabmahmud" target="_blank">Musab Mahmud</a></p>
         </div>
     </div>
 </div>

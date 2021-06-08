@@ -1,7 +1,7 @@
 <?php
-include '../lib/session.php';
-include '../lib/database.php';
+include_once '../lib/session.php';
 Session::checkSession();
+include '../lib/database.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -277,6 +277,6 @@ Session::checkSession();
   <!-- ########## START: MAIN PANEL ########## -->
   <div class="sl-mainpanel">
     <nav class="breadcrumb sl-breadcrumb">
-      <a class="breadcrumb-item" href="index.html">ecommerce</a>
+      <a class="breadcrumb-item" href="dashboard.php">ecommerce</a>
       <span class="breadcrumb-item active"><?= $file_ext; ?></span>
     </nav>

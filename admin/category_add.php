@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <div class="card pd-20 pd-sm-40">
         <h6 class="card-body-title">Add Category</h6>
-        <p class="mg-b-20 mg-t-30">
+        <p class="mg-b-20 mg-t-30" id="message">
             <?php if (isset($insertCat)) {
                 echo $insertCat;
                 header("Location: dashboard.php");

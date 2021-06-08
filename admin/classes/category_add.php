@@ -31,5 +31,40 @@ class Category{
         $result = $this->db->select($query);
         return $result;
     }
+    public function getCarById($id){
+        $query = "SELECT * FROM category WHERE id = '$id'";
+        $result = $this->db->update($query);
+        return $result;
+    }
+    public function catUpdate($name,$id){
+        $name = $this->format->validation($_POST['name']);
+        $name = mysqli_real_escape_string($this->db->link, $name);
+        
+        $query = "UPDATE category SET name = '$name' WHERE id = '$id'";
+        $update_query = $this->db->update($query);
+        if($update_query){
+            $msg = "<span class='alert alert-success d-block'><strong>Well done!</strong> Successful..!</span>";
+            return $msg;
+        }
+        else{
+            $msg = "<span class='alert alert-danger d-block'>
+            Oh snap! Error...!</span>";
+            return $msg;
+        }
+    }
+
+    public function delCatById($id){
+        $query = "DELETE FROM category WHERE id = '$id'";
+        $deleteCat = $this->db->delete($query);
+        if($deleteCat){
+            $msg = "<span class='alert alert-success d-block'><strong>Well done!</strong> Successfully Delete..!</span>";
+            return $msg;
+        }
+        else{
+            $msg = "<span class='alert alert-danger d-block'>
+            Oh snap! Error...!</span>";
+            return $msg;
+        }
+    }
 }
 ?>

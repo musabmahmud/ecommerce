@@ -32,13 +32,18 @@
 
 <script type="text/javascript">
   $('#myTable').DataTable({
-      responsive: true,
-      language: {
-        searchPlaceholder: 'Search...',
-        sSearch: '',
-        lengthMenu: '_MENU_ items/page',
-      }
-    });
+    responsive: true,
+    language: {
+      searchPlaceholder: 'Search...',
+      sSearch: '',
+      lengthMenu: '_MENU_ items/page',
+    }
+  });
+  setTimeout(function() {
+    document.getElementById("message").style.display = 'none';
+    document.getElementById("message").Window.location.reload();
+  }, 5000);
+
 </script>
 </body>
 

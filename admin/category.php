@@ -2,6 +2,11 @@
 <?php include 'classes/category_add.php'; 
 
 $cat = new Category();
+
+if(isset($_GET['delId'])){
+    $id = $_GET['delId'];
+    $delCat = $cat->delCatById($id);
+}
 ?>
 <!-- ########## START: MAIN PANEL ########## -->
 <div class="sl-pagebody">
@@ -13,6 +18,14 @@ $cat = new Category();
         <div class="block mg-b-30">
         <h2 class="text-uppercase">Category</h2>
         <a class="btn bg-info d-flex float-right text-white text-left tx-22" href="category_add.php">Add New Category</a></div>
+        <p class="mg-b-20" id="message">
+            <?php if (isset($delCat)) {
+                echo $delCat;
+            } ?>
+            <?php if (isset($catUpdate)) {
+                echo $catUpdate;
+            } ?>
+            </p>
         <table class="table table-bordered table-striped" id="myTable">
             <thead>
             <tr>
@@ -32,7 +45,7 @@ $cat = new Category();
             <tr>
                 <td><?= $i ;?></td>
                 <td><?= $result['name'];?></td>
-                <td><a href="category_edit.php?catId=<?= $result['id'];?>">EDIT</a> || <a href="?action=<?= $result['id'];?>">DELETE</a></td>
+                <td><a href="category_edit.php?catId=<?= $result['id'];?>">EDIT</a> || <a  data-toggle="modal" data-target="#exampleModalCenter" href="?delId=<?= $result['id'];?>">DELETE</a><?php include 'inc/modal.php'; ?></td>
             </tr>
             <?php } }?>
             </tbody>

@@ -1,15 +1,3 @@
-<?php include 'classes/adminlogin.php';?>
-<?php
-$al = new adminLogin();
-
-if($_SERVER['REQUEST_METHOD'] == 'POST'){
-  $admin = $_POST['email'];
-  $pass  = $_POST['pass'];
-
-  $login_chk = $al->adminLogin($admin,$pass);
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,7 +10,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
   <meta name="description" content="Premium Quality Website">
   <meta name="author" content="ThemePixels">
 
-  <title>Ecommerce Website Admin Login</title>
+  <title>Ecommerce Website Admin Registration</title>
 
   <!-- vendor css -->
   <link href="../lib/font-awesome/css/font-awesome.css" rel="stylesheet">
@@ -42,21 +30,29 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
       <form class="form-horizontal" action="login.php" method="POST">
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Enter your Email or Username" name="email" required>
+          <input type="text" class="form-control" placeholder="Enter your Name" name="name" required>
         </div><!-- form-group -->
         <div class="form-group">
-          <input type="password" class="form-control" placeholder="Enter your password" name="pass" required>
-          <a href="" class="tx-info tx-12 d-block mg-t-10">Forgot password?</a>
+          <input type="text" class="form-control" placeholder="Enter your Username" name="email" required>
         </div><!-- form-group -->
-        <button type="submit" class="btn btn-info btn-block">Sign In</button>
-        <div class="tx-center tx-16 text-warning pd-t-20 d-block">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Enter your Email" name="email" required>
+        </div><!-- form-group -->
+        <div class="form-group">
+          <input type="password" class="form-control" placeholder="Enter your password" name="password" required>
+        </div><!-- form-group -->
+        <div class="form-group">
+          <input type="repassword" class="form-control" placeholder="Confirm your password" name="repassword" required>
+        </div><!-- form-group -->
+        <button type="submit" class="btn btn-info btn-block">Sign Up</button>
+        <div class="tx-center tx-16 text-info pd-t-20 d-block">
           <?php if(isset($_SESSION['failed'])){
             echo $_SESSION['failed'];
             unset($_SESSION['failed']);
           }
           ?>
         </div>
-        <div class="mg-t-30 tx-center">Not yet a member? <a href="registration.php" class="tx-info">Sign Up</a></div>
+        <div class="mg-t-30 tx-center">Already a member? <a href="login.php" class="tx-info">Sign In</a></div>
     </div><!-- login-wrapper -->
     </form>
   </div><!-- d-flex -->

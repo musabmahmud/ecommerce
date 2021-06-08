@@ -24,19 +24,24 @@ class adminLogin
         $admin = mysqli_real_escape_string($this->db->link, $admin);
         $pass = mysqli_real_escape_string($this->db->link, $pass);
 
-        $query = "SELECT * FROM admin_panel WHERE email = '$admin' AND pass = '$pass'";
-        $result = $this->db->select($query);
-        if ($result != false) {
-            $value = mysqli_fetch_array($result);
-            Session::set("login", true);
-            Session::set("userid", $value['id']);
-            Session::set("username", $value['username']);
-            Session::set("email", $value['email']);
-            Session::set("name", $value['name']);
-            header("Location: dashboard.php");
-        } else {
-            $_SESSION['failed'] =  "Email or Password Doesn't Match..!!";
+        if (!filter_var($admin, FILTER_VALIDATE_EMAIL)) {
+            $_SESSION['failed'] = "Please provide Validate Email";
             return $_SESSION['failed'];
+        } else {
+            $query = "SELECT * FROM admin_panel WHERE email = '$admin' AND pass = '$pass'";
+            $result = $this->db->select($query);
+            if ($result != false) {
+                $value = mysqli_fetch_array($result);
+                Session::set("login", true);
+                Session::set("userid", $value['id']);
+                Session::set("username", $value['username']);
+                Session::set("email", $value['email']);
+                Session::set("name", $value['name']);
+                header("Location: dashboard.php");
+            } else {
+                $_SESSION['failed'] =  "Email or Password Doesn't Match..!!";
+                return $_SESSION['failed'];
+            }
         }
     }
 }
