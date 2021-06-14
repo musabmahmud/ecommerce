@@ -49,7 +49,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
           <a href="" class="tx-info tx-12 d-block mg-t-10">Forgot password?</a>
         </div><!-- form-group -->
         <button type="submit" class="btn btn-info btn-block">Sign In</button>
-        <div class="tx-center tx-16 text-warning pd-t-20 d-block">
+        <div class="tx-center message tx-16 text-warning pd-t-20 d-block">
           <?php if(isset($_SESSION['failed'])){
             echo $_SESSION['failed'];
             unset($_SESSION['failed']);
