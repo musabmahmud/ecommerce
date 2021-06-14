@@ -2,6 +2,7 @@
 include_once '../lib/database.php';
 include_once '../helpers/format.php';
 
+
 class Brand{
     private $db;
     private $format;
@@ -22,6 +23,36 @@ class Brand{
         }
         else{
             $msg = "<span class='alert alert-danger'>
+            Oh snap! Error...!</span>";
+            return $msg;
+        }
+    }
+
+    public function getAll(){
+        $query = "SELECT * FROM product_brand ORDER BY brandid DESC";
+        $result = $this->db->select($query);
+        return $result;
+    }
+
+    
+    public function getBrandById($id){
+        $query = "SELECT * FROM product_brand WHERE brandid = '$id'";
+        $result = $this->db->update($query);
+        return $result;
+    }
+    public function brandUpdate($name,$id){
+        $name = $this->format->validation($_POST['brandname']);
+        $name = mysqli_real_escape_string($this->db->link, $name);
+        $id = mysqli_real_escape_string($this->db->link, $id);
+        
+        $query = "UPDATE product_brand SET brandname = '$name' WHERE brandid = '$id'";
+        $update_query = $this->db->update($query);
+        if($update_query){
+            $msg = "<span class='alert alert-success d-block'><strong>Well done!</strong> Successful..!</span>";
+            return $msg;
+        }
+        else{
+            $msg = "<span class='alert alert-danger d-block'>
             Oh snap! Error...!</span>";
             return $msg;
         }

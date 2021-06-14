@@ -40,7 +40,7 @@
     }
   });
   setTimeout(function() {
-    document.getElementById("message").style.display = 'none';
+    document.getElementById("message").style.visibility = 'hidden';
     document.getElementById("message").Window.location.reload();
   }, 5000);
 

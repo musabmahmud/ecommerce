@@ -44,6 +44,11 @@ include '../lib/database.php';
           <i class="menu-item-icon icon ion-ios-home-outline tx-22"></i>
           <span class="menu-item-label">Dashboard</span>
         </div><!-- menu-item -->
+      <a href="brand.php" class="sl-menu-link">
+        <div class="sl-menu-item">
+          <i class="menu-item-icon fa fa-medium tx-18"></i>
+          <span class="menu-item-label">Brand</span>
+        </div><!-- menu-item -->
       </a><!-- sl-menu-link -->
       <a href="category.php" class="sl-menu-link">
         <div class="sl-menu-item">

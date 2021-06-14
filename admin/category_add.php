@@ -1,5 +1,5 @@
 <?php include 'inc/header.php'; ?>
-<?php include 'classes/category_add.php'; ?>
+<?php include 'classes/category_all.php'; ?>
 <?php
 $cat = new Category();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -14,11 +14,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <div class="card pd-20 pd-sm-40">
         <h6 class="card-body-title">Add Category</h6>
-        <p class="mg-b-20 mg-t-30" id="message">
+        <div class="pd-t-20 pd-b-20" id="message">
             <?php if (isset($insertCat)) {
                 echo $insertCat;
-                header("Location: dashboard.php");
-            } ?></p>
+                unset($insertCat);
+            }?>
+        </div>
         <form method="post" action="" data-parsley-validate>
             <div class="wd-300">
                 <div class="d-flex mg-b-30">

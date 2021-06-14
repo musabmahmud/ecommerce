@@ -39,6 +39,7 @@ class Category{
     public function catUpdate($name,$id){
         $name = $this->format->validation($_POST['name']);
         $name = mysqli_real_escape_string($this->db->link, $name);
+        $id = mysqli_real_escape_string($this->db->link, $id);
         
         $query = "UPDATE category SET name = '$name' WHERE id = '$id'";
         $update_query = $this->db->update($query);
@@ -57,7 +58,7 @@ class Category{
         $query = "DELETE FROM category WHERE id = '$id'";
         $deleteCat = $this->db->delete($query);
         if($deleteCat){
-            $msg = "<span class='alert alert-success d-block'><strong>Well done!</strong> Successfully Delete..!</span>";
+            $msg = "<span class='alert alert-danger d-block'><strong>Well done!</strong> Successfully Delete..!</span>";
             return $msg;
         }
         else{

@@ -13,7 +13,7 @@
       </div>
       <div class="modal-footer pd-t-20 text-white">
         <a type="button" class="btn btn-secondary" href="#" data-dismiss="modal">Close</a>
-        <a type="submit" class="btn btn-danger" href="category.php?delId=<?= $result['id'];?>">Delete</a>
+        <a type="submit" class="btn btn-danger" href="?delId=<?= $result['id'];?>">Delete</a>
       </div>
     </div>
   </div>
