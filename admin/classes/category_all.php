@@ -11,10 +11,10 @@ class Category{
         $this->format = new Format();
     }
     public function catInsert($name){
-        $name = $this->format->validation($_POST['name']);
+        $name = $this->format->validation($_POST['catName']);
         $name = mysqli_real_escape_string($this->db->link, $name);
         
-        $query = "INSERT INTO category(name) VALUES('$name')";
+        $query = "INSERT INTO category(catName) VALUES('$name')";
         $insertcat = $this->db->insert($query);
         if($insertcat){
             $msg = "<span class='alert alert-success'><strong>Well done!</strong> Successful..!</span>";
@@ -27,21 +27,21 @@ class Category{
         }
     }
     public function getAll(){
-        $query = "SELECT * FROM category ORDER BY id DESC";
+        $query = "SELECT * FROM category ORDER BY catId DESC";
         $result = $this->db->select($query);
         return $result;
     }
     public function getCarById($id){
-        $query = "SELECT * FROM category WHERE id = '$id'";
+        $query = "SELECT * FROM category WHERE catId = '$id'";
         $result = $this->db->update($query);
         return $result;
     }
     public function catUpdate($name,$id){
-        $name = $this->format->validation($_POST['name']);
+        $name = $this->format->validation($_POST['catName']);
         $name = mysqli_real_escape_string($this->db->link, $name);
         $id = mysqli_real_escape_string($this->db->link, $id);
         
-        $query = "UPDATE category SET name = '$name' WHERE id = '$id'";
+        $query = "UPDATE category SET catName = '$name' WHERE catId = '$id'";
         $update_query = $this->db->update($query);
         if($update_query){
             $msg = "<span class='alert alert-success d-block'><strong>Well done!</strong> Successful..!</span>";
@@ -55,7 +55,7 @@ class Category{
     }
 
     public function delCatById($id){
-        $query = "DELETE FROM category WHERE id = '$id'";
+        $query = "DELETE FROM category WHERE catId = '$id'";
         $deleteCat = $this->db->delete($query);
         if($deleteCat){
             $msg = "<span class='alert alert-danger d-block'><strong>Well done!</strong> Successfully Delete..!</span>";

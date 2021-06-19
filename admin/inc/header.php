@@ -20,6 +20,9 @@ include '../lib/database.php';
   <link href="assets/lib/highlightjs/github.css" rel="stylesheet">
   <link href="assets/lib/rickshaw/rickshaw.min.css" rel="stylesheet">
   <link href="assets/lib/datatable/jquery.dataTables.css" rel="stylesheet">
+  <link href="assets/lib/medium-editor/medium-editor.css" rel="stylesheet">
+    <link href="assets/lib/medium-editor/default.css" rel="stylesheet">
+    <link href="assets/lib/summernote/summernote-bs4.css" rel="stylesheet">
 
   <!-- Starlight CSS -->
   <link rel="stylesheet" href="assets/css/starlight.css">
@@ -39,13 +42,19 @@ include '../lib/database.php';
 
       <label class="sidebar-label">Navigation</label>
       <div class="sl-sideleft-menu">
-        <a href="index.html" class="sl-menu-link active">
+        <a href="dashboard.php" class="sl-menu-link">
           <div class="sl-menu-item">
             <i class="menu-item-icon icon ion-ios-home-outline tx-22"></i>
             <span class="menu-item-label">Dashboard</span>
           </div><!-- menu-item -->
         </a><!-- sl-menu-link -->
-        <a href="" class="sl-menu-link">
+        <a href="product.php" class="sl-menu-link">
+          <div class="sl-menu-item">
+            <i class="menu-item-icon icon ion-ios-grid-view tx-22"></i>
+            <span class="menu-item-label">Products</span>
+          </div><!-- menu-item -->
+        </a><!-- sl-menu-link -->
+        <a href="#" class="sl-menu-link">
           <div class="sl-menu-item">
             <i class="menu-item-icon icon ion-ios-gear-outline tx-24"></i>
             <span class="menu-item-label">Category</span>

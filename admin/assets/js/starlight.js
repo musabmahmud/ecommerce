@@ -12,8 +12,6 @@ $(document).ready(function(){
  // when top level menu have a class of .show-sub
  $('.show-sub + .sl-menu-sub').slideDown();
 
-
-
  // This will collapsed sidebar menu on left into a mini icon menu
  $('#btnLeftMenu').on('click', function(){
    var menuText = $('.menu-item-label,.menu-item-arrow');

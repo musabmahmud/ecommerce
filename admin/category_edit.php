@@ -9,8 +9,8 @@ if (!isset($_GET['catId']) || $_GET['catId'] == NULL) {
 
 $cat = new Category();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $name = $_POST['name'];
-    $id = $_POST['id'];
+    $name = $_POST['catName'];
+    $id = $_POST['catId'];
     $catUpdate = $cat->catUpdate($name, $id);
 }
 
@@ -32,12 +32,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $catresult = $getCat->fetch_assoc();
         ?>
         <form method="post" action="" data-parsley-validate>
-            <input type="hidden" name="id" value="<?= $catresult['id']; ?>">
+            <input type="hidden" name="catId" value="<?= $catresult['catId']; ?>">
             <div class="wd-300">
                 <div class="d-flex mg-b-30">
                     <div class="form-group mg-b-0">
                         <label>Category Name: <span class="tx-danger">*</span></label>
-                        <input type="text" name="name" value="<?= $catresult['name']; ?>" class="form-control wd-300" placeholder="Enter Category Name" required>
+                        <input type="text" name="catName" value="<?= $catresult['catName']; ?>" class="form-control wd-300" placeholder="Enter Category Name" required>
                     </div><!-- form-group -->
                 </div><!-- d-flex -->
                 <button type="submit" class="btn btn-info">Update Category</button>

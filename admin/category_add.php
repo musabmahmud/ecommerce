@@ -3,7 +3,7 @@
 <?php
 $cat = new Category();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $name = $_POST['name'];
+    $name = $_POST['catName'];
     $insertCat = $cat->catInsert($name);
 }
 ?>
@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <div class="d-flex mg-b-30">
                     <div class="form-group mg-b-0">
                         <label>Category Name: <span class="tx-danger">*</span></label>
-                        <input type="text" name="name" class="form-control wd-300" placeholder="Enter Category Name" required>
+                        <input type="text" name="catName" class="form-control wd-300" placeholder="Enter Category Name" required>
                     </div><!-- form-group -->
                 </div><!-- d-flex -->
                 <button type="submit" class="btn btn-info">Add Category</button>
