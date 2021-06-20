@@ -1,6 +1,15 @@
+<?php
+//set headers to NOT cache a page
+header("Cache-Control: no-cache, must-revalidate"); //HTTP 1.1
+header("Pragma: no-cache"); //HTTP 1.0
+header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
+// Date in the past
+//or, if you DO want a file to cache, use:
+header("Cache-Control: max-age=2592000");
+//30days (60sec * 60min * 24hours * 30days)
+?>
 <!DOCTYPE html>
-<html class="no-js" lang="en">
-
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
@@ -13,16 +22,16 @@
     <!-- Favicon -->
     <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon" />
     <!-- Bootstrap CSS -->
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/bootstrap.min.css" type="text/css" rel="stylesheet">
     <!-- Font-Awesome CSS -->
-    <link href="assets/css/font-awesome.min.css" rel="stylesheet">
+    <link href="assets/css/font-awesome.min.css" type="text/css" rel="stylesheet">
     <!-- helper class css -->
-    <link href="assets/css/helper.min.css" rel="stylesheet">
+    <link href="assets/css/helper.min.css" type="text/css" rel="stylesheet">
     <!-- Plugins CSS -->
-    <link href="assets/css/plugins.css" rel="stylesheet">
+    <link href="assets/css/plugins.css" type="text/css" rel="stylesheet">
     <!-- Main Style CSS -->
-    <link href="assets/css/style.css" rel="stylesheet">
-    <link href="assets/css/skin-default.css" rel="stylesheet" id="galio-skin">
+    <link href="assets/css/style.css?v=<?php echo time(); ?> " type="text/css" rel="stylesheet">
+
 </head>
 
 <body>
@@ -81,7 +90,7 @@
     </div>
     <!-- color switcher end -->
 
-    <div class="wrapper box-layout">
+    <div class="wrapper">
 
         <!-- header area start -->
         <header>
@@ -248,10 +257,11 @@
                                             <i class="fa fa-angle-down"></i>
                                         </div>
                                     </div>
-                                    <nav class="category-menu category-style-2">
+                                    <nav class="category-menu hm-1">
                                         <ul>
-                                            <li><a href="shop-grid-left-sidebar.html"><i class="fa fa-desktop"></i> computer</a></li>
-                                            <li class="menu-item-has-children"><a href="shop-grid-left-sidebar.html"><i class="fa fa-camera"></i> camera</a>   
+                                            <li><a href="shop-grid-left-sidebar.html"><i class="fa fa-desktop"></i>
+                                                    computer</a></li>
+                                            <li class="menu-item-has-children"><a href="shop-grid-left-sidebar.html"><i class="fa fa-camera"></i> camera</a>
                                                 <!-- Mega Category Menu Start -->
                                                 <ul class="category-mega-menu">
                                                     <li class="menu-item-has-children">
@@ -268,7 +278,8 @@
                                                         <ul>
                                                             <li><a href="shop-grid-left-sidebar.html">Desktop Headphone</a></li>
                                                             <li><a href="shop-grid-left-sidebar.html">Mobile Headphone</a></li>
-                                                            <li><a href="shop-grid-left-sidebar.html">Wireless Headphone</a></li>
+                                                            <li><a href="shop-grid-left-sidebar.html">Wireless
+                                                                    Headphone</a></li>
                                                             <li><a href="shop-grid-left-sidebar.html">LED Headphone</a></li>
                                                         </ul>
                                                     </li>
@@ -286,13 +297,14 @@
                                                         <ul>
                                                             <li><a href="shop-grid-left-sidebar.html">Desktop Headphone</a></li>
                                                             <li><a href="shop-grid-left-sidebar.html">Mobile Headphone</a></li>
-                                                            <li><a href="shop-grid-left-sidebar.html">Wireless Headphone</a></li>
+                                                            <li><a href="shop-grid-left-sidebar.html">Wireless
+                                                                    Headphone</a></li>
                                                             <li><a href="shop-grid-left-sidebar.html">LED Headphone</a></li>
                                                         </ul>
                                                     </li>
-                                                </ul><!-- Mega Category Menu End --> 
+                                                </ul><!-- Mega Category Menu End -->
                                             </li>
-                                            <li class="menu-item-has-children"><a href="shop-grid-left-sidebar.html"><i class="fa fa-book"></i> smart phones</a> 
+                                            <li class="menu-item-has-children"><a href="shop-grid-left-sidebar.html"><i class="fa fa-book"></i> smart phones</a>
                                                 <!-- Mega Category Menu Start -->
                                                 <ul class="category-mega-menu">
                                                     <li class="menu-item-has-children">
@@ -310,7 +322,8 @@
                                                         <ul>
                                                             <li><a href="shop-grid-left-sidebar.html">Desktop Headphone</a></li>
                                                             <li><a href="shop-grid-left-sidebar.html">Mobile Headphone</a></li>
-                                                            <li><a href="shop-grid-left-sidebar.html">Wireless Headphone</a></li>
+                                                            <li><a href="shop-grid-left-sidebar.html">Wireless
+                                                                    Headphone</a></li>
                                                             <li><a href="shop-grid-left-sidebar.html">LED Headphone</a></li>
                                                             <li><a href="shop-grid-left-sidebar.html">Over-ear</a></li>
                                                         </ul>
@@ -337,12 +350,17 @@
                                                     </li>
                                                 </ul><!-- Mega Category Menu End -->
                                             </li>
-                                            <li><a href="shop-grid-left-sidebar.html"><i class="fa fa-clock-o"></i> watch</a></li>
-                                            <li><a href="shop-grid-left-sidebar.html"><i class="fa fa-television"></i> electronic</a></li>
-                                            <li><a href="shop-grid-left-sidebar.html"><i class="fa fa-tablet"></i> tablet</a></li>
+                                            <li><a href="shop-grid-left-sidebar.html"><i class="fa fa-clock-o"></i>
+                                                    watch</a></li>
+                                            <li><a href="shop-grid-left-sidebar.html"><i class="fa fa-television"></i>
+                                                    electronic</a></li>
+                                            <li><a href="shop-grid-left-sidebar.html"><i class="fa fa-tablet"></i>
+                                                    tablet</a></li>
                                             <li><a href="shop-grid-left-sidebar.html"><i class="fa fa-book"></i> books</a></li>
-                                            <li><a href="shop-grid-left-sidebar.html"><i class="fa fa-microchip"></i> microchip</a></li>
-                                            <li><a href="shop-grid-left-sidebar.html"><i class="fa fa-bullhorn"></i> bullhorn</a></li>
+                                            <li><a href="shop-grid-left-sidebar.html"><i class="fa fa-microchip"></i>
+                                                    microchip</a></li>
+                                            <li><a href="shop-grid-left-sidebar.html"><i class="fa fa-bullhorn"></i>
+                                                    bullhorn</a></li>
                                         </ul>
                                     </nav>
                                 </div>
@@ -361,20 +379,26 @@
                                                 <ul class="megamenu dropdown">
                                                     <li class="mega-title"><a href="#">column 01</a>
                                                         <ul>
-                                                            <li><a href="shop-grid-left-sidebar.html">shop grid left sidebar</a></li>
-                                                            <li><a href="shop-grid-right-sidebar.html">shop grid right sidebar</a></li>
-                                                            <li><a href="shop-grid-full-3-col.html">shop grid full 3 column</a></li>
-                                                            <li><a href="shop-grid-full-4-col.html">shop grid full 4 column</a></li>
+                                                            <li><a href="shop-grid-left-sidebar.html">shop grid left
+                                                                    sidebar</a></li>
+                                                            <li><a href="shop-grid-right-sidebar.html">shop grid right
+                                                                    sidebar</a></li>
+                                                            <li><a href="shop-grid-full-3-col.html">shop grid full 3
+                                                                    column</a></li>
+                                                            <li><a href="shop-grid-full-4-col.html">shop grid full 4
+                                                                    column</a></li>
                                                         </ul>
                                                     </li>
                                                     <li class="mega-title"><a href="#">column 02</a>
                                                         <ul>
                                                             <li><a href="product-details.html">product details</a></li>
-                                                            <li><a href="product-details-affiliate.html">product details
+                                                            <li><a href="product-details-affiliate.html">product
+                                                                    details
                                                                     affiliate</a></li>
                                                             <li><a href="product-details-variable.html">product details
                                                                     variable</a></li>
-                                                            <li><a href="product-details-group.html">product details group</a></li>
+                                                            <li><a href="product-details-group.html">product details
+                                                                    group</a></li>
                                                         </ul>
                                                     </li>
                                                     <li class="mega-title"><a href="#">column 03</a>
@@ -399,30 +423,41 @@
                                                 <ul class="dropdown">
                                                     <li><a href="#">shop grid layout <i class="fa fa-angle-right"></i></a>
                                                         <ul class="dropdown">
-                                                            <li><a href="shop-grid-left-sidebar.html">shop grid left sidebar</a></li>
-                                                            <li><a href="shop-grid-left-sidebar-3-col.html">left sidebar 3 col</a></li>
-                                                            <li><a href="shop-grid-right-sidebar.html">shop grid right sidebar</a></li>
-                                                            <li><a href="shop-grid-right-sidebar-3-col.html">grid right sidebar 3 col</a></li>
-                                                            <li><a href="shop-grid-full-3-col.html">shop grid full 3 column</a></li>
-                                                            <li><a href="shop-grid-full-4-col.html">shop grid full 4 column</a></li>
+                                                            <li><a href="shop-grid-left-sidebar.html">shop grid left
+                                                                    sidebar</a></li>
+                                                            <li><a href="shop-grid-left-sidebar-3-col.html">left
+                                                                    sidebar 3 col</a></li>
+                                                            <li><a href="shop-grid-right-sidebar.html">shop grid right
+                                                                    sidebar</a></li>
+                                                            <li><a href="shop-grid-right-sidebar-3-col.html">grid right
+                                                                    sidebar 3 col</a></li>
+                                                            <li><a href="shop-grid-full-3-col.html">shop grid full 3
+                                                                    column</a></li>
+                                                            <li><a href="shop-grid-full-4-col.html">shop grid full 4
+                                                                    column</a></li>
                                                         </ul>
                                                     </li>
                                                     <li><a href="#">shop list layout <i class="fa fa-angle-right"></i></a>
                                                         <ul class="dropdown">
-                                                            <li><a href="shop-list-left-sidebar.html">shop list left sidebar</a></li>
-                                                            <li><a href="shop-list-right-sidebar.html">shop list right sidebar</a></li>
+                                                            <li><a href="shop-list-left-sidebar.html">shop list left
+                                                                    sidebar</a></li>
+                                                            <li><a href="shop-list-right-sidebar.html">shop list right
+                                                                    sidebar</a></li>
                                                             <li><a href="shop-list-full.html">shop list full width</a></li>
                                                         </ul>
                                                     </li>
                                                     <li><a href="#">products details <i class="fa fa-angle-right"></i></a>
                                                         <ul class="dropdown">
                                                             <li><a href="product-details.html">product details</a></li>
-                                                            <li><a href="product-details-affiliate.html">product details
-                                                                affiliate</a></li>
+                                                            <li><a href="product-details-affiliate.html">product
+                                                                    details
+                                                                    affiliate</a></li>
                                                             <li><a href="product-details-variable.html">product details
-                                                                variable</a></li>
-                                                            <li><a href="product-details-group.html">product details group</a></li>
-                                                            <li><a href="product-details-box.html">product details box slider</a></li>
+                                                                    variable</a></li>
+                                                            <li><a href="product-details-group.html">product details
+                                                                    group</a></li>
+                                                            <li><a href="product-details-box.html">product details box
+                                                                    slider</a></li>
                                                         </ul>
                                                     </li>
                                                 </ul>
@@ -446,7 +481,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12 d-block d-lg-none"><div class="mobile-menu"></div></div>
+                        <div class="col-12 d-block d-lg-none">
+                            <div class="mobile-menu"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -454,309 +491,3 @@
 
         </header>
         <!-- header area end -->
-
-        <!-- breadcrumb area start -->
-        <div class="breadcrumb-area">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="breadcrumb-wrap">
-                            <nav aria-label="breadcrumb">
-                                <ul class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">login-register</li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- breadcrumb area end -->
-
-        <!-- login register wrapper start -->
-        <div class="login-register-wrapper">
-            <div class="container">
-                <div class="member-area-from-wrap">
-                    <div class="row">
-                        <!-- Login Content Start -->
-                        <div class="col-lg-6">
-                            <div class="login-reg-form-wrap  pr-lg-50">
-                                <h2>Sign In</h2>
-                                <form action="#" method="post">
-                                    <div class="single-input-item">
-                                        <input type="email" placeholder="Email or Username" required />
-                                    </div>
-                                    <div class="single-input-item">
-                                        <input type="password" placeholder="Enter your Password" required />
-                                    </div>
-                                    <div class="single-input-item">
-                                        <div class="login-reg-form-meta d-flex align-items-center justify-content-between">
-                                            <div class="remember-meta">
-                                                <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input" id="rememberMe">
-                                                    <label class="custom-control-label" for="rememberMe">Remember Me</label>
-                                                </div>
-                                            </div>
-                                            <a href="#" class="forget-pwd">Forget Password?</a>
-                                        </div>
-                                    </div>
-                                    <div class="single-input-item">
-                                        <button class="sqr-btn">Login</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        <!-- Login Content End -->
-
-                        <!-- Register Content Start -->
-                        <div class="col-lg-6">
-                            <div class="login-reg-form-wrap mt-md-34 mt-sm-34">
-                                <h2>Singup Form</h2>
-                                <form action="#" method="post">
-                                    <div class="single-input-item">
-                                        <input type="text" placeholder="Full Name" required />
-                                    </div>
-                                    <div class="single-input-item">
-                                        <input type="email" placeholder="Enter your Email" required />
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <div class="single-input-item">
-                                                <input type="password" placeholder="Enter your Password" required />
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div class="single-input-item">
-                                                <input type="password" placeholder="Repeat your Password" required />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="single-input-item">
-                                        <div class="login-reg-form-meta">
-                                            <div class="remember-meta">
-                                                <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input" id="subnewsletter">
-                                                    <label class="custom-control-label" for="subnewsletter">Subscribe Our Newsletter</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="single-input-item">
-                                        <button class="sqr-btn">Register</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        <!-- Register Content End -->
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- login register wrapper end -->
-
-        <!-- brand area start -->
-        <div class="brand-area pt-34 pb-30">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="section-title mb-30">
-                            <div class="title-icon">
-                                <i class="fa fa-crop"></i>
-                            </div>
-                            <h3>Popular Brand</h3>
-                        </div> <!-- section title end -->
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12">
-                        <div class="brand-active slick-padding slick-arrow-style">
-                            <div class="brand-item text-center">
-                                <a href="#"><img src="assets/img/brand/br1.png" alt=""></a>
-                            </div>
-                            <div class="brand-item text-center">
-                                <a href="#"><img src="assets/img/brand/br2.png" alt=""></a>
-                            </div>
-                            <div class="brand-item text-center">
-                                <a href="#"><img src="assets/img/brand/br3.png" alt=""></a>
-                            </div>
-                            <div class="brand-item text-center">
-                                <a href="#"><img src="assets/img/brand/br4.png" alt=""></a>
-                            </div>
-                            <div class="brand-item text-center">
-                                <a href="#"><img src="assets/img/brand/br5.png" alt=""></a>
-                            </div>
-                            <div class="brand-item text-center">
-                                <a href="#"><img src="assets/img/brand/br6.png" alt=""></a>
-                            </div>
-                            <div class="brand-item text-center">
-                                <a href="#"><img src="assets/img/brand/br4.png" alt=""></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- brand area end -->
-
-        <!-- footer area start -->
-        <footer>
-            <!-- footer top start -->
-            <div class="footer-top bg-black pt-14 pb-14">
-                <div class="container">
-                    <div class="footer-top-wrapper">
-                        <div class="newsletter__wrap">
-                            <div class="newsletter__title">
-                                <div class="newsletter__icon">
-                                    <i class="fa fa-envelope"></i>
-                                </div>
-                                <div class="newsletter__content">
-                                    <h3>sign up for newsletter</h3>
-                                    <p>Duis autem vel eum iriureDuis autem vel eum</p>
-                                </div>
-                            </div>
-                            <div class="newsletter__box">
-                                <form id="mc-form">
-                                    <input type="email" id="mc-email" autocomplete="off" placeholder="Email">
-                                    <button id="mc-submit">subscribe!</button>
-                                </form>
-                            </div>
-                            <!-- mailchimp-alerts Start -->
-                            <div class="mailchimp-alerts">
-                                <div class="mailchimp-submitting"></div><!-- mailchimp-submitting end -->
-                                <div class="mailchimp-success"></div><!-- mailchimp-success end -->
-                                <div class="mailchimp-error"></div><!-- mailchimp-error end -->
-                            </div>
-                            <!-- mailchimp-alerts end -->
-                        </div>
-                        <div class="social-icons">
-                            <a href="#" data-toggle="tooltip" data-placement="top" title="Facebook"><i class="fa fa-facebook"></i></a>
-                            <a href="#" data-toggle="tooltip" data-placement="top" title="Twitter"><i class="fa fa-twitter"></i></a>
-                            <a href="#" data-toggle="tooltip" data-placement="top" title="Instagram"><i class="fa fa-instagram"></i></a>
-                            <a href="#" data-toggle="tooltip" data-placement="top" title="Google-plus"><i class="fa fa-google-plus"></i></a>
-                            <a href="#" data-toggle="tooltip" data-placement="top" title="Youtube"><i class="fa fa-youtube"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- footer top end -->
-
-            <!-- footer main start -->
-            <div class="footer-widget-area pt-40 pb-38 pb-sm-10">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-3 col-sm-6">
-                            <div class="footer-widget mb-sm-30">
-                                <div class="widget-title mb-10 mb-sm-6">
-                                    <h4>contact us</h4>
-                                </div>
-                                <div class="widget-body">
-                                    <ul class="location">
-                                        <li><i class="fa fa-envelope"></i>support@galio.com</li>
-                                        <li><i class="fa fa-phone"></i>(800) 0123 456 789</li>
-                                        <li><i class="fa fa-map-marker"></i>Address:  1234 - Bandit Tringi Aliquam Vitae. New York</li>
-                                    </ul>
-                                    <a class="map-btn" href="contact-us.html">open in google map</a>
-                                </div>
-                            </div> <!-- single widget end -->
-                        </div> <!-- single widget column end -->
-                        <div class="col-md-3 col-sm-6">
-                            <div class="footer-widget mb-sm-30">
-                                <div class="widget-title mb-10 mb-sm-6">
-                                    <h4>my account</h4>
-                                </div>
-                                <div class="widget-body">
-                                    <ul>
-                                        <li><a href="#">my account</a></li>
-                                        <li><a href="#">my cart</a></li>
-                                        <li><a href="#">checkout</a></li>
-                                        <li><a href="#">my wishlist</a></li>
-                                        <li><a href="#">login</a></li>
-                                    </ul>
-                                </div>
-                            </div> <!-- single widget end -->
-                        </div> <!-- single widget column end -->
-                        <div class="col-md-3 col-sm-6">
-                            <div class="footer-widget mb-sm-30">
-                                <div class="widget-title mb-10 mb-sm-6">
-                                    <h4>short code</h4>
-                                </div>
-                                <div class="widget-body">
-                                    <ul>
-                                        <li><a href="#">gallery</a></li>
-                                        <li><a href="#">accordion</a></li>
-                                        <li><a href="#">carousel</a></li>
-                                        <li><a href="#">map</a></li>
-                                        <li><a href="#">tab</a></li>
-                                    </ul>
-                                </div>
-                            </div> <!-- single widget end -->
-                        </div> <!-- single widget column end -->
-                        <div class="col-md-3 col-sm-6">
-                            <div class="footer-widget mb-sm-30">
-                                <div class="widget-title mb-10 mb-sm-6">
-                                    <h4>product tags</h4>
-                                </div>
-                                <div class="widget-body">
-                                    <ul>
-                                        <li><a href="#">computer</a></li>
-                                        <li><a href="#">camera</a></li>
-                                        <li><a href="#">smart phone</a></li>
-                                        <li><a href="#">watch</a></li>
-                                        <li><a href="#">tablet</a></li>
-                                    </ul>
-                                </div>
-                            </div> <!-- single widget end -->
-                        </div> <!-- single widget column end -->
-                    </div>
-                </div>
-            </div>
-            <!-- footer main end -->
-
-            <!-- footer bootom start -->
-            <div class="footer-bottom-area bg-gray pt-20 pb-20">
-                <div class="container">
-                    <div class="footer-bottom-wrap">
-                        <div class="copyright-text">
-                            <p><a target="_blank" href="https://www.templateshub.net">Templates Hub</a></p>
-                        </div>
-                        <div class="payment-method-img">
-                            <img src="assets/img/payment.png" alt="">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- footer bootom end -->
-
-        </footer>
-        <!-- footer area end -->
-
-    </div>
-
-    <!-- Scroll to top start -->
-    <div class="scroll-top not-visible">
-        <i class="fa fa-angle-up"></i>
-    </div>
-    <!-- Scroll to Top End -->
-
-
-    <!--All jQuery, Third Party Plugins & Activation (main.js) Files-->
-    <script src="assets/js/vendor/modernizr-3.6.0.min.js"></script>
-    <!-- Jquery Min Js -->
-    <script src="assets/js/vendor/jquery-3.3.1.min.js"></script>
-    <!-- Popper Min Js -->
-    <script src="assets/js/vendor/popper.min.js"></script>
-    <!-- Bootstrap Min Js -->
-    <script src="assets/js/vendor/bootstrap.min.js"></script>
-    <!-- Plugins Js-->
-    <script src="assets/js/plugins.js"></script>
-    <!-- Ajax Mail Js -->
-    <script src="assets/js/ajax-mail.js"></script>
-    <!-- Active Js -->
-    <script src="assets/js/main.js"></script>
-    <!-- Switcher JS [Please Remove this when Choose your Final Projct] -->
-    <script src="assets/js/switcher.js"></script>
-</body>
-
-
-</html>

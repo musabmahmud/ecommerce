@@ -1,5 +1,5 @@
 <?php include 'inc/header.php'; ?>
-<?php include 'classes/brand_all.php'; ?>
+<?php include '../classes/brand_all.php'; ?>
 <?php
 $brand = new Brand();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {

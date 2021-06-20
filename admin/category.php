@@ -1,5 +1,5 @@
 <?php include 'inc/header.php'; ?>
-<?php include 'classes/category_all.php';
+<?php include '../classes/category_all.php';
 
 $cat = new Category();
 
@@ -49,7 +49,7 @@ if (isset($_GET['delId'])) {
                         <tr>
                             <td><?= $i; ?></td>
                             <td><?= $result['catName']; ?></td>
-                            <td><a href="category_edit.php?catId=<?= $result['catId']; ?>">EDIT</a> || <a data-toggle="modal" data-target="#exampleModalCenter" href="?delId=<?= $result['catId']; ?>">DELETE</a><?php include 'inc/modal.php'; ?></td>
+                            <td><a href="category_edit.php?catId=<?= $result['catId']; ?>">EDIT</a> || <a data-toggle="modal" data-target="#exampleModalCenter" href="?delId=<?= $result['catId']; ?>">DELETE</a></td>
                         </tr>
                 <?php }
                 } ?>

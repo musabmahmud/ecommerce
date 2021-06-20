@@ -1,5 +1,5 @@
 <?php include 'inc/header.php'; ?>
-<?php include 'classes/category_all.php'; ?>
+<?php include '../classes/category_all.php'; ?>
 <?php
 if (!isset($_GET['catId']) || $_GET['catId'] == NULL) {
     echo "<script>window.location = 'category.php'</script>;";

@@ -1,4 +1,4 @@
-<?php include 'classes/adminlogin.php';?>
+<?php include '../classes/adminlogin.php';?>
 <?php
 $al = new adminLogin();
 

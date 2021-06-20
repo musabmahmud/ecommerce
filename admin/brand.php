@@ -1,5 +1,5 @@
 <?php include 'inc/header.php'; ?>
-<?php include 'classes/brand_all.php'; 
+<?php include '../classes/brand_all.php'; 
 
 
 $brand = new Brand();
@@ -48,7 +48,9 @@ if (isset($_GET['branddelid'])) {
                 <td><?= $result['brandname'];?></td>
                 <td><a href="brand_edit.php?brandid=<?= $result['brandid']; ?>">EDIT</a> || 
                 <a data-toggle="modal" data-target="#exampleModalCenter" href="?branddelid=<?= $result['brandid']; ?>">DELETE</a>
-                    <!-- Modal -->
+            
+            
+                <!-- Modal -->
                     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content pd-20">

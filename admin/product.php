@@ -1,5 +1,5 @@
 <?php include 'inc/header.php';
-include 'classes/product_all.php';
+include '../classes/product_all.php';
 include_once '../helpers/format.php';
 
 

@@ -1,7 +1,7 @@
 <?php include 'inc/header.php'; ?>
-<?php include 'classes/category_all.php'; ?>
-<?php include 'classes/brand_all.php'; ?>
-<?php include 'classes/product_all.php'; ?>
+<?php include '../classes/category_all.php'; ?>
+<?php include '../classes/brand_all.php'; ?>
+<?php include '../classes/product_all.php'; ?>
 <?php
 $cat = new Category();
 $brand = new Brand();
@@ -20,6 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
             <?php if (isset($insertProduct)) {
                 echo $insertProduct;
                 unset($insertProduct);
+                echo "<script>window.location = 'product.php'</script>;";
             } ?>
         </div>
         <form method="post" action="" enctype="multipart/form-data" data-parsley-validate>

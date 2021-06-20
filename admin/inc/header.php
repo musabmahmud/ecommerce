@@ -58,12 +58,17 @@ include '../lib/database.php';
             <span class="menu-item-label">Dashboard</span>
           </div><!-- menu-item -->
         </a><!-- sl-menu-link -->
-        <a href="product.php" class="sl-menu-link">
+        <a href="#" class="sl-menu-link">
           <div class="sl-menu-item">
-            <i class="menu-item-icon icon ion-ios-grid-view tx-22"></i>
+            <i class="menu-item-icon icon ion-ios-grid-view tx-24"></i>
             <span class="menu-item-label">Products</span>
+            <i class="menu-item-arrow fa fa-angle-down"></i>
           </div><!-- menu-item -->
         </a><!-- sl-menu-link -->
+        <ul class="sl-menu-sub nav flex-column">
+          <li class="nav-item"><a href="product_add.php" class="nav-link">Add Products</a></li>
+          <li class="nav-item"><a href="product.php" class="nav-link">View Products</a></li>
+        </ul><!-- sl-Category-link -->
         <a href="#" class="sl-menu-link">
           <div class="sl-menu-item">
             <i class="menu-item-icon icon ion-ios-gear-outline tx-24"></i>
@@ -74,13 +79,14 @@ include '../lib/database.php';
         <ul class="sl-menu-sub nav flex-column">
           <li class="nav-item"><a href="category_add.php" class="nav-link">Add Category</a></li>
           <li class="nav-item"><a href="category.php" class="nav-link">View Category</a></li>
-        </ul><!-- sl-Category-link --><a href="#" class="sl-menu-link">
-        <a href="brand.php" class="sl-menu-link">
-          <div class="sl-menu-item">
-            <i class="menu-item-icon icon ion-ios-gear-outline tx-24"></i>
-            <span class="menu-item-label">Brand</span>
-            <i class="menu-item-arrow fa fa-angle-down"></i>
-          </div><!-- menu-item -->
+        </ul><!-- sl-Category-link -->
+        <a href="#" class="sl-menu-link">
+          <a href="brand.php" class="sl-menu-link">
+            <div class="sl-menu-item">
+              <i class="menu-item-icon icon ion-ios-gear-outline tx-24"></i>
+              <span class="menu-item-label">Brand</span>
+              <i class="menu-item-arrow fa fa-angle-down"></i>
+            </div><!-- menu-item -->
         </a><!-- sl-menu-link -->
         <ul class="sl-menu-sub nav flex-column">
           <li class="nav-item"><a href="brand_add.php" class="nav-link">Add Brand</a></li>
