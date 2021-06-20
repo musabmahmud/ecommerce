@@ -1,8 +1,11 @@
 <?php include 'inc/header.php';
 include 'classes/product_all.php';
-
 include_once '../helpers/format.php';
+
+
 $products = new Products();
+
+$format = new Format();
 
 if (isset($_GET['delId'])) {
     $id = $_GET['delId'];
@@ -53,22 +56,22 @@ if (isset($_GET['delId'])) {
                         <tr>
                             <td><?= $i; ?></td>
                             <td><?= $result['productName']; ?></td>
-                            <td><?= $result['catId']; ?></td>
-                            <td><?= $result['brandid']; ?></td>
-                            <td><?= $result['body']; ?></td>
+                            <td><?= $result['catName']; ?></td>
+                            <td><?= $result['brandname']; ?></td>
+                            <td><?= $format->textShorten($result['body'],50);?></td>
                             <td><?= $result['price']; ?></td>
-                            <td><img src="assets/img/<?= $result['image']; ?>" width="100" height="70"></td>
+                            <td><a href="assets/img/<?= $result['image']; ?>" target="_blank"><img src="assets/img/<?= $result['image']; ?>" height="60"></a></td>
                             <td><?= $result['productCode']; ?></td>
                             <td><?php
                                 if ($result['type'] == 2) {
                                     echo "Featured Image";
                                 } elseif ($result['type'] == 1) {
-                                    echo "Featured Image";
+                                    echo "Popular Image";
                                 } else {
                                     echo "General";
                                 }
                                 ?></td>
-                            <td><a href="">EDIT</a> || <a data-toggle="modal" data-target="#exampleModalCenter" href="">DELETE</a></td>
+                            <td><a href="product_edit.php?proId=<?= $result['productId']; ?>">EDIT</a> || <a data-toggle="modal" data-target="#exampleModalCenter" href="">DELETE</a></td>
                         </tr>
                 <?php }
                 } ?>

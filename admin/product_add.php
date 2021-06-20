@@ -105,7 +105,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
 
         </form><!-- Form -->
         <div class="block mg-t-30">
-            <a class="btn bg-info text-white float-right text-left tx-22" href=".php">Back to Product</a>
+            <a class="btn bg-info text-white float-right text-left tx-22" href="product.php">Back to Product</a>
         </div>
     </div>
 </div><!-- Card -->

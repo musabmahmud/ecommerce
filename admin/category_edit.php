@@ -8,7 +8,7 @@ if (!isset($_GET['catId']) || $_GET['catId'] == NULL) {
 }
 
 $cat = new Category();
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update'])) {
     $name = $_POST['catName'];
     $id = $_POST['catId'];
     $catUpdate = $cat->catUpdate($name, $id);
@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <input type="text" name="catName" value="<?= $catresult['catName']; ?>" class="form-control wd-300" placeholder="Enter Category Name" required>
                     </div><!-- form-group -->
                 </div><!-- d-flex -->
-                <button type="submit" class="btn btn-info">Update Category</button>
+                <button type="submit" name="update" class="btn btn-info">Update Category</button>
             </div>
         </form><!-- Form -->
         <div class="block mg-t-30">
