@@ -94,6 +94,15 @@ class Products
             return $msg;
         } elseif (!empty($file_name = $files['image']['name'])) {
 
+            $delquery = "SELECT * FROM product_table WHERE productId = '$id'";
+            $getData = $this->db->select($delquery);
+            if($getData){
+                while($delImg = $getData->fetch_assoc()){
+                    $delLink = $delImg['image'];
+                    unlink($delLink);
+                }
+            }
+
             $file_size = $files['image']['size'];
             $file_tmp = $files['image']['tmp_name'];
             $explode = explode('.', $file_name);
@@ -145,6 +154,29 @@ class Products
             Oh snap! Error...!</span>";
                 return $msg;
             }
+        }
+    }
+
+    public function delCatById($id)
+    {
+        $query = "SELECT * FROM product_table WHERE productId = '$id'";
+        $getData = $this->db->select($query);
+        if($getData){
+            while($delImg = $getData->fetch_assoc()){
+                $delLink = $delImg['image'];
+                unlink($delLink);
+            }
+        }
+        $delQuery = "DELETE FROM product_table WHERE productId = '$id'";
+        $deleteCat = $this->db->delete($delQuery);
+        if($deleteCat){
+            $msg = "<span class='alert alert-danger d-block'><strong>Well done!</strong> Successfully Delete..!</span>";
+            return $msg;
+        }
+        else{
+            $msg = "<span class='alert alert-danger d-block'>
+            Oh snap! Error...!</span>";
+            return $msg;
         }
     }
 }
