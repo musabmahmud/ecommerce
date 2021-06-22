@@ -1,4 +1,23 @@
 <?php
+include_once 'lib/session.php';
+session::init();
+include_once 'lib/database.php';
+include_once 'helpers/format.php';
+
+spl_autoload_register(function ($class) {
+    include_once "classes/" . $class . ".php";
+});
+
+$db = new Database();
+$format = new Format();
+$pd = new Product();
+
+$user = new User();
+$cart = new Cart();
+
+?>
+
+<?php
 //set headers to NOT cache a page
 header("Cache-Control: no-cache, must-revalidate"); //HTTP 1.1
 header("Pragma: no-cache"); //HTTP 1.0
@@ -18,7 +37,7 @@ header("Cache-Control: max-age=2592000");
     <meta name="description" content="meta description">
 
     <!-- Site title -->
-    <title>Galio - Mega Shop Responsive Bootstrap 4 Template</title>
+    <title>Ecommerce</title>
     <!-- Favicon -->
     <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon" />
     <!-- Bootstrap CSS -->
@@ -122,9 +141,9 @@ header("Cache-Control: max-age=2592000");
                                                     <i class="fa fa-angle-down"></i>
                                                 </a>
                                                 <div class="dropdown-menu" aria-labelledby="myaccount">
-                                                    <a class="dropdown-item" href="my-account.html">my account</a>
-                                                    <a class="dropdown-item" href="login-register.html"> login</a>
-                                                    <a class="dropdown-item" href="login-register.html">register</a>
+                                                    <a class="dropdown-item" href="my-account.php">my account</a>
+                                                    <a class="dropdown-item" href="login-register.php"> login</a>
+                                                    <a class="dropdown-item" href="login-register.php">register</a>
                                                 </div>
                                             </div>
                                         </li>
@@ -152,7 +171,7 @@ header("Cache-Control: max-age=2592000");
                     <div class="row align-items-center">
                         <div class="col-lg-3">
                             <div class="brand-logo">
-                                <a href="index.html">
+                                <a href="index.php">
                                     <img src="assets/img/logo/logo.png" alt="brand logo">
                                 </a>
                             </div>
@@ -205,10 +224,10 @@ header("Cache-Control: max-age=2592000");
                                         <ul class="cart-list">
                                             <li>
                                                 <div class="cart-img">
-                                                    <a href="product-details.html"><img src="assets/img/cart/cart-1.jpg" alt=""></a>
+                                                    <a href="product-details.php"><img src="assets/img/cart/cart-1.jpg" alt=""></a>
                                                 </div>
                                                 <div class="cart-info">
-                                                    <h4><a href="product-details.html">simple product 09</a></h4>
+                                                    <h4><a href="product-details.php">simple product 09</a></h4>
                                                     <span>$60.00</span>
                                                 </div>
                                                 <div class="del-icon">
@@ -217,10 +236,10 @@ header("Cache-Control: max-age=2592000");
                                             </li>
                                             <li>
                                                 <div class="cart-img">
-                                                    <a href="product-details.html"><img src="assets/img/cart/cart-2.jpg" alt=""></a>
+                                                    <a href="product-details.php"><img src="assets/img/cart/cart-2.jpg" alt=""></a>
                                                 </div>
                                                 <div class="cart-info">
-                                                    <h4><a href="product-details.html">virtual product 10</a></h4>
+                                                    <h4><a href="product-details.php">virtual product 10</a></h4>
                                                     <span>$50.00</span>
                                                 </div>
                                                 <div class="del-icon">
@@ -259,107 +278,107 @@ header("Cache-Control: max-age=2592000");
                                     </div>
                                     <nav class="category-menu hm-1">
                                         <ul>
-                                            <li><a href="shop-grid-left-sidebar.html"><i class="fa fa-desktop"></i>
+                                            <li><a href="shop-grid-left-sidebar.php"><i class="fa fa-desktop"></i>
                                                     computer</a></li>
-                                            <li class="menu-item-has-children"><a href="shop-grid-left-sidebar.html"><i class="fa fa-camera"></i> camera</a>
+                                            <li class="menu-item-has-children"><a href="shop-grid-left-sidebar.php"><i class="fa fa-camera"></i> camera</a>
                                                 <!-- Mega Category Menu Start -->
                                                 <ul class="category-mega-menu">
                                                     <li class="menu-item-has-children">
-                                                        <a href="shop-grid-left-sidebar.html">Smartphone</a>
+                                                        <a href="shop-grid-left-sidebar.php">Smartphone</a>
                                                         <ul>
-                                                            <li><a href="shop-grid-left-sidebar.html">Samsome</a></li>
-                                                            <li><a href="shop-grid-left-sidebar.html">GL Stylus</a></li>
-                                                            <li><a href="shop-grid-left-sidebar.html">Uawei</a></li>
-                                                            <li><a href="shop-grid-left-sidebar.html">Cherry Berry</a></li>
+                                                            <li><a href="shop-grid-left-sidebar.php">Samsome</a></li>
+                                                            <li><a href="shop-grid-left-sidebar.php">GL Stylus</a></li>
+                                                            <li><a href="shop-grid-left-sidebar.php">Uawei</a></li>
+                                                            <li><a href="shop-grid-left-sidebar.php">Cherry Berry</a></li>
                                                         </ul>
                                                     </li>
                                                     <li class="menu-item-has-children">
-                                                        <a href="shop-grid-left-sidebar.html">headphone</a>
+                                                        <a href="shop-grid-left-sidebar.php">headphone</a>
                                                         <ul>
-                                                            <li><a href="shop-grid-left-sidebar.html">Desktop Headphone</a></li>
-                                                            <li><a href="shop-grid-left-sidebar.html">Mobile Headphone</a></li>
-                                                            <li><a href="shop-grid-left-sidebar.html">Wireless
+                                                            <li><a href="shop-grid-left-sidebar.php">Desktop Headphone</a></li>
+                                                            <li><a href="shop-grid-left-sidebar.php">Mobile Headphone</a></li>
+                                                            <li><a href="shop-grid-left-sidebar.php">Wireless
                                                                     Headphone</a></li>
-                                                            <li><a href="shop-grid-left-sidebar.html">LED Headphone</a></li>
+                                                            <li><a href="shop-grid-left-sidebar.php">LED Headphone</a></li>
                                                         </ul>
                                                     </li>
                                                     <li class="menu-item-has-children">
-                                                        <a href="shop-grid-left-sidebar.html">accessories</a>
+                                                        <a href="shop-grid-left-sidebar.php">accessories</a>
                                                         <ul>
-                                                            <li><a href="shop-grid-left-sidebar.html">Power Bank</a></li>
-                                                            <li><a href="shop-grid-left-sidebar.html">Data Cable</a></li>
-                                                            <li><a href="shop-grid-left-sidebar.html">Power Cable</a></li>
-                                                            <li><a href="shop-grid-left-sidebar.html">Battery</a></li>
+                                                            <li><a href="shop-grid-left-sidebar.php">Power Bank</a></li>
+                                                            <li><a href="shop-grid-left-sidebar.php">Data Cable</a></li>
+                                                            <li><a href="shop-grid-left-sidebar.php">Power Cable</a></li>
+                                                            <li><a href="shop-grid-left-sidebar.php">Battery</a></li>
                                                         </ul>
                                                     </li>
                                                     <li class="menu-item-has-children">
-                                                        <a href="shop-grid-left-sidebar.html">headphone</a>
+                                                        <a href="shop-grid-left-sidebar.php">headphone</a>
                                                         <ul>
-                                                            <li><a href="shop-grid-left-sidebar.html">Desktop Headphone</a></li>
-                                                            <li><a href="shop-grid-left-sidebar.html">Mobile Headphone</a></li>
-                                                            <li><a href="shop-grid-left-sidebar.html">Wireless
+                                                            <li><a href="shop-grid-left-sidebar.php">Desktop Headphone</a></li>
+                                                            <li><a href="shop-grid-left-sidebar.php">Mobile Headphone</a></li>
+                                                            <li><a href="shop-grid-left-sidebar.php">Wireless
                                                                     Headphone</a></li>
-                                                            <li><a href="shop-grid-left-sidebar.html">LED Headphone</a></li>
+                                                            <li><a href="shop-grid-left-sidebar.php">LED Headphone</a></li>
                                                         </ul>
                                                     </li>
                                                 </ul><!-- Mega Category Menu End -->
                                             </li>
-                                            <li class="menu-item-has-children"><a href="shop-grid-left-sidebar.html"><i class="fa fa-book"></i> smart phones</a>
+                                            <li class="menu-item-has-children"><a href="shop-grid-left-sidebar.php"><i class="fa fa-book"></i> smart phones</a>
                                                 <!-- Mega Category Menu Start -->
                                                 <ul class="category-mega-menu">
                                                     <li class="menu-item-has-children">
-                                                        <a href="shop-grid-left-sidebar.html">Smartphone</a>
+                                                        <a href="shop-grid-left-sidebar.php">Smartphone</a>
                                                         <ul>
-                                                            <li><a href="shop-grid-left-sidebar.html">Samsome</a></li>
-                                                            <li><a href="shop-grid-left-sidebar.html">GL Stylus</a></li>
-                                                            <li><a href="shop-grid-left-sidebar.html">Uawei</a></li>
-                                                            <li><a href="shop-grid-left-sidebar.html">Cherry Berry</a></li>
-                                                            <li><a href="shop-grid-left-sidebar.html">uPhone</a></li>
+                                                            <li><a href="shop-grid-left-sidebar.php">Samsome</a></li>
+                                                            <li><a href="shop-grid-left-sidebar.php">GL Stylus</a></li>
+                                                            <li><a href="shop-grid-left-sidebar.php">Uawei</a></li>
+                                                            <li><a href="shop-grid-left-sidebar.php">Cherry Berry</a></li>
+                                                            <li><a href="shop-grid-left-sidebar.php">uPhone</a></li>
                                                         </ul>
                                                     </li>
                                                     <li class="menu-item-has-children">
-                                                        <a href="shop-grid-left-sidebar.html">headphone</a>
+                                                        <a href="shop-grid-left-sidebar.php">headphone</a>
                                                         <ul>
-                                                            <li><a href="shop-grid-left-sidebar.html">Desktop Headphone</a></li>
-                                                            <li><a href="shop-grid-left-sidebar.html">Mobile Headphone</a></li>
-                                                            <li><a href="shop-grid-left-sidebar.html">Wireless
+                                                            <li><a href="shop-grid-left-sidebar.php">Desktop Headphone</a></li>
+                                                            <li><a href="shop-grid-left-sidebar.php">Mobile Headphone</a></li>
+                                                            <li><a href="shop-grid-left-sidebar.php">Wireless
                                                                     Headphone</a></li>
-                                                            <li><a href="shop-grid-left-sidebar.html">LED Headphone</a></li>
-                                                            <li><a href="shop-grid-left-sidebar.html">Over-ear</a></li>
+                                                            <li><a href="shop-grid-left-sidebar.php">LED Headphone</a></li>
+                                                            <li><a href="shop-grid-left-sidebar.php">Over-ear</a></li>
                                                         </ul>
                                                     </li>
                                                     <li class="menu-item-has-children">
-                                                        <a href="shop-grid-left-sidebar.html">accessories</a>
+                                                        <a href="shop-grid-left-sidebar.php">accessories</a>
                                                         <ul>
-                                                            <li><a href="shop-grid-left-sidebar.html">Power Bank</a></li>
-                                                            <li><a href="shop-grid-left-sidebar.html">Data Cable</a></li>
-                                                            <li><a href="shop-grid-left-sidebar.html">Power Cable</a></li>
-                                                            <li><a href="shop-grid-left-sidebar.html">Battery</a></li>
-                                                            <li><a href="shop-grid-left-sidebar.html">OTG Cable</a></li>
+                                                            <li><a href="shop-grid-left-sidebar.php">Power Bank</a></li>
+                                                            <li><a href="shop-grid-left-sidebar.php">Data Cable</a></li>
+                                                            <li><a href="shop-grid-left-sidebar.php">Power Cable</a></li>
+                                                            <li><a href="shop-grid-left-sidebar.php">Battery</a></li>
+                                                            <li><a href="shop-grid-left-sidebar.php">OTG Cable</a></li>
                                                         </ul>
                                                     </li>
                                                     <li class="menu-item-has-children">
-                                                        <a href="shop-grid-left-sidebar.html">accessories</a>
+                                                        <a href="shop-grid-left-sidebar.php">accessories</a>
                                                         <ul>
-                                                            <li><a href="shop-grid-left-sidebar.html">Power Bank</a></li>
-                                                            <li><a href="shop-grid-left-sidebar.html">Data Cable</a></li>
-                                                            <li><a href="shop-grid-left-sidebar.html">Power Cable</a></li>
-                                                            <li><a href="shop-grid-left-sidebar.html">Battery</a></li>
-                                                            <li><a href="shop-grid-left-sidebar.html">OTG Cable</a></li>
+                                                            <li><a href="shop-grid-left-sidebar.php">Power Bank</a></li>
+                                                            <li><a href="shop-grid-left-sidebar.php">Data Cable</a></li>
+                                                            <li><a href="shop-grid-left-sidebar.php">Power Cable</a></li>
+                                                            <li><a href="shop-grid-left-sidebar.php">Battery</a></li>
+                                                            <li><a href="shop-grid-left-sidebar.php">OTG Cable</a></li>
                                                         </ul>
                                                     </li>
                                                 </ul><!-- Mega Category Menu End -->
                                             </li>
-                                            <li><a href="shop-grid-left-sidebar.html"><i class="fa fa-clock-o"></i>
+                                            <li><a href="shop-grid-left-sidebar.php"><i class="fa fa-clock-o"></i>
                                                     watch</a></li>
-                                            <li><a href="shop-grid-left-sidebar.html"><i class="fa fa-television"></i>
+                                            <li><a href="shop-grid-left-sidebar.php"><i class="fa fa-television"></i>
                                                     electronic</a></li>
-                                            <li><a href="shop-grid-left-sidebar.html"><i class="fa fa-tablet"></i>
+                                            <li><a href="shop-grid-left-sidebar.php"><i class="fa fa-tablet"></i>
                                                     tablet</a></li>
-                                            <li><a href="shop-grid-left-sidebar.html"><i class="fa fa-book"></i> books</a></li>
-                                            <li><a href="shop-grid-left-sidebar.html"><i class="fa fa-microchip"></i>
+                                            <li><a href="shop-grid-left-sidebar.php"><i class="fa fa-book"></i> books</a></li>
+                                            <li><a href="shop-grid-left-sidebar.php"><i class="fa fa-microchip"></i>
                                                     microchip</a></li>
-                                            <li><a href="shop-grid-left-sidebar.html"><i class="fa fa-bullhorn"></i>
+                                            <li><a href="shop-grid-left-sidebar.php"><i class="fa fa-bullhorn"></i>
                                                     bullhorn</a></li>
                                         </ul>
                                     </nav>
@@ -367,115 +386,11 @@ header("Cache-Control: max-age=2592000");
                                 <div class="main-menu">
                                     <nav id="mobile-menu">
                                         <ul>
-                                            <li class="active"><a href="#"><i class="fa fa-home"></i>Home <i class="fa fa-angle-down"></i></a>
-                                                <ul class="dropdown">
-                                                    <li><a href="index.html">Home version 01</a></li>
-                                                    <li><a href="index-2.html">Home version 02</a></li>
-                                                    <li><a href="index-3.html">Home version 03</a></li>
-                                                    <li><a href="index-4.html">Home version 04</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="static"><a href="#">pages <i class="fa fa-angle-down"></i></a>
-                                                <ul class="megamenu dropdown">
-                                                    <li class="mega-title"><a href="#">column 01</a>
-                                                        <ul>
-                                                            <li><a href="shop-grid-left-sidebar.html">shop grid left
-                                                                    sidebar</a></li>
-                                                            <li><a href="shop-grid-right-sidebar.html">shop grid right
-                                                                    sidebar</a></li>
-                                                            <li><a href="shop-grid-full-3-col.html">shop grid full 3
-                                                                    column</a></li>
-                                                            <li><a href="shop-grid-full-4-col.html">shop grid full 4
-                                                                    column</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li class="mega-title"><a href="#">column 02</a>
-                                                        <ul>
-                                                            <li><a href="product-details.html">product details</a></li>
-                                                            <li><a href="product-details-affiliate.html">product
-                                                                    details
-                                                                    affiliate</a></li>
-                                                            <li><a href="product-details-variable.html">product details
-                                                                    variable</a></li>
-                                                            <li><a href="product-details-group.html">product details
-                                                                    group</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li class="mega-title"><a href="#">column 03</a>
-                                                        <ul>
-                                                            <li><a href="cart.html">cart</a></li>
-                                                            <li><a href="checkout.html">checkout</a></li>
-                                                            <li><a href="compare.html">compare</a></li>
-                                                            <li><a href="wishlist.html">wishlist</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li class="mega-title"><a href="#">column 04</a>
-                                                        <ul>
-                                                            <li><a href="my-account.html">my-account</a></li>
-                                                            <li><a href="login-register.html">login-register</a></li>
-                                                            <li><a href="about-us.html">about us</a></li>
-                                                            <li><a href="contact-us.html">contact us</a></li>
-                                                        </ul>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="#">shop <i class="fa fa-angle-down"></i></a>
-                                                <ul class="dropdown">
-                                                    <li><a href="#">shop grid layout <i class="fa fa-angle-right"></i></a>
-                                                        <ul class="dropdown">
-                                                            <li><a href="shop-grid-left-sidebar.html">shop grid left
-                                                                    sidebar</a></li>
-                                                            <li><a href="shop-grid-left-sidebar-3-col.html">left
-                                                                    sidebar 3 col</a></li>
-                                                            <li><a href="shop-grid-right-sidebar.html">shop grid right
-                                                                    sidebar</a></li>
-                                                            <li><a href="shop-grid-right-sidebar-3-col.html">grid right
-                                                                    sidebar 3 col</a></li>
-                                                            <li><a href="shop-grid-full-3-col.html">shop grid full 3
-                                                                    column</a></li>
-                                                            <li><a href="shop-grid-full-4-col.html">shop grid full 4
-                                                                    column</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li><a href="#">shop list layout <i class="fa fa-angle-right"></i></a>
-                                                        <ul class="dropdown">
-                                                            <li><a href="shop-list-left-sidebar.html">shop list left
-                                                                    sidebar</a></li>
-                                                            <li><a href="shop-list-right-sidebar.html">shop list right
-                                                                    sidebar</a></li>
-                                                            <li><a href="shop-list-full.html">shop list full width</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li><a href="#">products details <i class="fa fa-angle-right"></i></a>
-                                                        <ul class="dropdown">
-                                                            <li><a href="product-details.html">product details</a></li>
-                                                            <li><a href="product-details-affiliate.html">product
-                                                                    details
-                                                                    affiliate</a></li>
-                                                            <li><a href="product-details-variable.html">product details
-                                                                    variable</a></li>
-                                                            <li><a href="product-details-group.html">product details
-                                                                    group</a></li>
-                                                            <li><a href="product-details-box.html">product details box
-                                                                    slider</a></li>
-                                                        </ul>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="#">Blog <i class="fa fa-angle-down"></i></a>
-                                                <ul class="dropdown">
-                                                    <li><a href="blog-left-sidebar.html">blog left sidebar</a></li>
-                                                    <li><a href="blog-left-sidebar-2-col.html">blog left sidebar 2 col</a></li>
-                                                    <li><a href="blog-right-sidebar.html">blog right sidebar</a></li>
-                                                    <li><a href="blog-full-2-column.html">blog full 2 column</a></li>
-                                                    <li><a href="blog-full-3-column.html">blog full 3 column</a></li>
-                                                    <li><a href="blog-details.html">blog details</a></li>
-                                                    <li><a href="blog-details-audio.html">blog details audio</a></li>
-                                                    <li><a href="blog-details-video.html">blog details video</a></li>
-                                                    <li><a href="blog-details-image.html">blog details image</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="contact-us.html">Contact us</a></li>
+                                            <li class="active"><a href="#"><i class="fa fa-home"></i>Home</a></li>
+                                            <li class="static"><a href="#">pages <i class="fa fa-angle-down"></i></a></li>
+                                            <li><a href="#">shop</a></li>
+                                            <li><a href="#">Blog</a></li>
+                                            <li><a href="contact-us.php">Contact us</a></li>
                                         </ul>
                                     </nav>
                                 </div>

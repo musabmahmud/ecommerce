@@ -1,7 +1,7 @@
 <?php include 'inc/header.php'; ?>
-<?php include '../classes/category_all.php'; ?>
-<?php include '../classes/brand_all.php'; ?>
-<?php include '../classes/product_all.php'; ?>
+<?php include 'classes/category_all.php'; ?>
+<?php include 'classes/brand_all.php'; ?>
+<?php include 'classes/product_all.php'; ?>
 <?php
 $cat = new Category();
 $brand = new Brand();

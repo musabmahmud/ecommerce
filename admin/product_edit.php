@@ -1,7 +1,7 @@
 <?php include 'inc/header.php'; ?>
-<?php include '../classes/category_all.php'; ?>
-<?php include '../classes/brand_all.php'; ?>
-<?php include '../classes/product_all.php'; ?>
+<?php include 'classes/category_all.php'; ?>
+<?php include 'classes/brand_all.php'; ?>
+<?php include 'classes/product_all.php'; ?>
 <?php
 
 if (!isset($_GET['proId']) || $_GET['proId'] == NULL) {
@@ -103,7 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update'])) {
                         <div class="form-group col-lg-6 mg-b-30">
                             <label class="control-label">Preview:</label>
                             <div class="">
-                                <img id="image_id" src="assets/img/<?= $proResult['image'] ?>" height="200">
+                                <img id="image_id" src="../assets/img/product/<?= $proResult['image'] ?>" height="200">
                             </div>
                         </div>
                         <div class="col-lg-12 mg-b-30">

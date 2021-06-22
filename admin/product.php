@@ -1,5 +1,5 @@
 <?php include 'inc/header.php';
-include '../classes/product_all.php';
+include 'classes/product_all.php';
 include_once '../helpers/format.php';
 
 
@@ -60,7 +60,7 @@ if (isset($_GET['delPro'])) {
                             <td><?= $result['brandname']; ?></td>
                             <td><?= $format->textShorten($result['body'], 50); ?></td>
                             <td><?= $result['price']; ?></td>
-                            <td><a href="assets/img/<?= $result['image']; ?>" target="_blank"><img src="assets/img/<?= $result['image']; ?>" height="60"></a></td>
+                            <td><a href="../assets/img/product/<?= $result['image']; ?>" target="_blank"><img src="../assets/img/product/<?= $result['image']; ?>" height="60"></a></td>
                             <td><?= $result['productCode']; ?></td>
                             <td><?php
                                 if ($result['type'] == 2) {
@@ -71,7 +71,7 @@ if (isset($_GET['delPro'])) {
                                     echo "General";
                                 }
                                 ?></td>
-                            <td><a href="product_edit.php?proId=<?= $result['productId']; ?>">EDIT</a> || <a  data-toggle="modal" data-target="#exampleModalCenter" href="?delPro=<?= $result['productId']; ?>">DELETE</a>
+                            <td><a class="btn btn-info" href="product_edit.php?proId=<?= $result['productId']; ?>">EDIT</a><br><br> <a class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter" href="?delPro=<?= $result['productId']; ?>">DELETE</a>
                                 <!-- Modal -->
                                 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -92,15 +92,6 @@ if (isset($_GET['delPro'])) {
                                         </div>
                                     </div>
                                 </div>
-
-
-
-
-
-
-
-
-
                             </td>
                         </tr>
                 <?php }

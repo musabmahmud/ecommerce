@@ -1,8 +1,10 @@
 <?php
-include '../lib/session.php';
+include_once '../lib/session.php';
 Session::init();
+
 include_once '../lib/database.php';
 include_once '../helpers/format.php';
+
 
 
 class adminLogin

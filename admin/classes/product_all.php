@@ -1,6 +1,8 @@
 <?php
+
 include_once '../lib/database.php';
 include_once '../helpers/format.php';
+
 
 class Products
 {
@@ -38,7 +40,7 @@ class Products
             return $msg;
         } elseif (in_array($ext, $allow_format)) {
             $unique_image = substr(md5(time()), 0, 10) . '.' . $ext;
-            $uploaded_image = "assets/img/" . $unique_image;
+            $uploaded_image = "../assets/img/product/" . $unique_image;
 
             move_uploaded_file($file_tmp, $uploaded_image);
 
@@ -113,7 +115,7 @@ class Products
                 return $msg;
             } elseif (in_array($ext, $allow_format)) {
                 $unique_image = substr(md5(time()), 0, 10) . '.' . $ext;
-                $uploaded_image = "assets/img/" . $unique_image;
+                $uploaded_image = "../assets/img/product/" . $unique_image;
 
                 move_uploaded_file($file_tmp, $uploaded_image);
 
@@ -163,7 +165,7 @@ class Products
         $getData = $this->db->select($query);
         if($getData){
             while($delImg = $getData->fetch_assoc()){
-                $delLink = $delImg['image'];
+                $delLink = "../assets/img/product/".$delImg['image'];
                 unlink($delLink);
             }
         }

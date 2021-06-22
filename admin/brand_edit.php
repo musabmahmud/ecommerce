@@ -1,5 +1,5 @@
 <?php include 'inc/header.php'; ?>
-<?php include '../classes/brand_all.php'; ?>
+<?php include 'classes/brand_all.php'; ?>
 <?php
 if (!isset($_GET['brandid']) || $_GET['brandid'] == NULL) {
     echo "<script>window.location = 'brand.php'</script>;";

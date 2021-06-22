@@ -1,5 +1,5 @@
 <?php include 'inc/header.php'; ?>
-<?php include '../classes/category_all.php'; ?>
+<?php include 'classes/category_all.php'; ?>
 <?php
 $cat = new Category();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
