@@ -4917,32 +4917,29 @@ only screen and (max-width: 767px) {
     text-align: center;
     background-color: transparent;
 }
-
-.product-details-des .availability {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
+.availability td{
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
-.product-details-des .availability h5 {
+.availability h5 {
     color: #444444;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 500;
     line-height: 25px;
     margin-bottom: 0;
     margin-right: 10px;
     text-transform: capitalize;
 }
-
-.product-details-des .availability span {
-    color: #22dd77;
-    font-size: 14px;
-    padding-left: 3px;
+.availability span {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 24px;
+    color:#22dd77;
+}
+.availability .regular-price{
+    font-size: 24px;
+    color: #d8373e;
 }
 
 .product-details-des .useful-links {

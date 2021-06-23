@@ -24,7 +24,7 @@
                     <!-- product single item start -->
                     <div class="product-item fix">
                         <div class="product-thumb">
-                            <a href="product-details.php?productId = <?= $featurePd['productId']?>">
+                            <a href="product_details.php?productId=<?=$featurePd['productId']?>">
                                 <img src="assets/img/product/<?= $featurePd['image']?>" class="img-pri" height="200" alt="">
                                 <img src="assets/img/product/<?= $featurePd['image']?>" class="img-sec" height="200" alt="">
                             </a>
