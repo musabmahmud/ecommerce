@@ -27,6 +27,14 @@ header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
 header("Cache-Control: max-age=2592000");
 //30days (60sec * 60min * 24hours * 30days)
 ?>
+
+
+<?php
+  $path = $_SERVER["PHP_SELF"];
+  $parts = explode('/', $path);
+  $file_ext = end($parts);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -110,10 +118,8 @@ header("Cache-Control: max-age=2592000");
     <!-- color switcher end -->
 
     <div class="wrapper">
-
         <!-- header area start -->
         <header>
-
             <!-- header top start -->
             <div class="header-top-area bg-gray text-center text-md-left">
                 <div class="container">
@@ -276,7 +282,16 @@ header("Cache-Control: max-age=2592000");
                                             <i class="fa fa-angle-down"></i>
                                         </div>
                                     </div>
-                                    <nav class="category-menu hm-1">
+                                    
+                                    <nav class="category-menu 
+                                            <?php 
+                                                if($file_ext == "index.php"){
+                                                    echo "hm-1";
+                                                }
+                                                else{
+                                                    echo "category-style-2";
+                                                }
+                                            ?>">
                                         <ul>
                                             <li><a href="shop-grid-left-sidebar.php"><i class="fa fa-desktop"></i>
                                                     computer</a></li>

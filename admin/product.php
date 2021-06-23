@@ -35,11 +35,12 @@ if (isset($_GET['delPro'])) {
                 <tr>
                     <th>Serial No.</th>
                     <th>Products Name</th>
-                    <th>Category Id</th>
-                    <th>Brand Id</th>
+                    <th>Category</th>
+                    <th>Brand</th>
                     <th>Body</th>
                     <th>Price</th>
                     <th>Image</th>
+                    <th>Related Image</th>
                     <th>Product Code</th>
                     <th>Type</th>
                     <th>Action</th>
@@ -58,9 +59,10 @@ if (isset($_GET['delPro'])) {
                             <td><?= $result['productName']; ?></td>
                             <td><?= $result['catName']; ?></td>
                             <td><?= $result['brandname']; ?></td>
-                            <td><?= $format->textShorten($result['body'], 50); ?></td>
+                            <td><?= $format->textShorten($result['body'], 40); ?> </td>
                             <td><?= $result['price']; ?></td>
                             <td><a href="../assets/img/product/<?= $result['image']; ?>" target="_blank"><img src="../assets/img/product/<?= $result['image']; ?>" height="60"></a></td>
+                            <td><a href="../assets/img/product/<?= $result['relatedImage']; ?>" target="_blank"><img src="../assets/img/product/<?= $result['relatedImage']; ?>" height="60"></a></td>
                             <td><?= $result['productCode']; ?></td>
                             <td><?php
                                 if ($result['type'] == 2) {

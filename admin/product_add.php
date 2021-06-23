@@ -80,9 +80,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
                 <div class="form-group col-lg-6 mg-b-30">
                     <label class="control-label">Preview:</label>
                     <div class="">
-                        <img id="image_id" src="assets/img/<?= $result['image'] ?>" height="200">
+                        <img id="image_id" src="../assets/img/product/<?= $result['image'] ?>" height="200">
                     </div>
-                </div> 
+                </div>
+                <!-- Image -->
+                <div class="form-group col-lg-6 mg-b-30">
+                    <label class="control-label">Related Image:</label>
+                    <div class="">
+                        <input type="file" class="form-control" id="relatedImage" name="relatedImage" onchange="document.getElementById('re_image_id').src= window.URL.createObjectURL(this.files[0])">
+                    </div>
+                </div>
+                <div class="form-group col-lg-6 mg-b-30">
+                    <label class="control-label">Related Image Preview:</label>
+                    <div class="">
+                        <img id="re_image_id" src="../assets/img/product/<?= $result['relatedImage'] ?>" height="200">
+                    </div>
+                </div>
+                <!-- Related Image -->
                 <div class="col-lg-12 mg-b-30">
                     <div class="form-group">
                         <label class="form-control-label">Product Type : <span class="tx-danger">*</span></label>

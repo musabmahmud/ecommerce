@@ -4883,6 +4883,7 @@ only screen and (max-width: 767px) {
 }
 
 @media only screen and (max-width: 479px) {
+
     .product-details-des .quantity h5 {
         margin-right: 10px;
     }
@@ -4892,18 +4893,18 @@ only screen and (max-width: 767px) {
     width: 90px;
     height: 40px;
     border: 1px solid #ddd;
-    padding: 0 15px;
+    padding: 0 16px;
     float: left;
 }
 
 .product-details-des .quantity .pro-qty .qtybtn {
-    width: 15px;
+    width: 12px;
     display: block;
     float: left;
     line-height: 40px;
     cursor: pointer;
     text-align: center;
-    font-size: 22px;
+    font-size: 16px;
     color: #404040;
 }
 

@@ -25,26 +25,37 @@ class Products
         $body = mysqli_real_escape_string($this->db->link, $data['body']);
 
 
+        
+        $allow_format = ['jpg', 'png', 'jpeg'];
+
         $file_name = $files['image']['name'];
         $file_size = $files['image']['size'];
         $file_tmp = $files['image']['tmp_name'];
         $explode = explode('.', $file_name);
         $ext = strtolower(end($explode));
-        $allow_format = ['jpg', 'png', 'jpeg'];
 
-        if ($productName == "" || $catId == "" || $brandid == "" || $price == "" || $body == "" || empty($file_name)) {
+        $related_file_name = $files['relatedImage']['name'];
+        $related_file_size = $files['relatedImage']['size'];
+        $related_file_tmp = $files['relatedImage']['tmp_name'];
+        $related_explode = explode('.', $related_file_name);
+        $related_ext = strtolower(end($related_explode));
+
+        if ($productName == "" || $catId == "" || $brandid == "" || $price == "" || $body == "" || empty($file_name) || empty($related_file_name)){
             $msg = "<span class='alert alert-warning d-block'>Field Must Not Be Empty</span>";
             return $msg;
-        } elseif ($file_size > 40000000) {
+        } elseif ($file_size > 40000000 || $related_file_size > 40000000) {
             $msg = "<span class='alert alert-warning d-block'>Upload Less Than 5 Mb(image<5)</span>";
             return $msg;
-        } elseif (in_array($ext, $allow_format)) {
+        } elseif (in_array($ext, $allow_format) && in_array($related_ext, $allow_format)) {
             $unique_image = substr(md5(time()), 0, 10) . '.' . $ext;
             $uploaded_image = "../assets/img/product/" . $unique_image;
-
             move_uploaded_file($file_tmp, $uploaded_image);
 
-            $query = "INSERT INTO product_table(productName,catId,brandid,price,productCode,type,body,image) VALUES('$productName','$catId','$brandid','$price','$productCode','$type','$body','$unique_image')";
+            $related_unique_image = substr(md5(time()), 0, 8) . '.' . $related_ext;
+            $related_uploaded_image = "../assets/img/product/" . $related_unique_image;
+            move_uploaded_file($related_file_tmp, $related_uploaded_image);
+
+            $query = "INSERT INTO product_table(productName,catId,brandid,price,productCode,type,body,image,relatedImage) VALUES('$productName','$catId','$brandid','$price','$productCode','$type','$body','$unique_image','$related_unique_image')";
             $productInsert = $this->db->insert($query);
             if ($productInsert) {
                 $msg = "<span class='alert alert-success d-block'><strong>Well done!</strong> Successful..!</span>";
