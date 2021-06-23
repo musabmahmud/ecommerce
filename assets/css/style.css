@@ -5133,10 +5133,10 @@ only screen and (max-width: 767px) {
 }
 
 .product-details-des .group-product-table td .pro-qty .qtybtn {
-    width: 15px;
+    width: 14px;
     display: block;
     float: left;
-    line-height: 31px;
+    line-height: 36px;
     cursor: pointer;
     text-align: center;
     font-size: 15px;

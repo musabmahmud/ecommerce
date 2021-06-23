@@ -7,6 +7,12 @@ if (!isset($_GET['productId'])) {
 } else {
     $id = $_GET['productId'];
 }
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $quantity = $_POST['quantity'];
+    $addCart = $cart->addTocart($quantity, $id);
+}
+
 ?>
 <!-- product details wrapper start -->
 <div class="product-details-wrapper">
@@ -20,8 +26,8 @@ if (!isset($_GET['productId'])) {
                     while ($pdResult = $pdDetails->fetch_assoc()) {
                         $i++;
                 ?>
-                <!-- product details inner Start -->
-                <div class="product-details-inner">
+                        <!-- product details inner Start -->
+                        <div class="product-details-inner">
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="product-large-slider mb-20 slick-arrow-style_2">
@@ -59,39 +65,41 @@ if (!isset($_GET['productId'])) {
                                         </div>
                                         <table class="availability">
                                             <tr>
-                                                <td><h5>Availability:</h5>
+                                                <td>
+                                                    <h5>Availability:</h5>
                                                 </td>
                                                 <td>1 in stock</td>
                                             </tr>
                                             <tr>
-                                                <td><h5>Category:</h5>
+                                                <td>
+                                                    <h5>Category:</h5>
                                                 </td>
                                                 <td><span><?= $pdResult['catName']; ?></span></td>
                                             </tr>
                                             <tr>
                                                 <td>
-                                            <h5>Brand:</h5>
+                                                    <h5>Brand:</h5>
                                                 </td>
                                                 <td><span><?= $pdResult['brandname']; ?></span></td>
                                             </tr>
                                             <tr>
                                                 <td>
-                                            <h5>price:</h5>
+                                                    <h5>price:</h5>
                                                 </td>
                                                 <td><span class="regular-price">$<?= $pdResult['price']; ?></span></td>
                                             </tr>
                                         </table>
                                         <p><?= $pdResult['body']; ?></p>
-                                            <form action="" method="post">
-                                        <div class="quantity-cart-box d-flex align-items-center text-center">
-                                            <div class="quantity">
-                                                <div class="pro-qty"><input type="text" name="quantity" value="1"></div>
+                                        <form action="" method="post" id="buy">
+                                            <div class="quantity-cart-box d-flex align-items-center text-center">
+                                                <div class="quantity">
+                                                    <div class="pro-qty"><input type="int" name="quantity" value="1"></div>
+                                                </div>
+                                                <div class="action_link">
+                                                    <a type="submit" href="" onclick="document.getElementById('buy').submit(); return false;" class="buy-btn" name="buy">add to cart<i class="fa fa-shopping-cart"></i></a>
+                                                </div>
                                             </div>
-                                            <div class="action_link">
-                                                <a type="submit" class="buy-btn" name="buy">add to cart<i class="fa fa-shopping-cart"></i></a>
-                                            </div>
-                                        </div>
-                                            </form>
+                                        </form>
                                         <div class="useful-links mt-20">
                                             <a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="fa fa-refresh"></i>compare</a>
                                             <a href="#" data-toggle="tooltip" data-placement="top" title="Wishlist"><i class="fa fa-heart-o"></i>wishlist</a>
@@ -457,7 +465,7 @@ if (!isset($_GET['productId'])) {
             </div>
         </div>
         <!-- brand area end -->
-        <h1><?php 
+        <h1><?php
             echo $_SERVER["PHP_SELF"];
-        ?></h1>
+            ?></h1>
         <?php include 'inc/footer.php'; ?>
