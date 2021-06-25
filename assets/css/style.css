@@ -1547,7 +1547,7 @@ only screen and (min-width: 768px) and (max-width: 991px) {
     padding-right: 10px;
 }
 
-.main-header-inner .category-toggle-wrap nav.category-menu>ul>li>a:hover {
+.main-header-inner .category-toggle-wrap nav.category-menu>ul>li>a:hover,nav.category-menu>ul>li>a.active {
     color: #ffffff;
     background-color: #d8373e;
 }
@@ -5812,6 +5812,9 @@ only screen and (max-width: 767px) {
     font-weight: 600;
     color: #444444;
 }
+.cart-table .pro-title, .pro-quantity{
+    width: 250px!important;
+}
 
 .cart-table .table tbody tr td a {
     color: #444444;
@@ -5852,10 +5855,10 @@ only screen and (max-width: 767px) {
 }
 
 .cart-table .table tr .pro-qty .qtybtn {
-    width: 15px;
+    width: 14px;
     display: block;
     float: left;
-    line-height: 31px;
+    line-height: 36px;
     cursor: pointer;
     text-align: center;
     font-size: 15px;

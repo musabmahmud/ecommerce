@@ -208,41 +208,42 @@
                         <div class="category-append"></div>
                     </div> <!-- section title end -->
                     <div class="category-carousel-active row" data-row="4">
-                    <?php
+                        <?php
                         $popularPd = $pd->popularProduct();
                         if ($popularPd) {
                             $i = 0;
                             while ($popPd = $popularPd->fetch_assoc()) {
                                 $i++;
                         ?>
-                        <div class="col">
-                            <div class="category-item">
-                                <div class="category-thumb">
-                                    <a href="product_details.php?productId=<?= $popPd['productId']; ?>">
-                                        <img src="assets/img/product/<?= $popPd['image']; ?>" alt="">
-                                    </a>
-                                </div>
-                                <div class="category-content">
-                                    <h4><a href="product_details.php?productId=<?= $popPd['productId'];?>"><?= $popPd['productName'];?></a></h4>
-                                    <div class="price-box">
-                                        <div class="regular-price">
-                                            $<?= $popPd['price'];?>
+                                <div class="col">
+                                    <div class="category-item">
+                                        <div class="category-thumb">
+                                            <a href="product_details.php?productId=<?= $popPd['productId']; ?>">
+                                                <img src="assets/img/product/<?= $popPd['image']; ?>" alt="">
+                                            </a>
                                         </div>
-                                    </div>
-                                    <div class="ratings">
-                                        <span class="good"><i class="fa fa-star"></i></span>
-                                        <span class="good"><i class="fa fa-star"></i></span>
-                                        <span class="good"><i class="fa fa-star"></i></span>
-                                        <span class="good"><i class="fa fa-star"></i></span>
-                                        <span><i class="fa fa-star"></i></span>
-                                        <div class="pro-review">
-                                            <span>1 review(s)</span>
+                                        <div class="category-content">
+                                            <h4><a href="product_details.php?productId=<?= $popPd['productId']; ?>"><?= $popPd['productName']; ?></a></h4>
+                                            <div class="price-box">
+                                                <div class="regular-price">
+                                                    $<?= $popPd['price']; ?>
+                                                </div>
+                                            </div>
+                                            <div class="ratings">
+                                                <span class="good"><i class="fa fa-star"></i></span>
+                                                <span class="good"><i class="fa fa-star"></i></span>
+                                                <span class="good"><i class="fa fa-star"></i></span>
+                                                <span class="good"><i class="fa fa-star"></i></span>
+                                                <span><i class="fa fa-star"></i></span>
+                                                <div class="pro-review">
+                                                    <span>1 review(s)</span>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                            </div> <!-- end single item -->
-                        </div> <!-- end single item column -->
-                        <?php } } ?>
+                                    </div> <!-- end single item -->
+                                </div> <!-- end single item column -->
+                        <?php }
+                        } ?>
                     </div>
                 </div>
             </div>
@@ -255,41 +256,42 @@
                         <div class="category-append"></div>
                     </div> <!-- section title end -->
                     <div class="category-carousel-active row" data-row="4">
-                    <?php
+                        <?php
                         $hotPd = $pd->hotProduct();
                         if ($hotPd) {
                             $i = 0;
                             while ($hotPdResult = $hotPd->fetch_assoc()) {
                                 $i++;
                         ?>
-                        <div class="col">
-                            <div class="category-item">
-                                <div class="category-thumb">
-                                    <a href="product_details.php?productId=<?= $hotPdResult['productId']; ?>">
-                                        <img src="assets/img/product/<?= $hotPdResult['image']; ?>" alt="">
-                                    </a>
-                                </div>
-                                <div class="category-content">
-                                    <h4><a href="product_details.php?productId=<?= $hotPdResult['productId']; ?>"><?= $hotPdResult['productName']; ?></a></h4>
-                                    <div class="price-box">
-                                        <div class="regular-price">
-                                            $<?= $hotPdResult['price']; ?>
+                                <div class="col">
+                                    <div class="category-item">
+                                        <div class="category-thumb">
+                                            <a href="product_details.php?productId=<?= $hotPdResult['productId']; ?>">
+                                                <img src="assets/img/product/<?= $hotPdResult['image']; ?>" alt="">
+                                            </a>
                                         </div>
-                                    </div>
-                                    <div class="ratings">
-                                        <span class="good"><i class="fa fa-star"></i></span>
-                                        <span class="good"><i class="fa fa-star"></i></span>
-                                        <span class="good"><i class="fa fa-star"></i></span>
-                                        <span class="good"><i class="fa fa-star"></i></span>
-                                        <span><i class="fa fa-star"></i></span>
-                                        <div class="pro-review">
-                                            <span>1 review(s)</span>
+                                        <div class="category-content">
+                                            <h4><a href="product_details.php?productId=<?= $hotPdResult['productId']; ?>"><?= $hotPdResult['productName']; ?></a></h4>
+                                            <div class="price-box">
+                                                <div class="regular-price">
+                                                    $<?= $hotPdResult['price']; ?>
+                                                </div>
+                                            </div>
+                                            <div class="ratings">
+                                                <span class="good"><i class="fa fa-star"></i></span>
+                                                <span class="good"><i class="fa fa-star"></i></span>
+                                                <span class="good"><i class="fa fa-star"></i></span>
+                                                <span class="good"><i class="fa fa-star"></i></span>
+                                                <span><i class="fa fa-star"></i></span>
+                                                <div class="pro-review">
+                                                    <span>1 review(s)</span>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                            </div> <!-- end single item -->
-                        </div> <!-- end single item column -->
-                    <?php } } ?>
+                                    </div> <!-- end single item -->
+                                </div> <!-- end single item column -->
+                        <?php }
+                        } ?>
                     </div>
                 </div>
             </div>
@@ -314,7 +316,7 @@
         </div> <!-- section title end -->
         <!-- featured category start -->
         <div class="latest-product-active slick-padding slick-arrow-style">
-        
+
             <?php
             $brandPd = $pd->brandProduct();
             if ($brandPd) {
@@ -322,43 +324,44 @@
                 while ($brandPdResult = $brandPd->fetch_assoc()) {
                     $i++;
             ?>
-            <!-- product single item start -->
-            <div class="product-item fix">
-                <div class="product-thumb">
-                    <a href="product_details.php?productId=<?= $brandPdResult['productId']; ?>">
-                        <img src="assets/img/product/<?= $brandPdResult['relatedImage']; ?>" class="img-pri" alt="">
-                        <img src="assets/img/product/<?= $brandPdResult['image']; ?>" class="img-sec" alt="">
-                    </a>
-                    <div class="product-label">
-                        <span>hot</span>
-                    </div>
-                    <div class="product-action-link">
-                        <a href="#" data-toggle="modal" data-target="#quick_view"> <span data-toggle="tooltip" data-placement="left" title="Quick view"><i class="fa fa-search"></i></span>
-                        </a>
-                        <a href="#" data-toggle="tooltip" data-placement="left" title="Wishlist"><i class="fa fa-heart-o"></i></a>
-                        <a href="#" data-toggle="tooltip" data-placement="left" title="Compare"><i class="fa fa-refresh"></i></a>
-                        <a href="#" data-toggle="tooltip" data-placement="left" title="Add to cart"><i class="fa fa-shopping-cart"></i></a>
-                    </div>
-                </div>
-                <div class="product-content">
-                    <h4><a href="product_details.php?productId=<?= $brandPdResult['productId']; ?>"><?= $brandPdResult['productName']; ?></a></h4>
-                    <div class="pricebox">
-                        <span class="regular-price">$<?= $brandPdResult['price']; ?></span>
-                        <div class="ratings">
-                            <span class="good"><i class="fa fa-star"></i></span>
-                            <span class="good"><i class="fa fa-star"></i></span>
-                            <span class="good"><i class="fa fa-star"></i></span>
-                            <span class="good"><i class="fa fa-star"></i></span>
-                            <span><i class="fa fa-star"></i></span>
-                            <div class="pro-review">
-                                <span>1 review(s)</span>
+                    <!-- product single item start -->
+                    <div class="product-item fix">
+                        <div class="product-thumb">
+                            <a href="product_details.php?productId=<?= $brandPdResult['productId']; ?>">
+                                <img src="assets/img/product/<?= $brandPdResult['relatedImage']; ?>" class="img-pri" alt="">
+                                <img src="assets/img/product/<?= $brandPdResult['image']; ?>" class="img-sec" alt="">
+                            </a>
+                            <div class="product-label">
+                                <span>hot</span>
+                            </div>
+                            <div class="product-action-link">
+                                <a href="#" data-toggle="modal" data-target="#quick_view"> <span data-toggle="tooltip" data-placement="left" title="Quick view"><i class="fa fa-search"></i></span>
+                                </a>
+                                <a href="#" data-toggle="tooltip" data-placement="left" title="Wishlist"><i class="fa fa-heart-o"></i></a>
+                                <a href="#" data-toggle="tooltip" data-placement="left" title="Compare"><i class="fa fa-refresh"></i></a>
+                                <a href="#" data-toggle="tooltip" data-placement="left" title="Add to cart"><i class="fa fa-shopping-cart"></i></a>
+                            </div>
+                        </div>
+                        <div class="product-content">
+                            <h4><a href="product_details.php?productId=<?= $brandPdResult['productId']; ?>"><?= $brandPdResult['productName']; ?></a></h4>
+                            <div class="pricebox">
+                                <span class="regular-price">$<?= $brandPdResult['price']; ?></span>
+                                <div class="ratings">
+                                    <span class="good"><i class="fa fa-star"></i></span>
+                                    <span class="good"><i class="fa fa-star"></i></span>
+                                    <span class="good"><i class="fa fa-star"></i></span>
+                                    <span class="good"><i class="fa fa-star"></i></span>
+                                    <span><i class="fa fa-star"></i></span>
+                                    <div class="pro-review">
+                                        <span>1 review(s)</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <!-- product single item end -->
-            <?php } } ?>
+                    <!-- product single item end -->
+            <?php }
+            } ?>
         </div>
         <!-- featured category end -->
     </div>

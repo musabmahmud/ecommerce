@@ -56,4 +56,24 @@ class Product{
         $result = $this->db->select($query);
         return $result;
     }
+    
+    public function getcatName()
+    {
+        $query = "SELECT * FROM category";
+        $result = $this->db->select($query);
+        return $result;
+    }
+
+    public function shopProduct()
+    {
+        $query = "SELECT * FROM product_table";
+        $result = $this->db->select($query);
+        return $result;
+    }
+    public function probyCat($id)
+    {
+        $query = "SELECT * FROM product_table WHERE catId = '$id'";
+        $result = $this->db->select($query);
+        return $result;
+    }
 }

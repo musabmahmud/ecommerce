@@ -90,6 +90,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                             </tr>
                                         </table>
                                         <p><?= $pdResult['body']; ?></p>
+                                        <?php if (isset($addCart)) {?>
+                                        <div class="alert alert-dismissible bg-danger">
+                                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                            <?= $addCart;?>
+                                        </div>
+                                        <?php  } ?>
                                         <form action="" method="post" id="buy">
                                             <div class="quantity-cart-box d-flex align-items-center text-center">
                                                 <div class="quantity">

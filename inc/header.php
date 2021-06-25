@@ -26,13 +26,13 @@ header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
 //or, if you DO want a file to cache, use:
 header("Cache-Control: max-age=2592000");
 //30days (60sec * 60min * 24hours * 30days)
+
 ?>
 
-
 <?php
-  $path = $_SERVER["PHP_SELF"];
-  $parts = explode('/', $path);
-  $file_ext = end($parts);
+$path = $_SERVER["PHP_SELF"];
+$parts = explode('/', $path);
+$file_ext = end($parts);
 ?>
 
 <!DOCTYPE html>
@@ -157,7 +157,7 @@ header("Cache-Control: max-age=2592000");
                                             <a href="#">my wishlist</a>
                                         </li>
                                         <li>
-                                            <a href="#">my cart</a>
+                                            <a href="cart.php">my cart</a>
                                         </li>
                                         <li>
                                             <a href="#">checkout</a>
@@ -221,43 +221,52 @@ header("Cache-Control: max-age=2592000");
                                     <div class="header-mini-cart">
                                         <div class="mini-cart-btn">
                                             <i class="fa fa-shopping-cart"></i>
-                                            <span class="cart-notification">2</span>
+                                            <span class="cart-notification">
+                                                <?php $totalNum = $cart->totalCartNum();
+                                                if(!empty($totalNum)){
+                                                    $result = $totalNum->num_rows;
+                                                    echo $result;
+                                                }
+                                                else{
+                                                    echo "0";
+                                                }
+                                                ?>
+                                            </span>
                                         </div>
                                         <div class="cart-total-price">
                                             <span>total</span>
-                                            $50.00
+                                            <?php
+                                                $total = Session::get("total");
+                                                echo "$".$total;
+                                            ?>
                                         </div>
                                         <ul class="cart-list">
-                                            <li>
-                                                <div class="cart-img">
-                                                    <a href="product-details.php"><img src="assets/img/cart/cart-1.jpg" alt=""></a>
-                                                </div>
-                                                <div class="cart-info">
-                                                    <h4><a href="product-details.php">simple product 09</a></h4>
-                                                    <span>$60.00</span>
-                                                </div>
-                                                <div class="del-icon">
-                                                    <i class="fa fa-times"></i>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="cart-img">
-                                                    <a href="product-details.php"><img src="assets/img/cart/cart-2.jpg" alt=""></a>
-                                                </div>
-                                                <div class="cart-info">
-                                                    <h4><a href="product-details.php">virtual product 10</a></h4>
-                                                    <span>$50.00</span>
-                                                </div>
-                                                <div class="del-icon">
-                                                    <i class="fa fa-times"></i>
-                                                </div>
-                                            </li>
-                                            <li class="mini-cart-price">
-                                                <span class="subtotal">subtotal : </span>
-                                                <span class="subtotal-price">$88.66</span>
-                                            </li>
+                                            <?php if (isset($_GET['delCartPro'])) {
+                                                $delId = $_GET['delCartPro'];
+                                                $delProduct = $cart->delCatById($delId);
+                                            }
+                                            ?>
+                                            <?php $cartOption = $cart->cartOption();
+                                            if ($cartOption) {
+                                                $i = 0;
+                                                while ($CartOpRt = $cartOption->fetch_assoc()) {
+                                                    $i++; ?>
+                                                    <li>
+                                                        <div class="cart-img">
+                                                            <a href="product_details.php?productId=<?= $CartOpRt['productId']; ?>"><img src="assets/img/product/<?= $CartOpRt['image']; ?>" alt=""></a>
+                                                        </div>
+                                                        <div class="cart-info">
+                                                            <h4><a href="product_details.php?productId=<?= $CartOpRt['productId']; ?>"><?= $CartOpRt['productName']; ?></a></h4>
+                                                            <span><?= $CartOpRt['price']; ?></span>
+                                                        </div>
+                                                        <a class="del-icon" href="?delCartPro=<?= $CartOpRt['cartId'] ?>">
+                                                            <i class="fa fa-times"></i>
+                                                        </a>
+                                                    </li>
+                                            <?php }
+                                            } ?>
                                             <li class="checkout-btn">
-                                                <a href="#">checkout</a>
+                                                <a href="cart.php">checkout</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -282,128 +291,33 @@ header("Cache-Control: max-age=2592000");
                                             <i class="fa fa-angle-down"></i>
                                         </div>
                                     </div>
-                                    
+
                                     <nav class="category-menu 
-                                            <?php 
-                                                if($file_ext == "index.php"){
-                                                    echo "hm-1";
-                                                }
-                                                else{
-                                                    echo "category-style-2";
-                                                }
+                                            <?php
+                                            if ($file_ext == "index.php") {
+                                                echo "hm-1";
+                                            } else {
+                                                echo "category-style-2";
+                                            }
                                             ?>">
                                         <ul>
-                                            <li><a href="shop-grid-left-sidebar.php"><i class="fa fa-desktop"></i>
-                                                    computer</a></li>
-                                            <li class="menu-item-has-children"><a href="shop-grid-left-sidebar.php"><i class="fa fa-camera"></i> camera</a>
-                                                <!-- Mega Category Menu Start -->
-                                                <ul class="category-mega-menu">
-                                                    <li class="menu-item-has-children">
-                                                        <a href="shop-grid-left-sidebar.php">Smartphone</a>
-                                                        <ul>
-                                                            <li><a href="shop-grid-left-sidebar.php">Samsome</a></li>
-                                                            <li><a href="shop-grid-left-sidebar.php">GL Stylus</a></li>
-                                                            <li><a href="shop-grid-left-sidebar.php">Uawei</a></li>
-                                                            <li><a href="shop-grid-left-sidebar.php">Cherry Berry</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li class="menu-item-has-children">
-                                                        <a href="shop-grid-left-sidebar.php">headphone</a>
-                                                        <ul>
-                                                            <li><a href="shop-grid-left-sidebar.php">Desktop Headphone</a></li>
-                                                            <li><a href="shop-grid-left-sidebar.php">Mobile Headphone</a></li>
-                                                            <li><a href="shop-grid-left-sidebar.php">Wireless
-                                                                    Headphone</a></li>
-                                                            <li><a href="shop-grid-left-sidebar.php">LED Headphone</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li class="menu-item-has-children">
-                                                        <a href="shop-grid-left-sidebar.php">accessories</a>
-                                                        <ul>
-                                                            <li><a href="shop-grid-left-sidebar.php">Power Bank</a></li>
-                                                            <li><a href="shop-grid-left-sidebar.php">Data Cable</a></li>
-                                                            <li><a href="shop-grid-left-sidebar.php">Power Cable</a></li>
-                                                            <li><a href="shop-grid-left-sidebar.php">Battery</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li class="menu-item-has-children">
-                                                        <a href="shop-grid-left-sidebar.php">headphone</a>
-                                                        <ul>
-                                                            <li><a href="shop-grid-left-sidebar.php">Desktop Headphone</a></li>
-                                                            <li><a href="shop-grid-left-sidebar.php">Mobile Headphone</a></li>
-                                                            <li><a href="shop-grid-left-sidebar.php">Wireless
-                                                                    Headphone</a></li>
-                                                            <li><a href="shop-grid-left-sidebar.php">LED Headphone</a></li>
-                                                        </ul>
-                                                    </li>
-                                                </ul><!-- Mega Category Menu End -->
-                                            </li>
-                                            <li class="menu-item-has-children"><a href="shop-grid-left-sidebar.php"><i class="fa fa-book"></i> smart phones</a>
-                                                <!-- Mega Category Menu Start -->
-                                                <ul class="category-mega-menu">
-                                                    <li class="menu-item-has-children">
-                                                        <a href="shop-grid-left-sidebar.php">Smartphone</a>
-                                                        <ul>
-                                                            <li><a href="shop-grid-left-sidebar.php">Samsome</a></li>
-                                                            <li><a href="shop-grid-left-sidebar.php">GL Stylus</a></li>
-                                                            <li><a href="shop-grid-left-sidebar.php">Uawei</a></li>
-                                                            <li><a href="shop-grid-left-sidebar.php">Cherry Berry</a></li>
-                                                            <li><a href="shop-grid-left-sidebar.php">uPhone</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li class="menu-item-has-children">
-                                                        <a href="shop-grid-left-sidebar.php">headphone</a>
-                                                        <ul>
-                                                            <li><a href="shop-grid-left-sidebar.php">Desktop Headphone</a></li>
-                                                            <li><a href="shop-grid-left-sidebar.php">Mobile Headphone</a></li>
-                                                            <li><a href="shop-grid-left-sidebar.php">Wireless
-                                                                    Headphone</a></li>
-                                                            <li><a href="shop-grid-left-sidebar.php">LED Headphone</a></li>
-                                                            <li><a href="shop-grid-left-sidebar.php">Over-ear</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li class="menu-item-has-children">
-                                                        <a href="shop-grid-left-sidebar.php">accessories</a>
-                                                        <ul>
-                                                            <li><a href="shop-grid-left-sidebar.php">Power Bank</a></li>
-                                                            <li><a href="shop-grid-left-sidebar.php">Data Cable</a></li>
-                                                            <li><a href="shop-grid-left-sidebar.php">Power Cable</a></li>
-                                                            <li><a href="shop-grid-left-sidebar.php">Battery</a></li>
-                                                            <li><a href="shop-grid-left-sidebar.php">OTG Cable</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li class="menu-item-has-children">
-                                                        <a href="shop-grid-left-sidebar.php">accessories</a>
-                                                        <ul>
-                                                            <li><a href="shop-grid-left-sidebar.php">Power Bank</a></li>
-                                                            <li><a href="shop-grid-left-sidebar.php">Data Cable</a></li>
-                                                            <li><a href="shop-grid-left-sidebar.php">Power Cable</a></li>
-                                                            <li><a href="shop-grid-left-sidebar.php">Battery</a></li>
-                                                            <li><a href="shop-grid-left-sidebar.php">OTG Cable</a></li>
-                                                        </ul>
-                                                    </li>
-                                                </ul><!-- Mega Category Menu End -->
-                                            </li>
-                                            <li><a href="shop-grid-left-sidebar.php"><i class="fa fa-clock-o"></i>
-                                                    watch</a></li>
-                                            <li><a href="shop-grid-left-sidebar.php"><i class="fa fa-television"></i>
-                                                    electronic</a></li>
-                                            <li><a href="shop-grid-left-sidebar.php"><i class="fa fa-tablet"></i>
-                                                    tablet</a></li>
-                                            <li><a href="shop-grid-left-sidebar.php"><i class="fa fa-book"></i> books</a></li>
-                                            <li><a href="shop-grid-left-sidebar.php"><i class="fa fa-microchip"></i>
-                                                    microchip</a></li>
-                                            <li><a href="shop-grid-left-sidebar.php"><i class="fa fa-bullhorn"></i>
-                                                    bullhorn</a></li>
+                                            <?php 
+                                            $category = $pd->getcatName();
+                                            if ($category) {
+                                                while ($catResult = $category->fetch_assoc()) {
+                                            ?>
+                                            <li><a href="shopbycategory.php?catId=<?= $catResult['catId']?>"><i class="fa fa-star"></i>
+                                                    <?= $catResult['catName']?></a></li>
+                                        <?php }} ?>
                                         </ul>
                                     </nav>
                                 </div>
                                 <div class="main-menu">
                                     <nav id="mobile-menu">
                                         <ul>
-                                            <li class="active"><a href="#"><i class="fa fa-home"></i>Home</a></li>
+                                            <li class="active"><a href="index.php"><i class="fa fa-home"></i>Home</a></li>
                                             <li class="static"><a href="#">pages <i class="fa fa-angle-down"></i></a></li>
-                                            <li><a href="#">shop</a></li>
+                                            <li><a href="shop.php">shop</a></li>
                                             <li><a href="#">Blog</a></li>
                                             <li><a href="contact-us.php">Contact us</a></li>
                                         </ul>
