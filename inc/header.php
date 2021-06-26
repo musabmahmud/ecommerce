@@ -13,6 +13,7 @@ $format = new Format();
 $pd = new Product();
 
 $user = new User();
+
 $cart = new Cart();
 
 ?>
@@ -136,6 +137,13 @@ $file_ext = end($parts);
                                 </a>
                             </div>
                         </div>
+                        <?php if(isset($_GET['cusId'])){
+                            $delcartId = $_GET['cusId'];
+                            $delData = $cart->delCustomerCart($delcartId);
+                            Session::destroy();
+                        }
+                        ?>
+
                         <div class="col-lg-6 col-md-7">
                             <div class="header-top-right float-md-right float-none">
                                 <nav>
@@ -147,9 +155,16 @@ $file_ext = end($parts);
                                                     <i class="fa fa-angle-down"></i>
                                                 </a>
                                                 <div class="dropdown-menu" aria-labelledby="myaccount">
-                                                    <a class="dropdown-item" href="my-account.php">my account</a>
-                                                    <a class="dropdown-item" href="login.php"> login</a>
-                                                    <a class="dropdown-item" href="register.php">register</a>
+                                                    <a class="dropdown-item" href="myaccount.php">my account</a>
+                                                    <?php $login = Session::get("cuslogin");
+                                                        if($login == true){?>
+                                                        <a class='dropdown-item' href="?cusId=<?php Session::get("cusId");?>"> logout</a>
+
+                                                        <?php }
+                                                        else{?>
+                                                        <a class='dropdown-item' href='login.php'> login</a>
+                                                        <a class='dropdown-item' href='register.php'> Register</a>
+                                                    <?php } ?>
                                                 </div>
                                             </div>
                                         </li>
@@ -267,7 +282,7 @@ $file_ext = end($parts);
                                             } ?>
                                             <li class="checkout-btn">
                                                 <a href="cart.php">checkout</a>
-                                            </li>
+                                            </li class="checkout-btn">
                                         </ul>
                                     </div>
                                 </div>

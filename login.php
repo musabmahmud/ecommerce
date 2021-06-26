@@ -1,39 +1,43 @@
 <?php include_once 'inc/header.php'; ?>
-<!-- login register wrapper start -->
+<?php
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
+    $Login = $user->customer_login($_POST);
+}
+
+?>
 <div class="login-register-wrapper">
     <div class="container">
         <div class="member-area-from-wrap">
             <div class="row">
-                <!-- Login Content Start -->
-                <div class="col-lg-12">
-                    <div class="login-reg-form-wrap">
-                        <h2>Sign In</h2>
-                        <form action="#" method="post">
+                <!-- Register Content Start -->
+                <div class="col-lg-4 offset-lg-4">
+                    <div class="login-reg-form-wrap mt-50 mb-50">
+                        <h2>Login Form</h2>
+                        <?php if (isset($Login)) { ?>
+                            <div class="alert alert-dismissible bg-danger text-capitalize">
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                <?php echo $Login;
+                                unset($Login);
+                                ?>
+                            </div>
+                        <?php  }?>
+                        <form action="" method="post">
                             <div class="single-input-item">
-                                <input type="email" placeholder="Email or Username" required />
+                                <input type="email" placeholder="Enter your Email" name="email"  required />
                             </div>
                             <div class="single-input-item">
-                                <input type="password" placeholder="Enter your Password" required />
+                                <input type="password" name="pass" placeholder="Enter your Password" required="" id="id_password">
+                                <i class="fa fa-eye" id="togglePassword" style="float: right;float: right;margin-top: -32px;margin-right: 10px;position: relative;z-index: 2;"></i>
                             </div>
                             <div class="single-input-item">
-                                <div class="login-reg-form-meta d-flex align-items-center justify-content-between">
-                                    <div class="remember-meta">
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="rememberMe">
-                                            <label class="custom-control-label" for="rememberMe">Remember Me</label>
-                                        </div>
-                                    </div>
-                                    <a href="#" class="forget-pwd">Forget Password?</a>
-                                </div>
-                            </div>
-                            <div class="single-input-item">
-                                <button class="sqr-btn">Login</button>
+                                <a href="register.php" class="text-capitalize">Create a new A account??</a>
+                                <button type="submit" name="login" class="btn btn-danger d-block mt-10">login</button>
                             </div>
                         </form>
                     </div>
                 </div>
-                <!-- Login Content End -->
-
+                <div class="offset-lg-4"></div>
+                <!-- Register Content End -->
             </div>
         </div>
     </div>

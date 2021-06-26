@@ -217,11 +217,22 @@
 <!-- Quick view modal end -->
 
 <!-- Scroll to top start -->
-<div class="scroll-top not-visible">
+<div class="scroll-top">
     <i class="fa fa-angle-up"></i>
 </div>
 <!-- Scroll to Top End -->
-
+<script>
+const togglePassword = document.querySelector('#togglePassword');
+  const password = document.querySelector('#id_password');
+ 
+  togglePassword.addEventListener('click', function (e) {
+    // toggle the type attribute
+    const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+    password.setAttribute('type', type);
+    // toggle the eye slash icon
+    this.classList.toggle('fa-eye-slash');
+});
+</script>
 <!--All jQuery, Third Party Plugins & Activation (main.js) Files-->
 <script src="assets/js/vendor/modernizr-3.6.0.min.js"></script>
 <!-- Jquery Min Js -->

@@ -99,4 +99,18 @@ class Cart
         $result = $this->db->select($query);
         return $result;
     }
+    public function delCustomerCart(){
+        $sId = session_id();
+        
+        $query = "DELETE FROM product_cart WHERE sId = '$sId'";
+        $delData = $this->db->delete($query);
+        if($delData){
+            return $delData;
+        }
+        else{
+            $msg = "<span'>
+            Oh snap! Error...!</span>";
+            return $msg;
+        }
+    }
 }
