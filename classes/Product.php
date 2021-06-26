@@ -59,20 +59,33 @@ class Product{
     
     public function getcatName()
     {
-        $query = "SELECT * FROM category";
+        $query = "SELECT * FROM category Order By catName ASC";
+        $result = $this->db->select($query);
+        return $result;
+    }
+    
+    public function getbrandName()
+    {
+        $query = "SELECT * FROM product_brand Order By brandname ASC";
         $result = $this->db->select($query);
         return $result;
     }
 
     public function shopProduct()
     {
-        $query = "SELECT * FROM product_table";
+        $query = "SELECT * FROM product_table Order By productId DESC";
         $result = $this->db->select($query);
         return $result;
     }
     public function probyCat($id)
     {
-        $query = "SELECT * FROM product_table WHERE catId = '$id'";
+        $query = "SELECT * FROM product_table WHERE catId = '$id' Order By productId DESC";
+        $result = $this->db->select($query);
+        return $result;
+    }
+    public function probyBrand($id)
+    {
+        $query = "SELECT * FROM product_table WHERE brandid = '$id' Order By productId DESC";
         $result = $this->db->select($query);
         return $result;
     }

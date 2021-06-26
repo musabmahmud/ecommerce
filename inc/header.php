@@ -148,8 +148,8 @@ $file_ext = end($parts);
                                                 </a>
                                                 <div class="dropdown-menu" aria-labelledby="myaccount">
                                                     <a class="dropdown-item" href="my-account.php">my account</a>
-                                                    <a class="dropdown-item" href="login-register.php"> login</a>
-                                                    <a class="dropdown-item" href="login-register.php">register</a>
+                                                    <a class="dropdown-item" href="login.php"> login</a>
+                                                    <a class="dropdown-item" href="register.php">register</a>
                                                 </div>
                                             </div>
                                         </li>

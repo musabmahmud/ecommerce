@@ -1,29 +1,27 @@
 <?php include_once 'inc/header.php'; ?>
 <?php include_once 'inc/shopsidebar.php'; ?>
 <?php
-if (!isset($_GET['catId'])) {
+if (!isset($_GET['brandid'])) {
     echo "<script>window.location = 'shop.php'</script>;";
 } else {
-    $id = $_GET['catId'];
+    $id = $_GET['brandid'];
 }
 ?>
-
-
 <!-- product item start -->
 <div class="shop-product-wrap grid row">
     <?php
-    $probyCat = $pd->probyCat($id);
-    if ($probyCat) {
+    $probyBrand = $pd->probyBrand($id);
+    if ($probyBrand) {
         $i = 0;
-        while ($proCatRelt = $probyCat->fetch_assoc()) {
+        while ($proBndRelt = $probyBrand->fetch_assoc()) {
             $i++; ?>
             <div class="col-lg-4 col-md-4 col-sm-6">
                 <!-- product single grid item start -->
                 <div class="product-item fix mb-30">
                     <div class="product-thumb">
-                        <a href="product_details.php?productId=<?= $proCatRelt['productId'] ?>">
-                            <img src="assets/img/product/<?= $proCatRelt['image']; ?>" class="img-pri" alt="">
-                            <img src="assets/img/product/<?= $proCatRelt['relatedImage']; ?>" class="img-sec" alt="">
+                        <a href="product_details.php?productId=<?= $proBndRelt['productId'] ?>">
+                            <img src="assets/img/product/<?= $proBndRelt['image']; ?>" class="img-pri" alt="">
+                            <img src="assets/img/product/<?= $proBndRelt['relatedImage']; ?>" class="img-sec" alt="">
                         </a>
                         <div class="product-label">
                             <span>hot</span>
@@ -36,10 +34,10 @@ if (!isset($_GET['catId'])) {
                         </div>
                     </div>
                     <div class="product-content">
-                        <h4><a href="product_details.php?productId=<?= $proCatRelt['productId'] ?>"><?= $proCatRelt['productName']; ?></a></h4>
+                        <h4><a href="product_details.php?productId=<?= $proBndRelt['productId'] ?>"><?= $proCatRelt['productName']; ?></a></h4>
                         <div class="pricebox">
-                            <span class="regular-price">$<?= $proCatRelt['price']; ?></span><br>
-                            <span><?= $format->textShorten($proCatRelt['body'], 60); ?></span>
+                            <span class="regular-price">$<?= $proBndRelt['price']; ?></span><br>
+                            <span><?= $format->textShorten($proBndRelt['body'], 60); ?></span>
                         </div>
                     </div>
                 </div>
