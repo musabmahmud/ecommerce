@@ -47,3 +47,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register'])) {
 </div>
 <!-- login register wrapper end -->
 <?php include_once 'inc/footer.php'; ?>
+

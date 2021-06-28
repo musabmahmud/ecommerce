@@ -1,10 +1,9 @@
 <?php include 'inc/header.php'; ?>
 <?php include 'inc/breadcrumb.php'; ?>
+
 <?php 
-$login = Session::get("cuslogin");
-if ($login != true) { 
-    echo "<script>window.location = 'login.php'</script>;";
- } ?>
+$email = Session::get("email");
+?>
 <!-- my account wrapper start -->
 <div class="my-account-wrapper">
     <div class="container">
@@ -22,29 +21,22 @@ if ($login != true) {
                                 <a href="#download" data-toggle="tab"><i class="fa fa-cloud-download"></i> Download</a>
                                 <a href="#payment-method" data-toggle="tab"><i class="fa fa-credit-card"></i> Payment
                                     Method</a>
-                                <a href="#address-edit" data-toggle="tab"><i class="fa fa-map-marker"></i> address</a>
                                 <a href="#account-info" data-toggle="tab"><i class="fa fa-user"></i> Account Details</a>
-                                <a href="login-register.html"><i class="fa fa-sign-out"></i> Logout</a>
+                                <a href="#account-setting" data-toggle="tab"><i class="fa fa-user"></i> Setting</a>
+                                <a href="?cusId=<?php Session::get("cusId"); ?>"><i class="fa fa-sign-out"></i> Logout</a>
                             </div>
+                            <!-- My Account Tab Menu End -->
                         </div>
                         <!-- My Account Tab Menu End -->
-
                         <!-- My Account Tab Content Start -->
                         <div class="col-lg-9 col-md-8">
-                            <div class="tab-content" id="myaccountContent">
-                                <!-- Single Tab Content Start -->
-                                <div class="tab-pane fade show active" id="dashboad" role="tabpanel">
-                                    <div class="myaccount-content">
+                                    <div class="tab-content" id="myaccountContent">
+                                        <!-- Single Tab Content Start -->
+                                        <div class="tab-pane fade show active" id="dashboad" role="tabpanel">
+                                            <div class="myaccount-content">
                                         <h3>Dashboard</h3>
-                                        <div class="welcome">
-                                            <p>Hello, <strong>
-                                                    <?php
-                                                    $fullName =  Session::get("cusName");
-                                                    if (isset($fullName)) {
-                                                        echo $fullName;
-                                                    }
-                                                    ?>
-                                                </strong>
+                                        <div class="welcome text-capitalize">
+                                            <p>Hello, <strong><?= Session::get("cusName"); ?></strong></p>
                                         </div>
                                         <p class="mb-0">From your account dashboard. you can easily check & view your recent orders, manage your shipping and billing addresses and edit your password and account details.</p>
                                     </div>
@@ -57,7 +49,6 @@ if ($login != true) {
                                         <h3>Orders</h3>
                                         <div class="myaccount-table table-responsive text-center">
                                             <table class="table table-bordered">
-                                                <thead class="thead-light">
                                                     <tr>
                                                         <th>Order</th>
                                                         <th>Date</th>
@@ -65,30 +56,10 @@ if ($login != true) {
                                                         <th>Total</th>
                                                         <th>Action</th>
                                                     </tr>
-                                                </thead>
-                                                <tbody>
+                                                    
                                                     <tr>
-                                                        <td>1</td>
-                                                        <td>Aug 22, 2018</td>
-                                                        <td>Pending</td>
-                                                        <td>$3000</td>
-                                                        <td><a href="cart.html" class="check-btn sqr-btn ">View</a></td>
+                                                        
                                                     </tr>
-                                                    <tr>
-                                                        <td>2</td>
-                                                        <td>July 22, 2018</td>
-                                                        <td>Approved</td>
-                                                        <td>$200</td>
-                                                        <td><a href="cart.html" class="check-btn sqr-btn ">View</a></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>3</td>
-                                                        <td>June 12, 2017</td>
-                                                        <td>On Hold</td>
-                                                        <td>$990</td>
-                                                        <td><a href="cart.html" class="check-btn sqr-btn ">View</a></td>
-                                                    </tr>
-                                                </tbody>
                                             </table>
                                         </div>
                                     </div>
@@ -139,71 +110,97 @@ if ($login != true) {
                                 <!-- Single Tab Content End -->
 
                                 <!-- Single Tab Content Start -->
-                                <div class="tab-pane fade" id="address-edit" role="tabpanel">
+                                <div class="tab-pane fade" id="account-info" role="tabpanel">
                                     <div class="myaccount-content">
-                                        <h3>Billing Address</h3>
-                                        <address>
-                                            <p><strong>Alex Tuntuni</strong></p>
-                                            <p>1355 Market St, Suite 900 <br>
-                                                San Francisco, CA 94103</p>
-                                            <p>Mobile: (123) 456-7890</p>
-                                        </address>
-                                        <a href="#" class="check-btn sqr-btn "><i class="fa fa-edit"></i> Edit Address</a>
+                                    <h3>Account Profile</h3>
+                                    <table class="table table-bordered table-striped">
+                                            <?php
+                                            $CusProfile = $user->CusProfile($email);
+                                            if ($CusProfile) {
+                                                $ProfileResult = $CusProfile->fetch_assoc();
+                                            ?>
+                                                <tr>
+                                                    <td>Name</td>
+                                                    <td><?= $ProfileResult['cusName']; ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Email</td>
+                                                    <td><?= $ProfileResult['email']; ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Phone</td>
+                                                    <td><?= $ProfileResult['phone']; ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Address</td>
+                                                    <td><i class="fa fa-map-marker"></i> <?= $ProfileResult['address']; ?> , <?= $ProfileResult['city']; ?> - <?= $ProfileResult['zip']; ?>, <?= $ProfileResult['country']; ?>.</td>
+                                                </tr>
+                                            <?php } ?>
+                                        </table>
                                     </div>
                                 </div>
                                 <!-- Single Tab Content End -->
-
+                                <?php
+                                if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['profile_update'])) {
+                                    $profileUpdate = $user->profileUpdate($_POST, $email);
+                                }
+                                ?>
                                 <!-- Single Tab Content Start -->
-                                <div class="tab-pane fade" id="account-info" role="tabpanel">
+                                <div class="tab-pane fade" id="account-setting" role="tabpanel">
                                     <div class="myaccount-content">
-                                        <h3>Account Details</h3>
+                                    <h3>Account Setting</h3>
+                                        <?php if (isset($profileUpdate)) { ?>
+                                            <div class="alert alert-dismissible bg-success text-capitalize">
+                                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                                <?php echo $profileUpdate;
+                                                unset($profileUpdate);
+                                                ?>
+                                            </div>
+                                        <?php  } ?>
                                         <div class="account-details-form">
-                                            <form action="#">
+                                            <form action="" method="post">
+                                                <input type="hidden" name="email" value="<?= $email; ?>" />
                                                 <div class="row">
-                                                    <div class="col-lg-6">
+                                                    <div class="col-lg-6 col-md-6">
                                                         <div class="single-input-item">
-                                                            <label for="first-name" class="required">First Name</label>
-                                                            <input type="text" id="first-name" placeholder="First Name" />
+                                                            <label for="first-name" class="required">Your Name</label>
+                                                            <input type="text" id="first-name" name="cusName" placeholder="Your Name" value="<?= $cusName = Session::get("cusName");
+                                                                                                                                                ?>" />
                                                         </div>
                                                     </div>
-                                                    <div class="col-lg-6">
+                                                    <div class="col-lg-6 col-md-6">
                                                         <div class="single-input-item">
-                                                            <label for="last-name" class="required">Last Name</label>
-                                                            <input type="text" id="last-name" placeholder="Last Name" />
+                                                            <label for="last-name" class="required">Address</label>
+                                                            <input type="text" name="address" id="last-name" value="<?= $ProfileResult['address']; ?>" placeholder="Enter Your Location" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6 col-md-6">
+                                                        <div class="single-input-item">
+                                                            <label for="last-name" class="required">City</label>
+                                                            <input type="text" name="city" value="<?= $ProfileResult['city']; ?>" id="last-name" placeholder="Enter Your City" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6 col-md-6">
+                                                        <div class="single-input-item">
+                                                            <label for="last-name" class="required">Zip</label>
+                                                            <input type="text" name="zip" value="<?= $ProfileResult['zip']; ?>" id="last-name" placeholder="Enter Your Postal Code" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6 col-md-6">
+                                                        <div class="single-input-item">
+                                                            <label for="last-name" class="required">Country</label>
+                                                            <input type="text" name="country" value="<?= $ProfileResult['country']; ?>" id="last-name" placeholder="Enter Your Country" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6 col-md-6">
+                                                        <div class="single-input-item">
+                                                            <label for="last-name" class="required">Phone</label>
+                                                            <input type="number" value="<?= $ProfileResult['phone']; ?>" name="phone" id="last-name" placeholder="Enter Your Contact No" />
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="single-input-item">
-                                                    <label for="display-name" class="required">Display Name</label>
-                                                    <input type="text" id="display-name" placeholder="Display Name" />
-                                                </div>
-                                                <div class="single-input-item">
-                                                    <label for="email" class="required">Email Addres</label>
-                                                    <input type="email" id="email" placeholder="Email Address" />
-                                                </div>
-                                                <fieldset>
-                                                    <legend>Password change</legend>
-                                                    <div class="single-input-item">
-                                                        <label for="current-pwd" class="required">Current Password</label>
-                                                        <input type="password" id="current-pwd" placeholder="Current Password" />
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-lg-6">
-                                                            <div class="single-input-item">
-                                                                <label for="new-pwd" class="required">New Password</label>
-                                                                <input type="password" id="new-pwd" placeholder="New Password" />
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-6">
-                                                            <div class="single-input-item">
-                                                                <label for="confirm-pwd" class="required">Confirm Password</label>
-                                                                <input type="password" id="confirm-pwd" placeholder="Confirm Password" />
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </fieldset>
-                                                <div class="single-input-item">
-                                                    <button class="check-btn sqr-btn ">Save Changes</button>
+                                                    <button type="submit" name="profile_update" class="check-btn sqr-btn ">Save Changes</button>
                                                 </div>
                                             </form>
                                         </div>

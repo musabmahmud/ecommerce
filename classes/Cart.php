@@ -44,14 +44,16 @@ class Cart
             }
         }
     }
-    public function cartDetails(){
+    public function cartDetails()
+    {
         $sId = session_id();
         $query = "SELECT * FROM product_cart WHERE sId = '$sId'";
         $result = $this->db->select($query);
         return $result;
     }
 
-    public function updateTocart($id,$quantity){
+    public function updateTocart($id, $quantity)
+    {
         $quantity = $this->format->validation($_POST['quantity']);
         $quantity = mysqli_real_escape_string($this->db->link, $quantity);
         $cartId = mysqli_real_escape_string($this->db->link, $id);
@@ -59,56 +61,138 @@ class Cart
 
         $query = "UPDATE product_cart SET quantity = '$quantity' WHERE cartId = '$cartId' AND sId = '$sId'";
         $update_query = $this->db->update($query);
-        if($update_query){
+        if ($update_query) {
             $msg = "<span class='text-white'>Update Successfully..!</span>";
             echo "<script>window.location = 'cart.php'</script>;";
             return $msg;
-        }
-        else{
+        } else {
             $msg = "<span'>
             Oh snap! Error...!</span>";
             return $msg;
         }
     }
-    public function delCatById($id){
+    public function delCatById($id)
+    {
         $deletId = mysqli_real_escape_string($this->db->link, $id);
         $sId = session_id();
-        
+
         $query = "DELETE FROM product_cart WHERE cartId = '$deletId' AND sId = '$sId'";
         $delData = $this->db->delete($query);
-        if($delData){
+        if ($delData) {
             $msg = "<span class='text-white'>Delete Successfully..!</span>";
             return $msg;
-        }
-        else{
+        } else {
             $msg = "<span'>
             Oh snap! Error...!</span>";
             return $msg;
         }
+    }
+    public function totalCartNum()
+    {
+        $sId = session_id();
+        $query = "SELECT * FROM product_cart WHERE sId = '$sId'";
+        $result = $this->db->select($query);
+        return $result;
+    }
+    public function cartOption()
+    {
+        $sId = session_id();
+        $query = "SELECT * FROM product_cart WHERE sId = '$sId'";
+        $result = $this->db->select($query);
+        return $result;
+    }
 
-    }
-    public function totalCartNum(){
+    public function cartCheck()
+    {
         $sId = session_id();
-        $query = "SELECT * FROM product_cart WHERE sId = '$sId'";
+        $query = "SELECT * FROM product_cart WHERE sId = '$sId' LIMIT 1";
         $result = $this->db->select($query);
         return $result;
     }
-    public function cartOption(){
+    public function delCustomerCart()
+    {
         $sId = session_id();
-        $query = "SELECT * FROM product_cart WHERE sId = '$sId'";
-        $result = $this->db->select($query);
-        return $result;
-    }
-    public function delCustomerCart(){
-        $sId = session_id();
-        
+
         $query = "DELETE FROM product_cart WHERE sId = '$sId'";
         $delData = $this->db->delete($query);
-        if($delData){
+        if ($delData) {
             return $delData;
-        }
-        else{
+        } else {
             $msg = "<span'>
+            Oh snap! Error...!</span>";
+            return $msg;
+        }
+    }
+
+    public function getOrder($data)
+    {
+        $sId = session_id();
+
+        $email = $this->format->validation($_POST['email']);
+        $cusName = $this->format->validation($_POST['cusName']);
+        $address = $this->format->validation($_POST['address']);
+        $city = $this->format->validation($_POST['city']);
+        $country = $this->format->validation($_POST['country']);
+        $phone = $this->format->validation($_POST['phone']);
+        $zip = $this->format->validation($_POST['zip']);
+        $ordernote = $this->format->validation($_POST['ordernote']);
+        $paymentmethod = $this->format->validation($_POST['paymentmethod']);
+
+
+        $email = mysqli_real_escape_string($this->db->link, $email);
+        $cusName = mysqli_real_escape_string($this->db->link, $cusName);
+        $address = mysqli_real_escape_string($this->db->link, $address);
+        $city = mysqli_real_escape_string($this->db->link, $city);
+        $country = mysqli_real_escape_string($this->db->link, $country);
+        $phone = mysqli_real_escape_string($this->db->link, $phone);
+        $zip = mysqli_real_escape_string($this->db->link, $zip);
+        $ordernote = mysqli_real_escape_string($this->db->link, $ordernote);
+        $paymentmethod = mysqli_real_escape_string($this->db->link, $paymentmethod);
+
+
+        $CusDeQuery = "UPDATE customer_table SET 
+                    cusName = '$cusName',
+                    address = '$address',
+                    city = '$city',
+                    country = '$country',
+                    zip = '$zip',
+                    phone = '$phone' WHERE
+                    email = '$email'";
+        $cusDetails = $this->db->update($CusDeQuery);
+
+        $cartDetailsquery = "SELECT * FROM product_cart WHERE sId = '$sId'";
+        $cartDetails = $this->db->select($cartDetailsquery);
+
+        $sum = 0;
+        $total = 0;
+        $i = 0;
+        while ($cartResult = $cartDetails->fetch_assoc()) {
+            $i++;
+            $productId =  $cartResult['productId'];
+            $productName =  $cartResult['productName'];
+            $image =  $cartResult['image'];
+            $quantity =  $cartResult['quantity'];
+            $price =  $cartResult['price'];
+            $productCode =  $cartResult['productCode'];
+
+            $insert_purchased = "INSERT INTO product_purchased(productId, email, productName, price, quantity,image,productCode) VALUES('$productId','$email','$productName', '$price', '$quantity', '$image', '$productCode')";
+            $inserted_purchased_row = $this->db->insert($insert_purchased);
+
+            $sum = $quantity * $price;
+            $total = $total + $sum;
+        }
+        $vat = $total * 0.1;
+        $total = $total + $vat;
+
+
+        $orderDetails = "INSERT INTO product_order(email, payment, total, ordernote) VALUES('$cusName','$paymentmethod','$total','$ordernote')";
+        $inserted_Order = $this->db->insert($orderDetails);
+        if ($inserted_Order) {
+            $DeletCartquery = "DELETE FROM product_cart WHERE sId = '$sId'";
+            $delData = $this->db->delete($DeletCartquery);
+            echo "<script>window.location = 'myaccount.php#account-info?success=Purchased Product Successfully......!'</script>;";
+        } else {
+            $msg = "<span>
             Oh snap! Error...!</span>";
             return $msg;
         }

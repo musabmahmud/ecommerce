@@ -118,7 +118,7 @@
         <div class="container">
             <div class="footer-bottom-wrap">
                 <div class="copyright-text">
-                    <p><a target="_blank" href="https://www.templateshub.net">Templates Hub</a></p>
+                    <p>Made By <a target="_blank" href="https://www.fiverr.com/users/musabmahmud/">Musab</a></p>
                 </div>
                 <div class="payment-method-img">
                     <img src="assets/img/payment.png" alt="">

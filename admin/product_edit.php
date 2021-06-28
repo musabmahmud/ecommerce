@@ -18,7 +18,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update'])) {
     $proUpdate = $products->productUpdate($_POST,$_FILES, $id);
 }
 
-
 ?>
 <div class="sl-pagebody">
     <div class="sl-page-title">

@@ -141,6 +141,7 @@ $file_ext = end($parts);
                             $delcartId = $_GET['cusId'];
                             $delData = $cart->delCustomerCart($delcartId);
                             Session::destroy();
+                            echo "<script>window.location = 'index.php'</script>;";
                         }
                         ?>
 
@@ -155,11 +156,10 @@ $file_ext = end($parts);
                                                     <i class="fa fa-angle-down"></i>
                                                 </a>
                                                 <div class="dropdown-menu" aria-labelledby="myaccount">
-                                                    <a class="dropdown-item" href="myaccount.php">my account</a>
                                                     <?php $login = Session::get("cuslogin");
                                                         if($login == true){?>
+                                                        <a class="dropdown-item" href="myaccount.php">my account</a>
                                                         <a class='dropdown-item' href="?cusId=<?php Session::get("cusId");?>"> logout</a>
-
                                                         <?php }
                                                         else{?>
                                                         <a class='dropdown-item' href='login.php'> login</a>
@@ -175,7 +175,7 @@ $file_ext = end($parts);
                                             <a href="cart.php">my cart</a>
                                         </li>
                                         <li>
-                                            <a href="#">checkout</a>
+                                            <a href="checkout.php">checkout</a>
                                         </li>
                                     </ul>
                                 </nav>
