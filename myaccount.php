@@ -4,6 +4,7 @@
 <?php 
 $email = Session::get("email");
 ?>
+
 <!-- my account wrapper start -->
 <div class="my-account-wrapper">
     <div class="container">
@@ -50,16 +51,39 @@ $email = Session::get("email");
                                         <div class="myaccount-table table-responsive text-center">
                                             <table class="table table-bordered">
                                                     <tr>
-                                                        <th>Order</th>
-                                                        <th>Date</th>
+                                                        <th>Order NO</th>
+                                                        <th>Email</th>
                                                         <th>Status</th>
-                                                        <th>Total</th>
+                                                        <th>Payment Method</th>
+                                                        <th>Total (including 10% vat)</th>
+                                                        <th>Order Note</th>
+                                                        <th>Date</th>
                                                         <th>Action</th>
                                                     </tr>
-                                                    
+                                                    <?php
+                                                        $orderDetails = $cart->orderDetails($email);
+                                                        if ($orderDetails) {
+                                                            $i = 0;
+                                                            while ($ODResults = $orderDetails->fetch_assoc()) {
+                                                                $i++; ?>
                                                     <tr>
-                                                        
+                                                        <td><?= $i?></td>
+                                                        <td><?= $ODResults['email'];?></td>
+                                                        <td><?php
+                                                        $status = $ODResults['status'];
+                                                        if($status == 0){
+                                                            echo "<span class='text-warning'>Pending</span>";
+                                                        }
+                                                        else{
+                                                            echo "<span class='text-success'>Accepted</span>";
+                                                        }?></td>
+                                                        <td><?= $ODResults['payment'];?></td>
+                                                        <td><?= $ODResults['total'];?></td>
+                                                        <td><?= $ODResults['ordernote'];?></td>
+                                                        <td><?= $format->formatDate($ODResults['date']);?></td>
+                                                        <td></td>
                                                     </tr>
+                                                    <?php } }?>
                                             </table>
                                         </div>
                                     </div>

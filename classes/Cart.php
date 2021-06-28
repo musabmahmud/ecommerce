@@ -118,8 +118,7 @@ class Cart
         if ($delData) {
             return $delData;
         } else {
-            $msg = "<span'>
-            Oh snap! Error...!</span>";
+            $msg = "<span'>Oh snap! Error...!</span>";
             return $msg;
         }
     }
@@ -149,7 +148,8 @@ class Cart
         $ordernote = mysqli_real_escape_string($this->db->link, $ordernote);
         $paymentmethod = mysqli_real_escape_string($this->db->link, $paymentmethod);
 
-
+        $checkLogin = Session::get("email");
+        if($email == $checkLogin){
         $CusDeQuery = "UPDATE customer_table SET 
                     cusName = '$cusName',
                     address = '$address',
@@ -158,8 +158,13 @@ class Cart
                     zip = '$zip',
                     phone = '$phone' WHERE
                     email = '$email'";
-        $cusDetails = $this->db->update($CusDeQuery);
-
+        $cusDetails = $this->db->update($CusDeQuery);}
+        else{
+            $CusDeQuery = "INSERT INTO customer_table(cusName, address, city, country, zip,phone,email)
+             VALUES('$cusName', '$address','$city', '$country', '$zip', '$phone', '$email')";
+            $cusDetails = $this->db->insert($CusDeQuery);
+            Session::set("email", $email);
+        }
         $cartDetailsquery = "SELECT * FROM product_cart WHERE sId = '$sId'";
         $cartDetails = $this->db->select($cartDetailsquery);
 
@@ -185,15 +190,27 @@ class Cart
         $total = $total + $vat;
 
 
-        $orderDetails = "INSERT INTO product_order(email, payment, total, ordernote) VALUES('$cusName','$paymentmethod','$total','$ordernote')";
+        $orderDetails = "INSERT INTO product_order(email, payment, total, ordernote) VALUES('$email','$paymentmethod','$total','$ordernote')";
         $inserted_Order = $this->db->insert($orderDetails);
         if ($inserted_Order) {
             $DeletCartquery = "DELETE FROM product_cart WHERE sId = '$sId'";
             $delData = $this->db->delete($DeletCartquery);
-            echo "<script>window.location = 'myaccount.php#account-info?success=Purchased Product Successfully......!'</script>;";
+
+            echo "<script>window.location = 'myaccount.php?success=Purchased Product Successfully......!'</script>;";
         } else {
             $msg = "<span>
             Oh snap! Error...!</span>";
+            return $msg;
+        }
+    }
+    public function orderDetails($email)
+    {
+        $orderquery = "SELECT * FROM product_order WHERE email = '$email'";
+        $getOrderDetails = $this->db->select($orderquery);
+        if($getOrderDetails){
+            return $getOrderDetails;
+        }else {
+            $msg = "<span> Oh snap! Error...!</span>";
             return $msg;
         }
     }

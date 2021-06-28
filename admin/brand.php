@@ -39,7 +39,7 @@ if (isset($_GET['branddelid'])) {
             <?php 
                 $getbrand = $brand->getAll();
                 $i = 0;
-                if(isset($getbrand)){
+                if($getbrand){
                 while($result = $getbrand->fetch_assoc()){
                     $i++;
             ?>

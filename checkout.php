@@ -6,6 +6,7 @@ $cartCheck = $cart->cartCheck();
 if ($cartCheck == FALSE) {
     echo "<script>window.location = 'shop.php'</script>;";
 }
+$email = Session::get("email");
 ?>
 
 <!-- checkout main wrapper start -->
@@ -14,7 +15,6 @@ if ($cartCheck == FALSE) {
         <div class="row">
             <div class="col-12">
                 <?php
-                $email = Session::get("email");
                 if (empty($email)) {
                 ?>
                     <!-- Checkout Login Start -->
@@ -95,14 +95,14 @@ if ($cartCheck == FALSE) {
                             if ($CusProfile && !empty($email)) {
                                 $ProfileResult = $CusProfile->fetch_assoc();
                             ?>
-                                <input type="hidden" name="email" value="<?= $email = Session::get("cusName"); ?>" />
+                                <input type="hidden" name="email" value="<?=$email;?>" />
                                 <div class="single-input-item">
                                     <label for="first-name" class="required">Your Name</label>
-                                    <input type="text" id="first-name" name="cusName" placeholder="Your Name" value="<?= $cusName = Session::get("cusName"); ?>" />
+                                    <input type="text" id="first-name" name="cusName" placeholder="Your Name" value="<?= $ProfileResult['cusName']; ?>" />
                                 </div>
                                 <div class="single-input-item">
-                                    <label for="last-name" class="required">Address</label>
-                                    <input type="text" name="address" id="last-name" value="<?= $ProfileResult['address']; ?>" placeholder="Enter Your Location" />
+                                    <label for="last-address" class="required">Address</label>
+                                    <input type="text" name="address" id="last-address" value="<?= $ProfileResult['address']; ?>" placeholder="Enter Your Location" />
                                 </div>
                                 <div class="single-input-item">
                                     <label for="last-name" class="required">City</label>
@@ -110,7 +110,7 @@ if ($cartCheck == FALSE) {
                                 </div>
                                 <div class="single-input-item">
                                     <label for="last-name" class="required">Zip</label>
-                                    <input type="text" name="zip" value="<?= $ProfileResult['zip']; ?>" id="last-name" placeholder="Enter Your Postal Code" />
+                                    <input type="int" name="zip" value="<?= $ProfileResult['zip']; ?>" id="last-name" placeholder="Enter Your Postal Code" />
                                 </div>
                                 <div class="single-input-item">
                                     <label for="last-name" class="required">Country</label>
@@ -131,27 +131,27 @@ if ($cartCheck == FALSE) {
                                 </div>
                                 <div class="single-input-item">
                                     <label for="email" class="required">Email Address</label>
-                                    <input type="email" id="email" placeholder="Email Address" required />
+                                    <input type="email" id="email" name="email" placeholder="Email Address" required />
                                 </div>
                                 <div class="single-input-item">
-                                    <label for="last-name" class="required">Address</label>
-                                    <input type="text" name="address" id="last-name" placeholder="Enter Your Location" />
+                                    <label for="last-address" class="required">Address</label>
+                                    <input type="text" name="address" id="last-address" placeholder="Enter Your Location" />
                                 </div>
                                 <div class="single-input-item">
-                                    <label for="last-name" class="required">City</label>
-                                    <input type="text" name="city" id="last-name" placeholder="Enter Your City" />
+                                    <label for="last-city" class="required">City</label>
+                                    <input type="text" name="city" id="last-city" placeholder="Enter Your City" />
                                 </div>
                                 <div class="single-input-item">
-                                    <label for="last-name" class="required">Zip</label>
-                                    <input type="text" name="zip" id="last-name" placeholder="Enter Your Postal Code" />
+                                    <label for="last-Zip" class="required">Zip</label>
+                                    <input type="text" name="zip" id="last-Zip" placeholder="Enter Your Postal Code" />
                                 </div>
                                 <div class="single-input-item">
-                                    <label for="last-name" class="required">Country</label>
-                                    <input type="text" name="country" id="last-name" placeholder="Enter Your Country" />
+                                    <label for="last-country" class="required">Country</label>
+                                    <input type="text" name="country" id="last-country" placeholder="Enter Your Country" />
                                 </div>
                                 <div class="single-input-item">
-                                    <label for="last-name" class="required">Phone</label>
-                                    <input type="number" name="phone" id="last-name" placeholder="Enter Your Contact No" />
+                                    <label for="last-phone" class="required">Phone</label>
+                                    <input type="number" name="phone" id="last-phone" placeholder="Enter Your Contact No" />
                                 </div>
                                 <div class="single-input-item">
                                     <label for="ordernote">Order Note</label>

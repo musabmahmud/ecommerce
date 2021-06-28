@@ -1,56 +1,56 @@
 <?php include 'inc/header.php'; ?>
-<?php include 'classes/category_all.php';
+<?php include 'classes/order_all.php';
 
-$cat = new Category();
-
+$order = new Order();
 if (isset($_GET['delId'])) {
     $id = $_GET['delId'];
-    $delCat = $cat->delCatById($id);
+    $delOrder = $order->delOrderById($id);
 }
 ?>
 <!-- ########## START: MAIN PANEL ########## -->
 <div class="sl-pagebody">
     <div class="sl-page-title">
-        <h5></h5>
     </div><!-- sl-page-title -->
-
     <div class="card pd-20 pd-sm-40">
         <div class="block">
-            <h2 class="text-uppercase ">Category</h2>
-            <a class="btn bg-info d-flex float-right text-white text-left tx-22" href="category_add.php">Add New Category</a>
+            <h2 class="text-uppercase ">View Delivered Order</h2>
         </div>
-        <div class="mg-t-5" id="message">
-                <?php if (isset($delCat)) {
-                    echo $delCat;
-                    unset($delCat);
-                }
-                if (isset($catUpdate)) {
-                    echo $catUpdate;
-                    unset($catUpdate);
-                }
-                ?>
+        <div class="pd-t-20 pd-b-20" id="message">
+            <?php if (isset($delOrder)) {
+                echo $delOrder;
+                unset($delOrder);
+            }?>
         </div>
         <table class="table table-bordered table-striped" id="myTable">
             <thead>
                 <tr>
                     <th>Serial No.</th>
-                    <th>Category Name</th>
-                    <th>Action</th>
+                    <th>Email</th>
+                    <th>Payment</th>
+                    <th>Date</th>
+                    <th>Order Note</th>
+                    <th>Total</th>
+                    <th>View Details</th>
+                    <th>Accept</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
-                $getCat = $cat->getAll();
+                $getDeliverOrder = $order->getDeliverOrder();
                 $i = 0;
-                if ($getCat) {
-                    while ($result = $getCat->fetch_assoc()) {
+                if ($getDeliverOrder) {
+                    while ($result = $getDeliverOrder->fetch_assoc()) {
                         $i++;
                 ?>
                         <tr>
                             <td><?= $i; ?></td>
-                            <td><?= $result['catName']; ?></td>
-                            <td><a href="category_edit.php?catId=<?= $result['catId']; ?>">EDIT</a> || <a data-toggle="modal" data-target="#exampleModalCenter" href="?delId=<?= $result['catId']; ?>">DELETE</a>
-                            
+                            <td><?= $result['email']; ?></td>
+                            <td><?= $result['payment']; ?></td>
+                            <td><?= $result['date']; ?></td>
+                            <td><?= $result['ordernote']; ?></td>
+                            <td>$<?= $result['total']; ?></td>
+                            <td><a class="btn btn-primary" href="order_details.php?email=<?= $result['email'];?>&date=<?= $result['date'];?>">View Details</a></td>
+                            <td> <a class="btn btn-danger"  data-toggle="modal" data-target="#exampleModalCenter" href="?delId=<?= $result['orderid']; ?>">DELETE</a>
                             
                             <!-- Modal -->
                             <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -67,18 +67,20 @@ if (isset($_GET['delId'])) {
                                             </div>
                                             <div class="modal-footer pd-t-20 text-white">
                                                 <a type="button" class="btn btn-secondary" href="#" data-dismiss="modal">Close</a>
-                                                <a type="submit" class="btn btn-danger" href="?delId=<?= $result['catId'];?>">Delete</a>
+                                                <a type="submit" class="btn btn-danger" href="?delId=<?= $result['orderid'];?>">Delete</a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                
                             </td>
                         </tr>
                 <?php }
                 } ?>
             </tbody>
         </table>
+        <div class="block">
+        <a class="btn btn-success float-right text-white mg-t-20" href="order.php">View New Order</a>
+        </div>
     </div><!-- Card -->
 </div><!-- sl-pagebody -->
 <?php include 'inc/footer.php'; ?>
