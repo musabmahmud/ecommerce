@@ -252,7 +252,11 @@ $file_ext = end($parts);
                                             <span>total</span>
                                             <?php
                                                 $total = Session::get("total");
-                                                echo "$".$total;
+                                                if(!empty($total)){
+                                                echo "$".$total;}
+                                                else{
+                                                    echo "$0";
+                                                }
                                             ?>
                                         </div>
                                         <ul class="cart-list">

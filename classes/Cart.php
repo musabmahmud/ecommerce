@@ -34,13 +34,10 @@ class Cart
             $msg = "<span class='text-white'>Already Added To Cart..!</span>";
             return $msg;
         } else {
-
             $query = "INSERT INTO product_cart(sId, productId, productName, price, quantity,image,productCode) VALUES('$sId', '$productId','$productName', '$price', '$quantity', '$image', '$productCode')";
             $inserted_row = $this->db->insert($query);
             if ($inserted_row) {
                 echo "<script>window.location = 'cart.php'</script>;";
-            } else {
-                echo "<script>window.location = 'shop.php'</script>;";
             }
         }
     }
@@ -63,7 +60,7 @@ class Cart
         $update_query = $this->db->update($query);
         if ($update_query) {
             $msg = "<span class='text-white'>Update Successfully..!</span>";
-            echo "<script>window.location = 'cart.php'</script>;";
+            echo "<meta http-equiv='refresh' content='0;URL=?live=live'/>";
             return $msg;
         } else {
             $msg = "<span'>
@@ -80,6 +77,8 @@ class Cart
         $delData = $this->db->delete($query);
         if ($delData) {
             $msg = "<span class='text-white'>Delete Successfully..!</span>";
+            Session::set("total", 0);
+            echo "<meta http-equiv='refresh' content='0;URL=?live=live'/>";
             return $msg;
         } else {
             $msg = "<span'>
