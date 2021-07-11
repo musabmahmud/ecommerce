@@ -101,11 +101,12 @@ class Products
 
 
         $file_name = $files['image']['name'];
+        $related_file_name = $files['relatedImage']['name'];
 
         if ($productName == "" || $catId == "" || $brandid == "" || $price == "" || $body == "") {
             $msg = "<span class='alert alert-warning d-block'>Field Must Not Be Empty</span>";
             return $msg;
-        } elseif (!empty($file_name = $files['image']['name'])) {
+        } elseif (!empty($file_name = $files['image']['name']) && !empty($related_file_name = $files['relatedImage']['name'])) {
 
             $delquery = "SELECT * FROM product_table WHERE productId = '$id'";
             $getData = $this->db->select($delquery);
@@ -121,14 +122,27 @@ class Products
             $explode = explode('.', $file_name);
             $ext = strtolower(end($explode));
             $allow_format = ['jpg', 'png', 'jpeg'];
-            if ($file_size > 40000000) {
+
+
+
+            $related_file_size = $files['relatedImage']['size'];
+            $related_file_tmp = $files['relatedImage']['tmp_name'];
+            $related_explode = explode('.', $file_name);
+            $related_ext = strtolower(end($explode));
+            $related_allow_format = ['jpg', 'png', 'jpeg'];
+
+            if ($file_size > 40000000 && $related_file_size > 40000000) {
                 $msg = "<span class='alert alert-warning d-block'>Upload Less Than 5 Mb(image<5)</span>";
                 return $msg;
-            } elseif (in_array($ext, $allow_format)) {
+            } elseif (in_array($ext, $allow_format) && in_array($related_ext, $related_allow_format)) {
                 $unique_image = substr(md5(time()), 0, 10) . '.' . $ext;
                 $uploaded_image = "../assets/img/product/" . $unique_image;
 
+                $related_unique_image = substr(md5(time()), 0, 8) . '.' . $related_ext;
+                $related_uploaded_image = "../assets/img/product/" . $related_unique_image;
+
                 move_uploaded_file($file_tmp, $uploaded_image);
+                move_uploaded_file($related_file_tmp, $related_uploaded_image);
 
                 $query = "UPDATE product_table SET 
                     productName = '$productName',
@@ -138,7 +152,8 @@ class Products
                     type = '$type',
                     productCode = '$productCode',
                     body = '$body',
-                    image = '$unique_image' WHERE productId = '$id';";
+                    image = '$unique_image',
+                    relatedImage = '$related_unique_image' WHERE productId = '$id';";
                 $update_query = $this->db->update($query);
                 if ($update_query) {
                     $msg = "<span class='alert alert-success d-block'><strong>Update Product Successfully</strong> Successful..!</span>";

@@ -204,13 +204,8 @@ class Cart
     }
     public function orderDetails($email)
     {
-        $orderquery = "SELECT * FROM product_order WHERE email = '$email'";
+        $orderquery = "SELECT * FROM product_order WHERE email = '$email' ORDER BY orderid DESC";
         $getOrderDetails = $this->db->select($orderquery);
-        if($getOrderDetails){
-            return $getOrderDetails;
-        }else {
-            $msg = "<span> Oh snap! Error...!</span>";
-            return $msg;
-        }
+        return $getOrderDetails;
     }
 }

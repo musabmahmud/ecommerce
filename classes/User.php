@@ -28,13 +28,18 @@ class User
         if ($mailCheck == true) {
             $msg = "<span class='text-white'>Already created a account.<br>Try to login..!</span>";
             return $msg;
-        } else {
+        } 
+        elseif (!preg_match('/^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z!@#$%]{6,15}$/', $pass)) {
+            $msg = "<span class='text-white'>Password Must Be Uppercase Lowercase and More than 6 Characters</span>";
+            return $msg;
+        } 
+        else {
             $query = "INSERT INTO customer_login(cusName,email,pass) VALUES('$cusName','$email','$pass')";
             $tablequery = "INSERT INTO customer_table(cusName,email) VALUES('$cusName','$email')";
             $inserted_row = $this->db->insert($query);
             $inserted_Tablerow = $this->db->insert($tablequery);
             if ($inserted_row) {
-                $msg = "<span class='text-success'>Successfully Registered..!<br>Try to Log-in..........!!</span>";
+                $msg = "<span class='text-white'>Successfully Registered..!</span>";
                 return $msg;
             } else {
                 $msg = "<span class='text-danger'>Failed..!</span>";
@@ -92,6 +97,7 @@ class User
         $update_query = $this->db->update($query);
         if ($update_query) {
             $msg = "<span><strong>Update Product Successfully</strong> Successful..!</span>";
+            echo "<meta http-equiv='refresh' content='0;URL=?live=live'/>";
             return $msg;
         } else {
             $msg = "<span>

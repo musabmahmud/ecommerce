@@ -19,7 +19,6 @@ $email = Session::get("email");
                                 <a href="#dashboad" class="active" data-toggle="tab"><i class="fa fa-dashboard"></i>
                                     Dashboard</a>
                                 <a href="#orders" data-toggle="tab"><i class="fa fa-cart-arrow-down"></i> Orders</a>
-                                <a href="#download" data-toggle="tab"><i class="fa fa-cloud-download"></i> Download</a>
                                 <a href="#payment-method" data-toggle="tab"><i class="fa fa-credit-card"></i> Payment
                                     Method</a>
                                 <a href="#account-info" data-toggle="tab"><i class="fa fa-user"></i> Account Details</a>
@@ -78,46 +77,17 @@ $email = Session::get("email");
                                                             echo "<span class='text-success'>Accepted</span>";
                                                         }?></td>
                                                         <td><?= $ODResults['payment'];?></td>
-                                                        <td><?= $ODResults['total'];?></td>
+                                                        <td class="text-right">$<?= $ODResults['total'];?></td>
                                                         <td><?= $ODResults['ordernote'];?></td>
                                                         <td><?= $format->formatDate($ODResults['date']);?></td>
                                                         <td></td>
                                                     </tr>
-                                                    <?php } }?>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Single Tab Content End -->
-
-                                <!-- Single Tab Content Start -->
-                                <div class="tab-pane fade" id="download" role="tabpanel">
-                                    <div class="myaccount-content">
-                                        <h3>Downloads</h3>
-                                        <div class="myaccount-table table-responsive text-center">
-                                            <table class="table table-bordered">
-                                                <thead class="thead-light">
+                                                    <?php } }
+                                                    else{?>
                                                     <tr>
-                                                        <th>Product</th>
-                                                        <th>Date</th>
-                                                        <th>Expire</th>
-                                                        <th>Download</th>
+                                                        <td colspan="10">No Data Available</td>
                                                     </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>Haven - Free Real Estate PSD Template</td>
-                                                        <td>Aug 22, 2018</td>
-                                                        <td>Yes</td>
-                                                        <td><a href="#" class="check-btn sqr-btn "><i class="fa fa-cloud-download"></i> Download File</a></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>HasTech - Profolio Business Template</td>
-                                                        <td>Sep 12, 2018</td>
-                                                        <td>Never</td>
-                                                        <td><a href="#" class="check-btn sqr-btn "><i class="fa fa-cloud-download"></i> Download File</a></td>
-                                                    </tr>
-                                                </tbody>
+                                                    <?php }?>
                                             </table>
                                         </div>
                                     </div>
@@ -127,7 +97,7 @@ $email = Session::get("email");
                                 <!-- Single Tab Content Start -->
                                 <div class="tab-pane fade" id="payment-method" role="tabpanel">
                                     <div class="myaccount-content">
-                                        <h3>Payment Method</h3>
+                                        <h3>Profile Details</h3>
                                         <p class="saved-message">You Can't Saved Your Payment Method yet.</p>
                                     </div>
                                 </div>

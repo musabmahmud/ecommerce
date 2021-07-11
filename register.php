@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register'])) {
                                 <i class="fa fa-eye" id="togglePassword" style="float: right;float: right;margin-top: -32px;margin-right: 10px;position: relative;z-index: 2;"></i>
                             </div>
                             <div class="single-input-item">
-                                <a href="login.php" class="text-black">Already Have A account??</a>
+                                <a href="login.php" class="text-black">Already Have A account?? Go to Login...</a>
                                 <button type="submit" name="register" class="btn btn-danger d-block mt-10">Registration</button>
                             </div>
                         </form>

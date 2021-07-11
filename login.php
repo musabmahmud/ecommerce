@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
                                 <i class="fa fa-eye" id="togglePassword" style="float: right;float: right;margin-top: -32px;margin-right: 10px;position: relative;z-index: 2;"></i>
                             </div>
                             <div class="single-input-item">
-                                <a href="register.php" class="text-capitalize">Create a new A account??</a>
+                                <a href="register.php" class="text-capitalize">Create a new account??</a>
                                 <button type="submit" name="login" class="btn btn-danger d-block mt-10">login</button>
                             </div>
                         </form>

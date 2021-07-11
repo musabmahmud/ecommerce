@@ -60,7 +60,7 @@ if (isset($_GET['delPro'])) {
                             <td><?= $result['catName']; ?></td>
                             <td><?= $result['brandname']; ?></td>
                             <td><?= $format->textShorten($result['body'], 40); ?> </td>
-                            <td><?= $result['price']; ?></td>
+                            <td class="text-right">$<?= $result['price']; ?></td>
                             <td><a href="../assets/img/product/<?= $result['image']; ?>" target="_blank"><img src="../assets/img/product/<?= $result['image']; ?>" height="60"></a></td>
                             <td><a href="../assets/img/product/<?= $result['relatedImage']; ?>" target="_blank"><img src="../assets/img/product/<?= $result['relatedImage']; ?>" height="60"></a></td>
                             <td><?= $result['productCode']; ?></td>
