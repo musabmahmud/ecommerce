@@ -3,8 +3,7 @@
 <?php
 $brand = new Brand();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $name = $_POST['brandname'];
-    $insertBrand = $brand->brandimgInsert($name);
+    $insertBrandImg = $brand->brandimgInsert($_POST,$_FILES);
 }
 ?>
 <div class="sl-pagebody">
@@ -15,12 +14,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <div class="card pd-20 pd-sm-40">
         <h6 class="card-body-title">Add Brand</h6>
         <div class="pd-t-20 pd-b-20" id="message">
-            <?php if (isset($insertBrand)) {
-                echo $insertBrand;
-                unset($insertBrand);
+            <?php if (isset($insertBrandImg)) {
+                echo $insertBrandImg;
+                unset($insertBrandImg);
             } ?>
         </div>
-        <form method="post" action="brand_add.php" enctype="multipart/form-data" data-parsley-validate>
+        <form method="post" action="" enctype="multipart/form-data" data-parsley-validate>
             <div class="row mg-b-30">
                 <div class="form-group col-lg-6 mg-b-30">
                     <label class="control-label">Image:</label>
@@ -28,14 +27,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div>
                 <div class="form-group col-lg-6 mg-b-30">
                     <label class="control-label">Preview:</label>
-                    <img id="image_id" src="../assets/img/product/<?= $result['image'] ?>" height="200">
+                    <img id="image_id" src="../assets/img/brand/<?= $result['image'] ?>" height="200">
                 </div>
                 <!-- Image -->
             </div><!-- d-flex -->
             <button type="submit" class="btn btn-info">Add Brand</button>
         </form><!-- Form -->
         <div class="block mg-t-30">
-            <a class="btn bg-info text-white float-right text-left tx-22" href="brand.php">Back to Brand</a>
+            <a class="btn bg-info text-white float-right text-left tx-22" href="brand_img.php">Back to Brand Image</a>
         </div>
     </div>
 </div><!-- Card -->
