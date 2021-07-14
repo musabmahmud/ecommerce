@@ -13,7 +13,6 @@ $all = new AllItem();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $sliderUpdate = $all->getSliderUpdate($_POST,$_FILES);
 }
-
 ?>
 <div class="sl-pagebody">
     <div class="sl-page-title">
@@ -34,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         ?>
         
         <form method="post" action="" enctype="multipart/form-data" data-parsley-validate>
-            <input type="hidden" name="sliderId">
+            <input type="hidden" name="sliderId" value="<?= $getResult['sliderId'] ?>">
             <div class="row mg-b-30">
             <div class="form-group col-lg-6 mg-b-30">
                     <label class="control-label">Slider Background</label>

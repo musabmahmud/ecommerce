@@ -134,12 +134,11 @@ class AllItem{
         
         $allow_format = ['jpg', 'png', 'jpeg'];
 
-        if (empty($file_name_bg) || empty($file_name_1) || empty($file_name_2) || empty($file_name_3) || empty($file_name_4)){
+        if (empty($heading) || empty($body)){
             $msg = "<span class='alert alert-warning d-block'>Field Must Not Be Empty</span>";
             return $msg;
         }
-        elseif (in_array($ext_1, $allow_format) && in_array($ext_2, $allow_format) && in_array($ext_3, $allow_format) && in_array($ext_4, $allow_format)) {
-
+        else{
             $unique_image_bg = substr(md5(time()), 0, 10) . '.' . $ext_bg;
             $uploaded_image_bg = "../assets/img/slider/" . $unique_image_bg;
             move_uploaded_file($file_tmp_bg, $uploaded_image_bg);
@@ -161,6 +160,27 @@ class AllItem{
             $uploaded_image_4 = "../assets/img/slider/" . $unique_image_4;
             move_uploaded_file($file_tmp_4, $uploaded_image_4);
 
+            $query_select = "SELECT * FROM slider WHERE sliderId='$id'";
+            $getDatabyId = $this->db->select($query_select);
+            if($getDatabyId){
+                $resultImage = $getDatabyId->fetch_assoc();
+
+                if(empty($file_name_bg)){
+                    $unique_image_bg = $resultImage['image_bg'];
+                }
+                if(empty($file_name_1)){
+                    $unique_image_1 = $resultImage['image_1'];
+                }
+                if(empty($file_name_2)){
+                    $unique_image_2 = $resultImage ['image_2'];
+                }
+                if(empty($file_name_3)){
+                    $unique_image_3 = $resultImage['image_3'];
+                }
+                if(empty($file_name_4)){
+                    $unique_image_4 = $resultImage['image_4'];
+                }
+            }
 
             $query = "UPDATE slider SET 
             image_bg = '$unique_image_bg',
@@ -170,7 +190,7 @@ class AllItem{
             image_4 = '$unique_image_4',
             heading = '$heading',
             body = '$body'
-            WHERE slider = '$id'";
+            WHERE sliderId = '$id'";
             $sliderUpdate = $this->db->update($query);
             if ($sliderUpdate) {
                 $msg = "<span class='alert alert-success d-block'><strong>Well done!</strong> Successful..!</span>";
@@ -180,11 +200,6 @@ class AllItem{
                     Oh snap! Error...!</span>";
                 return $msg;
             }
-        }
-        else{
-            $msg = "<span class='alert alert-danger d-block'>
-                Oh snap! Error...!</span>";
-            return $msg;
         }
     }
 
