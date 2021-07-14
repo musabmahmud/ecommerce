@@ -51,12 +51,11 @@
                         </div>
                         <div class="widget-body">
                             <ul class="location">
-                                <li><i class="fa fa-envelope"></i>support@galio.com</li>
-                                <li><i class="fa fa-phone"></i>(800) 0123 456 789</li>
-                                <li><i class="fa fa-map-marker"></i>Address: 1234 - Bandit Tringi Aliquam
-                                    Vitae. New York</li>
+                                <li><i class="fa fa-envelope"></i>md.musabmahmud100@gmail.com</li>
+                                <li><i class="fa fa-phone"></i>+880-01630858100</li>
+                                <li><i class="fa fa-map-marker"></i>Address: 103/3 agamasihlane, Dhaka - 1100.</li>
                             </ul>
-                            <a class="map-btn" href="contact-us.html">open in google map</a>
+                            <a class="map-btn" href="contact-us.php">open in google map</a>
                         </div>
                     </div> <!-- single widget end -->
                 </div> <!-- single widget column end -->
@@ -67,11 +66,18 @@
                         </div>
                         <div class="widget-body">
                             <ul>
-                                <li><a href="#">my account</a></li>
-                                <li><a href="#">my cart</a></li>
-                                <li><a href="#">checkout</a></li>
-                                <li><a href="#">my wishlist</a></li>
-                                <li><a href="#">login</a></li>
+                                <li><a href="myaccount.php">my account</a></li>
+                                <li><a href="cart.php">my cart</a></li>
+                                <li><a href="checkout.php">checkout</a></li>
+                                <?php 
+                                $login = Session::get("cuslogin");
+                                if($login == true){
+                                    echo "<li><a href='?cusId=<?php Session::get('cusId')?>logout</a></li>";
+                                }
+                                else{
+                                    echo"<li><a href='login.php'>login</a></li>";
+                                }
+                                ?>
                             </ul>
                         </div>
                     </div> <!-- single widget end -->

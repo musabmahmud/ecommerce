@@ -125,17 +125,17 @@ $file_ext = end($parts);
                     <div class="row">
                         <div class="col-lg-6 col-md-5">
                             <div class="header-call-action">
-                                <a href="#">
+                                <a title="Mail Us" href="https://mail.google.com/mail/u/0/#inbox?compose=new" target="_blank">
                                     <i class="fa fa-envelope"></i>
-                                    info@website.com
+                                    md.musabmahmud100@gmail.com
                                 </a>
-                                <a href="#">
+                                <a title="Call Us" href="tel:+8801630858100">
                                     <i class="fa fa-phone"></i>
-                                    0123456789
+                                    +880-01630858100
                                 </a>
                             </div>
                         </div>
-                        <?php if(isset($_GET['cusId'])){
+                        <?php if (isset($_GET['cusId'])) {
                             $delcartId = $_GET['cusId'];
                             $delData = $cart->delCustomerCart($delcartId);
                             Session::destroy();
@@ -155,11 +155,10 @@ $file_ext = end($parts);
                                                 </a>
                                                 <div class="dropdown-menu" aria-labelledby="myaccount">
                                                     <?php $login = Session::get("cuslogin");
-                                                        if($login == true){?>
+                                                    if ($login == true) { ?>
                                                         <a class="dropdown-item" href="myaccount.php">my account</a>
-                                                        <a class='dropdown-item' href="?cusId=<?php Session::get("cusId");?>"> logout</a>
-                                                        <?php }
-                                                        else{?>
+                                                        <a class='dropdown-item' href="?cusId=<?= Session::get("cusId"); ?>"> logout</a>
+                                                    <?php } else { ?>
                                                         <a class='dropdown-item' href='login.php'> login</a>
                                                         <a class='dropdown-item' href='register.php'> Register</a>
                                                     <?php } ?>
@@ -236,11 +235,10 @@ $file_ext = end($parts);
                                             <i class="fa fa-shopping-cart"></i>
                                             <span class="cart-notification">
                                                 <?php $totalNum = $cart->totalCartNum();
-                                                if(!empty($totalNum)){
+                                                if (!empty($totalNum)) {
                                                     $result = $totalNum->num_rows;
                                                     echo $result;
-                                                }
-                                                else{
+                                                } else {
                                                     echo "0";
                                                 }
                                                 ?>
@@ -249,12 +247,12 @@ $file_ext = end($parts);
                                         <div class="cart-total-price">
                                             <span>total</span>
                                             <?php
-                                                $total = Session::get("total");
-                                                if(!empty($total)){
-                                                echo "$".$total;}
-                                                else{
-                                                    echo "$0";
-                                                }
+                                            $total = Session::get("total");
+                                            if (!empty($total)) {
+                                                echo "$" . $total;
+                                            } else {
+                                                echo "$0";
+                                            }
                                             ?>
                                         </div>
                                         <ul class="cart-list">
@@ -318,14 +316,15 @@ $file_ext = end($parts);
                                             }
                                             ?>">
                                         <ul>
-                                            <?php 
+                                            <?php
                                             $category = $pd->getcatName();
                                             if ($category) {
                                                 while ($catResult = $category->fetch_assoc()) {
                                             ?>
-                                            <li><a href="shopbycategory.php?catId=<?= $catResult['catId']?>"><i class="fa fa-star"></i>
-                                                    <?= $catResult['catName']?></a></li>
-                                        <?php }} ?>
+                                                    <li><a href="shopbycategory.php?catId=<?= $catResult['catId'] ?>"><i class="fa fa-star"></i>
+                                                            <?= $catResult['catName'] ?></a></li>
+                                            <?php }
+                                            } ?>
                                         </ul>
                                     </nav>
                                 </div>
@@ -333,9 +332,14 @@ $file_ext = end($parts);
                                     <nav id="mobile-menu">
                                         <ul>
                                             <li class="active"><a href="index.php"><i class="fa fa-home"></i>Home</a></li>
-                                            <li class="static"><a href="#">pages <i class="fa fa-angle-down"></i></a></li>
                                             <li><a href="shop.php">shop</a></li>
-                                            <li><a href="#">Blog</a></li>
+                                            <li><a href="cart.php">My Cart</a></li>
+                                            <li><a href="blog-details.php">Blog</a></li>
+                                            <?php $login = Session::get("cuslogin");
+                                            if($login == true){
+                                                echo  "<li><a href='myaccount.php'>MY Account</a></li>";
+                                            }?>
+                                            <li><a href="cart.php">My Wishlist</a></li>
                                             <li><a href="contact-us.php">Contact us</a></li>
                                         </ul>
                                     </nav>
@@ -349,6 +353,5 @@ $file_ext = end($parts);
                 </div>
             </div>
             <!-- main menu area end -->
-
         </header>
         <!-- header area end -->

@@ -17,6 +17,12 @@ class Product{
         return $result;
     }
     
+    public function sidebarPrd(){
+        $query = "SELECT * FROM product_table ORDER BY price DESC LIMIT 30";
+        $result = $this->db->select($query);
+        return $result;
+    }
+    
     public function getNewProduct()
     {
         $query = "SELECT * FROM product_table ORDER BY productId DESC LIMIT 20";
@@ -71,21 +77,43 @@ class Product{
         return $result;
     }
 
-    public function shopProduct()
+    public function shopProduct($start_form,$per_page)
     {
-        $query = "SELECT * FROM product_table Order By productId DESC";
+        $query = "SELECT * FROM product_table LIMIT $start_form, $per_page";
         $result = $this->db->select($query);
         return $result;
     }
-    public function probyCat($id)
+    public function paginationshop()
     {
-        $query = "SELECT * FROM product_table WHERE catId = '$id' Order By productId DESC";
+        $query = "SELECT * FROM product_table";
         $result = $this->db->select($query);
         return $result;
     }
-    public function probyBrand($id)
+    public function probyCat($id, $start_form, $per_page)
     {
-        $query = "SELECT * FROM product_table WHERE brandid = '$id' Order By productId DESC";
+        $query = "SELECT * FROM product_table WHERE catId = '$id' LIMIT $start_form, $per_page";
+        $result = $this->db->select($query);
+        if($result){
+            return $result;
+        }
+    }
+    public function paginationCat($id)
+    {
+        $query = "SELECT * FROM product_table WHERE catId = '$id'";
+        $result = $this->db->select($query);
+        return $result;
+    }
+    public function probyBrand($id,$start_form,$per_page)
+    {
+        $query = "SELECT * FROM product_table WHERE brandid = '$id' LIMIT $start_form,$per_page";
+        $result = $this->db->select($query);
+        if($result){
+            return $result;
+        }
+    }
+    public function paginationBrand($id)
+    {
+        $query = "SELECT * FROM product_table WHERE brandid = '$id'";
         $result = $this->db->select($query);
         return $result;
     }

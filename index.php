@@ -25,8 +25,8 @@
                     <div class="product-item fix">
                         <div class="product-thumb">
                             <a href="product_details.php?productId=<?= $featurePd['productId'] ?>">
-                                <img src="assets/img/product/<?= $featurePd['image'] ?>" class="img-pri" height="200" alt="">
-                                <img src="assets/img/product/<?= $featurePd['relatedImage'] ?>" class="img-sec" height="200" alt="">
+                                <img src="assets/img/product/<?= $featurePd['image'] ?>" class="img-pri" height="200" alt="<?= $featurePd['productName'] ?>">
+                                <img src="assets/img/product/<?= $featurePd['relatedImage'] ?>" class="img-sec" height="200" alt="<?= $featurePd['productName'] ?>">
                             </a>
                             <div class="product-label">
                                 <span>hot</span>
